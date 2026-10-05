@@ -3,10 +3,13 @@
 
 <section class="hero">
   <h1 class="hero-logo">
-    {{- with resources.Get "images/logo.png" }}
-    {{- $logo := .Resize "1200x webp" }}
-    <img src="{{ $logo.RelPermalink }}" width="{{ div $logo.Width 2 }}" height="{{ div $logo.Height 2 }}"
-      alt="Moonlapse MUD" fetchpriority="high" />
+    {{- /* white on black, drawn with mix-blend-mode: screen (no alpha: a third of the size) */}}
+    {{- with resources.Get "images/logo-hero.png" }}
+    {{- $s := .Resize "600x webp" }}{{ $m := .Resize "900x webp" }}{{ $l := .Resize "1200x webp" }}
+    <img src="{{ $s.RelPermalink }}"
+      srcset="{{ $s.RelPermalink }} 600w, {{ $m.RelPermalink }} 900w, {{ $l.RelPermalink }} 1200w"
+      sizes="(max-width: 648px) calc(100vw - 32px), 600px"
+      width="{{ $s.Width }}" height="{{ $s.Height }}" alt="Moonlapse MUD" fetchpriority="high" />
     {{- end }}
   </h1>
   <p class="hero-tagline">{{ $p.tagline | markdownify }}</p>
@@ -19,7 +22,7 @@
       <span></span><span></span><span></span>
       <code>moonlapse</code>
     </div>
-    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "width" 1600 "eager" true) }}
+    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "sizes" "(max-width: 1128px) calc(100vw - 32px), 1080px" "eager" true) }}
   </div>
 </section>
 
@@ -33,7 +36,7 @@
   {{- range $p.features }}
   <article class="feature">
     <span class="glyph" style="color: var(--ansi-{{ .colour }})" aria-hidden="true">{{ .glyph }}</span>
-    <h3>{{ .title }}</h3>
+    <h2>{{ .title }}</h2>
     <p>{{ .text | markdownify }}</p>
   </article>
   {{- end }}
@@ -44,7 +47,7 @@
   <div class="gallery">
     {{- range $p.gallery }}
     <figure>
-      {{ partial "screenshot.html" (dict "n" .n "alt" .caption "width" 800) }}
+      {{ partial "screenshot.html" (dict "n" .n "alt" .caption "sizes" "(max-width: 700px) calc(100vw - 32px), (max-width: 1000px) calc(50vw - 40px), 350px") }}
       <figcaption>{{ .caption }}</figcaption>
     </figure>
     {{- end }}

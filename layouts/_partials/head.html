@@ -1,4 +1,4 @@
-{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon or tile colour */ -}}
+{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon or tile colour; CSS inlined */ -}}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,14 +54,9 @@
 
 {{- /* bundle all required css */}}
 {{- /* Add extended css after theme style */ -}}
-{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css"  }}
-
-{{- if not site.Params.assets.disableFingerprinting }}
-{{- $stylesheet := $stylesheet | fingerprint }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
-{{- else }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
-{{- end }}
+{{- $fonts := resources.Get "css/fonts.css" | resources.Minify }}
+{{- $stylesheet := (slice $license_css $fonts $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
+<style>{{ $stylesheet.Content | safeCSS }}</style>
 
 {{- /* Search */}}
 {{- if (eq .Layout `search`) -}}

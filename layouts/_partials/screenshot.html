@@ -1,10 +1,18 @@
-{{- /* (dict "n" 2 "alt" "..." "width" 1200 "eager" false) */ -}}
+{{- /* (dict "n" 2 "alt" "..." "sizes" "<sizes attribute>" "eager" false) */ -}}
 {{- $img := resources.Get (printf "images/screenshots/%v.png" .n) -}}
 {{- if not $img }}{{ errorf "screenshot: no assets/images/screenshots/%v.png" .n }}{{ end -}}
-{{- $w := .width | default 1200 -}}
-{{- $small := $img.Resize (printf "%dx webp q82" $w) -}}
+{{- $srcset := slice -}}
+{{- $fallback := "" -}}
+{{- range slice 400 700 1000 1400 1792 -}}
+  {{- if le . $img.Width -}}
+    {{- $r := $img.Resize (printf "%dx webp q82" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink .) -}}
+    {{- if eq . 1000 }}{{ $fallback = $r }}{{ end -}}
+  {{- end -}}
+{{- end -}}
 {{- $full := $img.Resize (printf "%dx webp q88" $img.Width) -}}
 <a class="shot" href="{{ $full.RelPermalink }}" data-lightbox>
-  <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}"
-    alt="{{ .alt }}" {{- if not .eager }} loading="lazy" {{- end }} decoding="async" />
+  <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ .sizes | default "100vw" }}"
+    width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ .alt }}"
+    {{- if not .eager }} loading="lazy" {{- end }} decoding="async" />
 </a>

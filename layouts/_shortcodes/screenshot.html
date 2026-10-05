@@ -1,5 +1,5 @@
 {{- /* {{< screenshot n="2" alt="..." caption="..." >}} */ -}}
 <figure class="figure-shot">
-  {{- partial "screenshot.html" (dict "n" (.Get "n") "alt" (.Get "alt" | default (.Get "caption")) "width" 1400) }}
+  {{- partial "screenshot.html" (dict "n" (.Get "n") "alt" (.Get "alt" | default (.Get "caption")) "sizes" "(max-width: 828px) calc(100vw - 80px), 700px") }}
   {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
 </figure>
