@@ -64,7 +64,7 @@ hugo --minify          # into public/ (ignored)
 
 - `layouts/_partials/head.html` is a copy of PaperMod's with three edits: the homepage title from `params.homeTitle`, and no keywords, mask-icon or tile-colour tags. After updating PaperMod, diff it against the theme's (`hugo mod vendor`) and carry over anything new.
 - PaperMod's own rules win on specificity more often than you'd think: `.header-nav a { display: block }`, and `[data-theme="dark"] .list { background }` on the body. Match or beat the selector (`.header-nav .header-mark`, `[data-theme="dark"] body.list`).
-- The starfield is on `html`, not `body`: the body's background must stay transparent, or it paints over the `body::before` overlay that dims the stars.
+- The starfield is on `html`, not `body` (whose background stays transparent, or it paints over the `body::before` glow). It's pixel art, drawn 1:1 with screen pixels: anchored at `0 0`, `image-rendering: pixelated`, and sized by `--bg-size` from a script in `extend_head.html`. Don't centre it, scale it, or dim the whole page over it: each one blurs or dulls it.
 - Screenshot thumbnails are `loading="lazy"`: in a headless screenshot, the ones below the fold come out blank. That's the screenshot, not the site.
 - Headless Edge won't make a window narrower than about 500px, so `--window-size=390,…` doesn't show a phone layout: use an iframe (`check-site`).
 - The homepage's "Download for <OS>" button picks the visitor's platform in JavaScript, and only once `available = true`. Until then it links to `/download/`.
