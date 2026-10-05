@@ -14,7 +14,7 @@
   </h1>
   <p class="hero-tagline">{{ $p.tagline | markdownify }}</p>
   {{ partial "download_button.html" . }}
-  {{ partial "server_status.html" (dict) }}
+  <div class="hero-status">{{ partial "server_status.html" (dict) }}</div>
 </section>
 
 <section class="showcase">
