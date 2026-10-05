@@ -12,10 +12,17 @@
 
 /* ── Sky ───────────────────────────────────────────────────────── */
 
+/* The starfield is pixel art: anchored to the corner and sized (--bg-size, set in extend_head.html)
+   so its pixels land on whole screen pixels at any display scale */
 html {
-  background: #000 url("/bg.png") repeat center top;
+  background: #000 url("/bg.png") repeat 0 0;
   background-attachment: fixed;
-  background-size: 1920px auto;
+  background-size: var(--bg-size, 1920px) auto;
+  image-rendering: pixelated;
+}
+
+body {
+  image-rendering: auto;
 }
 
 body,
@@ -29,15 +36,13 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glow at the top, and dim the stars a little */
+/* Glow at the top */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(168, 100, 205, 0.13), transparent 70%),
-    rgba(0, 0, 0, 0.35);
+  background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(168, 100, 205, 0.13), transparent 70%);
   z-index: -1;
 }
 

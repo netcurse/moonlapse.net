@@ -7,6 +7,19 @@
 <meta name="color-scheme" content="dark" />
 <link rel="manifest" href="/site.webmanifest" />
 
+<!-- Starfield size: 1:1 with screen pixels, or a whole multiple on 2x+ screens (see custom.css) -->
+<script>
+  (function () {
+    function size() {
+      var dpr = window.devicePixelRatio || 1;
+      var scale = Math.max(1, Math.floor(dpr));
+      document.documentElement.style.setProperty("--bg-size", (1920 * scale / dpr) + "px");
+    }
+    size();
+    window.addEventListener("resize", size);
+  })();
+</script>
+
 <!-- External links open in a new tab -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
