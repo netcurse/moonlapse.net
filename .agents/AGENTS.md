@@ -18,7 +18,7 @@ Everything committed here (files, comments, commit messages) is public. The game
 
 | Skill | When |
 |---|---|
-| `release-client` | A new client version is out (or about to be): point the site at it |
+| `release-client` | Check a release reached the site, or point the site at one by hand if the workflow didn't |
 | `check-site` | After any change you can see: build it and look at it, desktop and phone |
 | `sync-from-game` | The game changed: controls, commands, features, platforms, screenshots |
 
@@ -45,6 +45,8 @@ hugo --minify          # into public/ (ignored)
 | `assets/images/logo.png` | The logo (trimmed, transparent). The header and footer crop its left 405×405 for the moon emblem |
 | `assets/images/logo-hero.png` | The same logo flattened onto black, for the homepage: drawn with `mix-blend-mode: screen`, so it needs no alpha and is a third of the size. Regenerate it from `logo.png` with `magick logo.png -background black -flatten -colorspace gray -strip logo-hero.png` |
 | `assets/images/screenshots/<n>.png` | Game screenshots, cropped to the terminal (`sync-from-game`) |
+| `.github/workflows/` | `pages.yml` (build and deploy), `release.yml` (point the site at a new release) |
+| `.github/scripts/set-release.sh` | Edits `data/release.toml` for a release; `release.yml` runs it |
 | `layouts/home.html` | The homepage |
 | `layouts/404.html` | The 404 page |
 | `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, WebPage + breadcrumbs elsewhere), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `screenshot.html` |
@@ -79,8 +81,8 @@ The game's repo is `netcurse/moonlapse` (private), usually checked out next to t
 | Keys and commands | `client/include/help.hpp` (the in-game `?` help). Not the game's README, which lags |
 | Map glyphs | `PlayView::get_entity_display_char` in `client/src/views.cpp` |
 | Skills | `Skill` in `shared/include/xp.hpp` |
-| Platforms, archive names, requirements | `.github/workflows/release.yml` and `docs/deploy.md`, "Releasing the client" |
+| Platforms, archive names, requirements | The game's `.github/workflows/release.yml` and `docs/deploy.md`, "Releasing the client" |
 | Client flags | `client --help` |
 | Version | `VERSION` in `shared/include/version.hpp` |
 
-The game's release workflow publishes the archives to **this** repo's releases (tag `0.2.0`, title `v0.2.0`), using a `RELEASES_TOKEN` secret in the game repo. The site doesn't follow automatically: `release-client` points it at a new version.
+The game's release workflow publishes the archives to **this** repo's releases (tag `0.2.0`, title `v0.2.0`), using a `RELEASES_TOKEN` secret in the game repo. Publishing a release starts this repo's `.github/workflows/release.yml`: it checks the release has all three archives, updates `data/release.toml` with `.github/scripts/set-release.sh` (version, date, `available = true`; never to an older version), commits `Release X.Y.Z` to `main` and starts `pages.yml` (a push made with `GITHUB_TOKEN` doesn't start other workflows by itself). Drafts, prereleases and tags that aren't plain `X.Y.Z` are skipped, and a re-run for the same version changes nothing. It can also be run by hand (Actions > release, with a version), with *dry run* on by default: it then only prints the new `release.toml`. Replacing files on an existing release (the game workflow's re-run after a failure) doesn't publish anything new, so it doesn't start it.

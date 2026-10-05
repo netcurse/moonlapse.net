@@ -12,7 +12,9 @@ hugo server
 
 ## Releases
 
-Client builds are published as [releases](https://github.com/netcurse/moonlapse.net/releases) of this repo. The site reads the current version from `data/release.toml`. To point the site at a new release, update `version` and `date` there.
+Client builds are published as [releases](https://github.com/netcurse/moonlapse.net/releases) of this repo. The site reads the current version from `data/release.toml`, which `.github/workflows/release.yml` updates when a release is published (tag `X.Y.Z` with all three archives), then deploys.
+
+To point the site at a release by hand, run the **release** workflow with its version, unticking *dry run*.
 
 ## Layout
 

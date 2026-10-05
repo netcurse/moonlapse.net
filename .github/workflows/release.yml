@@ -1,0 +1,97 @@
+name: release
+
+# Points the site at a newly published client release, then deploys it.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release tag (X.Y.Z)
+        required: true
+      dry_run:
+        description: Print the new release.toml without committing
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  point-site:
+    if: >
+      github.event_name == 'workflow_dispatch'
+      || (!github.event.release.draft && !github.event.release.prerelease)
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ github.event.release.tag_name || inputs.version }}
+      # releases always update main; a manual run updates the branch it was started on
+      BRANCH: ${{ github.event_name == 'release' && github.event.repository.default_branch || github.ref_name }}
+      DRY_RUN: ${{ inputs.dry_run || false }}
+    steps:
+      - name: check the tag
+        id: tag
+        run: |
+          if [[ $TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::$TAG isn't a plain X.Y.Z version: skipping"
+          fi
+
+      - name: check the release
+        id: release
+        if: steps.tag.outputs.ok
+        run: |
+          json=$(gh release view "$TAG" --json isDraft,isPrerelease,publishedAt,assets)
+          if [[ $(jq -r '.isDraft or .isPrerelease' <<< "$json") == true ]]; then
+            echo "::error::$TAG is a draft or a prerelease"; exit 1
+          fi
+          missing=0
+          for platform in windows-x64.zip macos-arm64.tar.gz linux-x64.tar.gz; do
+            file="moonlapse-$TAG-$platform"
+            if ! jq -e --arg f "$file" '.assets | any(.name == $f)' <<< "$json" > /dev/null; then
+              echo "::error::$TAG has no $file"; missing=1
+            fi
+          done
+          [[ $missing == 0 ]] || exit 1
+          echo "date=$(jq -r '.publishedAt[:10]' <<< "$json")" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v5
+        if: steps.release.outputs.date
+        with:
+          ref: ${{ env.BRANCH }}
+
+      - name: update data/release.toml
+        id: update
+        if: steps.release.outputs.date
+        run: |
+          result=$(bash .github/scripts/set-release.sh "$TAG" "${{ steps.release.outputs.date }}")
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+          if [[ $result == unchanged ]]; then
+            echo "::notice::the site already points at $TAG"
+          else
+            git diff
+            if [[ $DRY_RUN == true ]]; then sed -n '/^version/,/^available/p' data/release.toml; fi
+          fi
+
+      - name: commit and push
+        if: steps.update.outputs.result == 'updated' && env.DRY_RUN != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Release $TAG"
+          git push origin "HEAD:$BRANCH" || { git pull --rebase origin "$BRANCH" && git push origin "HEAD:$BRANCH"; }
+
+      # a push made with GITHUB_TOKEN doesn't start other workflows, so deploy explicitly
+      - name: deploy
+        if: >
+          steps.update.outputs.result == 'updated' && env.DRY_RUN != 'true'
+          && env.BRANCH == github.event.repository.default_branch
+        run: gh workflow run pages.yml --ref "$BRANCH"
