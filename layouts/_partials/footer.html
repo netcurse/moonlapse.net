@@ -14,11 +14,15 @@
         <span class="sep">·</span>
         <a href="/about/">About</a>
     </nav>
+    {{- /* Absolute, to match the privacy policy URL on Google's OAuth consent screen */}}
+    <nav class="footer-links footer-legal" aria-label="Legal">
+        <a href="{{ "privacy/" | absURL }}">Privacy policy</a>
+        <span class="sep">·</span>
+        <a href="{{ "terms/" | absURL }}">Terms of use</a>
+    </nav>
     {{ partial "server_status.html" (dict "compact" true) }}
     <p class="footer-small">
         &copy; 2019–{{ now.Year }} MoonlapseMUD ·
-        <a href="/privacy/">Privacy</a> ·
-        <a href="/terms/">Terms</a> ·
         built with <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/">PaperMod</a>
     </p>
 </footer>

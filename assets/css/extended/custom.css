@@ -976,6 +976,10 @@ kbd {
   font-family: var(--font-mono);
 }
 
+.footer-legal {
+  margin-top: 0.3rem;
+}
+
 .footer-small {
   margin-top: 0.4rem;
   font-size: 0.8rem;
