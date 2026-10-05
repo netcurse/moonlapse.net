@@ -1,6 +1,7 @@
 ---
 title: "About"
 description: "What Moonlapse is, and where it came from."
+aliases: ["/staff/"]
 ---
 
 **MoonlapseMUD** is a multi-user dungeon: a shared, persistent world drawn entirely in text, played live with everyone else who's logged in. You explore the land of Midland, train your skills, fight what lives there, take on the quests of the people you meet, and do all of it alongside other players.

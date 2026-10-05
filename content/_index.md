@@ -1,6 +1,7 @@
 ---
 title: "MoonlapseMUD"
 description: "An open-world multiplayer dungeon you play in your terminal."
+aliases: ["/blog/"]
 tagline: "An open-world multiplayer dungeon, played in your terminal."
 
 hero_shot:
