@@ -15,7 +15,9 @@
         <a href="/about/">About</a>
     </nav>
     {{- /* Absolute, to match the privacy policy URL on Google's OAuth consent screen */}}
-    <nav class="footer-links footer-legal" aria-label="Legal">
+    <nav class="footer-links footer-legal" aria-label="Account and legal">
+        <a href="https://auth.moonlapse.net/auth/v1/account">Account</a>
+        <span class="sep">·</span>
         <a href="{{ "privacy/" | absURL }}">Privacy policy</a>
         <span class="sep">·</span>
         <a href="{{ "terms/" | absURL }}">Terms of use</a>

@@ -1040,6 +1040,26 @@ kbd {
     padding: 0.35em 0.3em;
   }
 
+  .menu .menu-wide {
+    display: none;
+  }
+
+  /* Wrap whole links, without separators left dangling */
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem 1.2rem;
+  }
+
+  .footer-links .sep {
+    display: none;
+  }
+
+  .footer-links a {
+    white-space: nowrap;
+  }
+
   .post-content table td:first-child {
     white-space: normal;
   }

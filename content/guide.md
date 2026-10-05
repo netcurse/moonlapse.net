@@ -6,7 +6,7 @@ description: "Getting started in Midland, and every key worth knowing."
 ## Your first few minutes
 
 1. **[Download the client](/download/)**, unpack it and run it.
-2. On the title screen, choose **Register** and pick a username and password. Next time, choose **Log in**. <kbd>Tab</kbd> moves between fields, <kbd>Enter</kbd> continues and <kbd>Esc</kbd> goes back.
+2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. Sign in, or make an account with an email, Google or Discord, then come back and choose a name for your character. Tick **Stay signed in** first and next time you can go straight in with **Continue**.
 3. You start in front of the **Morningside Inn**. You're the `@`. Walk with the <kbd>arrow keys</kbd>.
 4. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
 5. Press <kbd>?</kbd> at any time for the in-game help: every key below, sorted by topic.

@@ -8,7 +8,7 @@ This file lives at `.agents/AGENTS.md`, so **edit this one**: the root `AGENTS.m
 
 Everything committed here (files, comments, commit messages) is public. The game's repo, `netcurse/moonlapse`, is private.
 
-- **Don't publish game internals**: no paths into the game repo, server stack, infrastructure, hostnames other than `play.moonlapse.net` and `api.moonlapse.net` (the public status endpoint), or DNS in the site, README or comments. Agent files (this one, skills) may refer to the game repo, since they're for working on the site.
+- **Don't publish game internals**: no paths into the game repo, server stack, infrastructure, hostnames other than `play.moonlapse.net`, `api.moonlapse.net` (the public status endpoint) and `auth.moonlapse.net` (the sign-in service and account page), or DNS in the site, README or comments. Agent files (this one, skills) may refer to the game repo, since they're for working on the site.
 - **Tone**: plain and matter-of-fact. Short comments, only where something isn't obvious. No cute asides.
 - **Commits**: short imperative subject (`Add the 0.2.0 release`), a body only when it's needed. **No `Co-Authored-By` trailer.**
 

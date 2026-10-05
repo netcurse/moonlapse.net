@@ -7,6 +7,8 @@ description: "The Moonlapse client for Windows, macOS and Linux."
 
 Each archive holds the client, its game data (`content/`) and a `config.toml` that points it at the live server, {{< server >}}. There's no installer and nothing else to install: unpack the folder wherever you like, and keep everything in it together.
 
+You'll sign in through your browser the first time you play. Make an account with an email, Google or Discord there, no separate sign-up needed. Your [account page](https://auth.moonlapse.net/auth/v1/account) is where you change your password, link Google or Discord, or delete your account.
+
 ## Windows
 
 1. Right-click the `.zip` and choose **Extract All…**
@@ -49,4 +51,4 @@ When a new version comes out, the title screen says *update available* beside th
 
 - **The terminal matters.** Any modern terminal works. The bigger the window, the more of the world you see. A font with good box-drawing characters looks best.
 - **Playing somewhere else.** `config.toml` holds the server's address. You can also point the client somewhere else for one run with `--host` and `--port`. `moonlapse --help` lists the options and `moonlapse --version` prints the version.
-- **Remember me.** If you tick *Remember username* on the login screen, the client saves your username (never your password) to `login.toml`, next to itself.
+- **Stay signed in.** If you tick *Stay signed in* on the title screen, the client keeps your sign-in in `session.toml`, next to itself, so you don't have to sign in every time. Choosing *Sign out* deletes it.

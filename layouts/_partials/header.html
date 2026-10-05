@@ -11,7 +11,7 @@
             {{- $current := . }}
             {{- range site.Menus.main }}
             {{- $active := or ($current.IsMenuCurrent "main" .) (eq (.URL | absLangURL) ($current.Permalink | absLangURL)) }}
-            <li>
+            <li {{- if eq .Params.narrow false }} class="menu-wide"{{ end }}>
                 <a href="{{ .URL | absLangURL }}" {{- if $active }} class="active" aria-current="page" {{- end }}>
                     <span class="br">[</span>{{ .Name }}<span class="br">]</span>
                 </a>
