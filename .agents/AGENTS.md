@@ -39,6 +39,7 @@ hugo --minify          # into public/ (ignored)
 |---|---|
 | `content/_index.md` | The homepage's copy: tagline, features, gallery, steps (front matter), and the intro (body) |
 | `content/{download,guide,about}.md` | The other pages |
+| `content/{privacy,terms}.md` | The privacy policy and terms of use, linked from the footer. Google's OAuth consent screen links the privacy policy, and Google requires it to stay accurate: when the game starts keeping, logging or sharing something new (or stops), update it and its date |
 | `data/release.toml` | The current client: `version`, `date`, `available`, URL templates, per-platform `id`/`ext`/`requires` |
 | `data/themes/moonlapse.toml` | The palette (kitty/alacritty format), sampled from the client, plus `[ui]` |
 | `assets/css/extended/custom.css` | **All** the CSS. PaperMod loads it after its own |
