@@ -46,7 +46,7 @@ hugo --minify          # into public/ (ignored)
 | `assets/images/screenshots/<n>.png` | Game screenshots, cropped to the terminal (`sync-from-game`) |
 | `layouts/home.html` | The homepage |
 | `layouts/404.html` | The 404 page |
-| `layouts/_partials/` | `header.html`, `footer.html` (overrides), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `screenshot.html` |
+| `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, WebPage + breadcrumbs elsewhere), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `screenshot.html` |
 | `layouts/_shortcodes/` | `downloads`, `screenshot n= caption=`, `server` |
 | `static/` | `bg.png` (the starfield), favicons, `og.png`, `fonts/`, `CNAME` |
 
@@ -62,6 +62,7 @@ hugo --minify          # into public/ (ignored)
 
 ## Gotchas
 
+- `layouts/_partials/head.html` is a copy of PaperMod's with three edits: the homepage title from `params.homeTitle`, and no keywords, mask-icon or tile-colour tags. After updating PaperMod, diff it against the theme's (`hugo mod vendor`) and carry over anything new.
 - PaperMod's own rules win on specificity more often than you'd think: `.header-nav a { display: block }`, and `[data-theme="dark"] .list { background }` on the body. Match or beat the selector (`.header-nav .header-mark`, `[data-theme="dark"] body.list`).
 - The starfield is on `html`, not `body`: the body's background must stay transparent, or it paints over the `body::before` overlay that dims the stars.
 - Screenshot thumbnails are `loading="lazy"`: in a headless screenshot, the ones below the fold come out blank. That's the screenshot, not the site.

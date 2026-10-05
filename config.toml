@@ -2,6 +2,7 @@
 # moonlapse.net — Hugo Configuration
 #
 baseURL = "https://moonlapse.net/"
+locale = "en-US"
 title = "MoonlapseMUD"
 copyright = "© MoonlapseMUD"
 theme = ["github.com/adityatelange/hugo-PaperMod"]
@@ -53,6 +54,7 @@ weight = 4
 # Palette in data/themes/. Dark only.
 theme = "moonlapse"
 env = "production"
+homeTitle = "MoonlapseMUD: a multiplayer dungeon in your terminal"
 description = "MoonlapseMUD: an open-world multiplayer dungeon you play in your terminal. Explore, gather, craft, fight and quest with other players."
 author = "MoonlapseMUD"
 hideAuthor = true

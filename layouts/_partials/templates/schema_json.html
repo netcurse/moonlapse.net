@@ -1,0 +1,45 @@
+{{- /* Replaces PaperMod's (which marks every page a BlogPosting): the game on the homepage, a
+       WebPage with breadcrumbs elsewhere */ -}}
+{{- $r := hugo.Data.release -}}
+{{- $site := dict "@type" "WebSite" "@id" (printf "%s#website" site.Home.Permalink) "name" site.Title "url" site.Home.Permalink -}}
+{{- if .IsHome }}
+{{- $platforms := slice }}{{ range $r.platforms }}{{ $platforms = $platforms | append .name }}{{ end -}}
+{{- $shots := slice -}}
+{{- range .Params.gallery }}
+  {{- with resources.Get (printf "images/screenshots/%v.png" .n) }}{{ $shots = $shots | append (.Resize "1400x webp q82").Permalink }}{{ end }}
+{{- end -}}
+{{- $game := dict
+  "@type" "VideoGame"
+  "name" site.Title
+  "alternateName" "Moonlapse"
+  "description" site.Params.description
+  "url" site.Home.Permalink
+  "image" ("og.png" | absURL)
+  "screenshot" $shots
+  "genre" (slice "MUD" "MMORPG" "Role-playing")
+  "playMode" "MultiPlayer"
+  "gamePlatform" $platforms
+  "operatingSystem" (delimit $platforms ", ")
+  "applicationCategory" "GameApplication"
+  "softwareVersion" $r.version
+  "downloadUrl" ("download/" | absURL)
+  "isAccessibleForFree" true
+  "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD")
+-}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $site $game) | jsonify | safeJS }}</script>
+{{- else if .IsPage }}
+{{- $page := dict
+  "@type" "WebPage"
+  "name" .Title
+  "description" .Description
+  "url" .Permalink
+  "isPartOf" (dict "@id" (printf "%s#website" site.Home.Permalink))
+-}}
+{{- $crumbs := dict
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Home.Permalink)
+    (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink))
+-}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $page $crumbs) | jsonify | safeJS }}</script>
+{{- end }}
