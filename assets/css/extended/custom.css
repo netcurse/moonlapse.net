@@ -471,6 +471,66 @@ kbd {
   color: var(--secondary);
 }
 
+/* ── Server status (filled in by extend_footer.html) ─────────────── */
+
+.server-status {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  min-height: 1.6em;
+  color: var(--secondary);
+  text-shadow: 0 0 6px #000, 0 0 12px #000;
+}
+
+.status-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--secondary);
+  opacity: 0.6;
+}
+
+.server-status.is-online .status-state {
+  color: var(--primary);
+}
+
+.server-status.is-online .status-dot {
+  background: var(--ansi-green);
+  opacity: 1;
+  box-shadow: 0 0 0 0 rgba(86, 189, 56, 0.6);
+  animation: status-pulse 2.4s ease-out infinite;
+}
+
+.server-status.is-offline .status-dot {
+  background: var(--ansi-red);
+  opacity: 0.8;
+}
+
+.status-time:not(:empty)::before {
+  content: "·";
+  margin: 0 0.6em;
+  color: var(--border);
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(86, 189, 56, 0.55); }
+  70% { box-shadow: 0 0 0 6px rgba(86, 189, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(86, 189, 56, 0); }
+}
+
+.footer .server-status {
+  margin: 0.6rem 0;
+  text-shadow: none;
+}
+
 /* ── Home: the big screenshot, in a terminal window ────────────── */
 
 .showcase {
@@ -882,16 +942,6 @@ kbd {
   font-family: var(--font-mono);
 }
 
-.footer-server {
-  margin: 0.6rem 0;
-}
-
-.footer-server code {
-  background: none;
-  color: var(--ansi-green);
-  font-size: 0.85rem;
-}
-
 .footer-small {
   font-size: 0.75rem;
   opacity: 0.75;
@@ -916,6 +966,19 @@ kbd {
     --gap: 16px;
   }
 
+  /* the clock on its own line, with room kept for it so nothing moves when it arrives */
+  .hero .server-status {
+    min-height: 3.2em;
+  }
+
+  .status-time {
+    display: block;
+  }
+
+  .status-time:not(:empty)::before {
+    content: none;
+  }
+
   .features {
     grid-template-columns: 1fr;
   }
@@ -937,6 +1000,7 @@ kbd {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition: none !important;
+    animation: none !important;
   }
 }
 

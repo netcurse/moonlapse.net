@@ -1,0 +1,8 @@
+{{- /* Live server status, filled in by the script in extend_footer.html. Without it (no script yet,
+       or the server offline) it reads as the server's address. (dict "compact" true): no clock. */ -}}
+<p class="server-status{{ if .compact }} server-status-compact{{ end }}" data-server-status>
+  <span class="status-state"><span class="status-dot" aria-hidden="true"></span><span data-status-text>{{ hugo.Data.release.host }}</span></span>
+  {{- if not .compact }}
+  <span class="status-time" data-status-time></span>
+  {{- end }}
+</p>

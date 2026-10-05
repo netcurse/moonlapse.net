@@ -55,6 +55,8 @@ weight = 4
 theme = "moonlapse"
 env = "production"
 homeTitle = "MoonlapseMUD: a multiplayer dungeon in your terminal"
+# Live server status (players, game time), polled by the homepage and footer
+statusURL = "https://api.moonlapse.net/status"
 description = "MoonlapseMUD: an open-world multiplayer dungeon you play in your terminal. Explore, gather, craft, fight and quest with other players."
 author = "MoonlapseMUD"
 hideAuthor = true

@@ -23,3 +23,103 @@
     box.addEventListener("close", function () { img.src = ""; });
   })();
 </script>
+
+<!-- Live server status: fills in every [data-server-status] (see server_status.html) -->
+{{- with site.Params.statusURL }}
+<script>
+  (function () {
+    var boxes = document.querySelectorAll("[data-server-status]");
+    if (!boxes.length || !window.fetch) return;
+
+    var URL = {{ . }};
+    var POLL_MS = 20000;
+    var TIMEOUT_MS = 5000;
+    var MOONS = {
+      "New Moon": "🌑", "Waxing Crescent": "🌒", "First Quarter": "🌓", "Waxing Gibbous": "🌔",
+      "Full Moon": "🌕", "Waning Gibbous": "🌖", "Last Quarter": "🌗", "Third Quarter": "🌗",
+      "Waning Crescent": "🌘"
+    };
+
+    var time = null;       // the last game_time, advanced locally between fetches
+    var tickTimer = 0;
+    var pollTimer = 0;
+
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+    function clockText() {
+      // the server's text with our own HH:MM on the end
+      return time.text.replace(/\d{1,2}:\d{2}\s*$/, pad(time.hour) + ":" + pad(time.minute));
+    }
+
+    function render(s) {
+      boxes.forEach(function (box) {
+        var text = box.querySelector("[data-status-text]");
+        var when = box.querySelector("[data-status-time]");
+        box.classList.toggle("is-online", !!s);
+        box.classList.toggle("is-offline", !s);
+        if (!s) {
+          text.textContent = "Offline";
+          if (when) when.textContent = "";
+          return;
+        }
+        text.textContent = "Online · " + s.players + (s.players === 1 ? " player" : " players");
+        if (when && time) {
+          var moon = MOONS[time.moon_phase];
+          when.textContent = clockText() + " · " + (moon ? moon + " " : "") + time.moon_phase;
+        }
+      });
+    }
+
+    var last = null;
+    function tick() {
+      if (!time) return;
+      // advance minutes and hours, but leave days and months to the next fetch
+      if (time.minute < 59) time.minute++;
+      else if (time.hour < 23) { time.minute = 0; time.hour++; }
+      render(last);
+    }
+
+    function poll() {
+      var ctl = window.AbortController ? new AbortController() : null;
+      var timeout = setTimeout(function () { if (ctl) ctl.abort(); }, TIMEOUT_MS);
+      fetch(URL, ctl ? { signal: ctl.signal } : {})
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (s) {
+          if (!s || !s.online || typeof s.players !== "number" || !s.game_time) throw new Error("bad status");
+          last = s;
+          time = {
+            text: String(s.game_time.text), hour: s.game_time.hour, minute: s.game_time.minute,
+            moon_phase: String(s.game_time.moon_phase)
+          };
+          clearInterval(tickTimer);
+          var step = (s.game_time.real_seconds_per_minute || 3) * 1000;
+          tickTimer = setInterval(tick, step);
+          render(s);
+        })
+        .catch(function () {
+          last = null;
+          time = null;
+          clearInterval(tickTimer);
+          render(null);
+        })
+        .then(function () { clearTimeout(timeout); });
+    }
+
+    function start() {
+      clearInterval(pollTimer);
+      poll();
+      pollTimer = setInterval(poll, POLL_MS);
+    }
+
+    function stop() {
+      clearInterval(pollTimer);
+      clearInterval(tickTimer);
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+    if (!document.hidden) start();
+  })();
+</script>
+{{- end }}

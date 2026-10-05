@@ -8,7 +8,7 @@ This file lives at `.agents/AGENTS.md`, so **edit this one**: the root `AGENTS.m
 
 Everything committed here (files, comments, commit messages) is public. The game's repo, `netcurse/moonlapse`, is private.
 
-- **Don't publish game internals**: no paths into the game repo, server stack, infrastructure, hostnames other than `play.moonlapse.net`, or DNS in the site, README or comments. Agent files (this one, skills) may refer to the game repo, since they're for working on the site.
+- **Don't publish game internals**: no paths into the game repo, server stack, infrastructure, hostnames other than `play.moonlapse.net` and `api.moonlapse.net` (the public status endpoint), or DNS in the site, README or comments. Agent files (this one, skills) may refer to the game repo, since they're for working on the site.
 - **Tone**: plain and matter-of-fact. Short comments, only where something isn't obvious. No cute asides.
 - **Commits**: short imperative subject (`Add the 0.2.0 release`), a body only when it's needed. **No `Co-Authored-By` trailer.**
 
@@ -61,6 +61,7 @@ hugo --minify          # into public/ (ignored)
 - **Release details** live only in `data/release.toml`. Page text uses `{{</* server */>}}` for the server's address and `{{</* downloads */>}}` for the platform cards; the homepage button and footer read the file directly. Archive names are `moonlapse-<version>-<id>.<ext>`, matching the game's release workflow.
 - **Images** go through Hugo (`resources.Get`, `.Resize "… webp"`), never `static/`, except the starfield, favicons and `og.png`. Screenshots get a `srcset` from `_partials/screenshot.html`: pass `sizes` matching how wide they show in that spot, or phones download desktop-sized images.
 - **Keys** in page text are `<kbd>`, commands and glyphs are backticks. Tables of keys have an empty header row (`| Key | |`), which the CSS hides.
+- **Server status**: `_partials/server_status.html` (in the homepage hero, and compact in the footer) is filled in by a script in `extend_footer.html` from `params.statusURL` (`https://api.moonlapse.net/status`: `online`, `players`, `version`, `game_time`). It polls every 20s while the tab is visible, times out after 5s, and shows "Offline" on any failure, never a stale count. Between polls the clock advances one game minute per `real_seconds_per_minute` real seconds, but never past 23:59: days and months come from the next poll. Without the script it reads as the server's address. The endpoint is cached for 5s and returns 429 above 2 requests a second per visitor, so don't poll faster.
 - **External links** get `target=_blank` and an icon from a script in `extend_head.html`; don't add them by hand.
 
 ## Gotchas

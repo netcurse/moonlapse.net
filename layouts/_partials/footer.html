@@ -14,7 +14,7 @@
         <span class="sep">·</span>
         <a href="/about/">About</a>
     </nav>
-    <p class="footer-server"><code>{{ $r.host }}</code></p>
+    {{ partial "server_status.html" (dict "compact" true) }}
     <p class="footer-small">
         &copy; 2019–{{ now.Year }} MoonlapseMUD ·
         built with <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/">PaperMod</a>
