@@ -1,10 +1,10 @@
 # Current client release
 
-version = "0.1.0"
+version = "0.2.0"
 date = 2026-10-05
 
 # Set once the release is published; until then the download buttons are disabled
-available = false
+available = true
 
 base_url = "https://github.com/netcurse/moonlapse.net/releases/download/{version}/{file}"
 notes_url = "https://github.com/netcurse/moonlapse.net/releases/tag/{version}"
