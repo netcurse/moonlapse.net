@@ -1,0 +1,67 @@
+{{- define "main" }}
+{{- $p := .Params }}
+
+<section class="hero">
+  <h1 class="hero-logo">
+    {{- with resources.Get "images/logo.png" }}
+    {{- $logo := .Resize "1200x webp" }}
+    <img src="{{ $logo.RelPermalink }}" width="{{ div $logo.Width 2 }}" height="{{ div $logo.Height 2 }}"
+      alt="Moonlapse MUD" fetchpriority="high" />
+    {{- end }}
+  </h1>
+  <p class="hero-tagline">{{ $p.tagline | markdownify }}</p>
+  {{ partial "download_button.html" . }}
+</section>
+
+<section class="showcase">
+  <div class="terminal">
+    <div class="terminal-bar" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <code>moonlapse</code>
+    </div>
+    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "width" 1600 "eager" true) }}
+  </div>
+</section>
+
+{{- with .Content }}
+<section class="intro md-content">
+  {{ . }}
+</section>
+{{- end }}
+
+<section class="features" aria-label="Features">
+  {{- range $p.features }}
+  <article class="feature">
+    <span class="glyph" style="color: var(--ansi-{{ .colour }})" aria-hidden="true">{{ .glyph }}</span>
+    <h3>{{ .title }}</h3>
+    <p>{{ .text | markdownify }}</p>
+  </article>
+  {{- end }}
+</section>
+
+<section class="gallery-section">
+  <h2>Screenshots</h2>
+  <div class="gallery">
+    {{- range $p.gallery }}
+    <figure>
+      {{ partial "screenshot.html" (dict "n" .n "alt" .caption "width" 800) }}
+      <figcaption>{{ .caption }}</figcaption>
+    </figure>
+    {{- end }}
+  </div>
+</section>
+
+<section class="steps-section">
+  <h2>Start playing</h2>
+  <ol class="steps">
+    {{- range $p.steps }}
+    <li>
+      <h3>{{ .title }}</h3>
+      <p>{{ .text | markdownify }}</p>
+    </li>
+    {{- end }}
+  </ol>
+  <p class="steps-more"><a class="btn btn-ghost" href="/guide/">Read the guide →</a></p>
+</section>
+
+{{- end }}

@@ -1,0 +1,22 @@
+<header class="header">
+    <nav class="header-nav">
+        <a class="header-mark" href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }} (Alt + H)">
+            {{- with resources.Get "images/logo.png" }}
+            {{- $mark := (.Crop "405x405 Left").Resize "72x webp" }}
+            <img src="{{ $mark.RelPermalink }}" width="36" height="36" alt="" />
+            {{- end }}
+            <span>Moonlapse</span>
+        </a>
+        <ul id="menu" class="menu">
+            {{- $current := . }}
+            {{- range site.Menus.main }}
+            {{- $active := or ($current.IsMenuCurrent "main" .) (eq (.URL | absLangURL) ($current.Permalink | absLangURL)) }}
+            <li>
+                <a href="{{ .URL | absLangURL }}" {{- if $active }} class="active" aria-current="page" {{- end }}>
+                    <span class="br">[</span>{{ .Name }}<span class="br">]</span>
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </nav>
+</header>

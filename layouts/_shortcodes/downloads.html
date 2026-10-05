@@ -1,0 +1,33 @@
+{{- /* {{< downloads >}}: a card per platform in data/release.toml */ -}}
+{{- $r := hugo.Data.release -}}
+<div class="release-line">
+  <span class="release-version">v{{ $r.version }}</span>
+  <span class="sep">·</span>
+  <span>released {{ time.Format "2 January 2006" $r.date }}</span>
+  {{- if and $r.available $r.notes_url }}
+  <span class="sep">·</span>
+  <a href="{{ replace $r.notes_url "{version}" $r.version }}">release notes</a>
+  {{- end }}
+</div>
+<div class="downloads">
+  {{- range $r.platforms }}
+  {{- $f := partial "release_file.html" . }}
+  <div class="download-card" id="{{ .id }}">
+    <div class="download-os">
+      <h3>{{ .name }}</h3>
+      <span class="download-arch">{{ .arch }}</span>
+    </div>
+    <p class="download-req">{{ .requires }}</p>
+    {{- if $f.url }}
+    <a class="btn btn-primary" href="{{ $f.url }}" download>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      Download .{{ .ext }}
+    </a>
+    {{- else }}
+    <span class="btn btn-disabled" aria-disabled="true">Coming soon</span>
+    {{- end }}
+    <code class="download-file">{{ $f.file }}</code>
+  </div>
+  {{- end }}
+</div>

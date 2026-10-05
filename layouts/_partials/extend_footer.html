@@ -1,0 +1,25 @@
+<!-- Screenshot lightbox -->
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+  <img src="" alt="" />
+  <p></p>
+</dialog>
+<script>
+  (function () {
+    var box = document.getElementById("lightbox");
+    if (!box || !box.showModal) return;
+    var img = box.querySelector("img");
+    var cap = box.querySelector("p");
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-lightbox]");
+      if (!a) return;
+      e.preventDefault();
+      var thumb = a.querySelector("img");
+      img.src = a.href;
+      img.alt = thumb ? thumb.alt : "";
+      cap.textContent = img.alt;
+      box.showModal();
+    });
+    box.addEventListener("click", function () { box.close(); });
+    box.addEventListener("close", function () { img.src = ""; });
+  })();
+</script>

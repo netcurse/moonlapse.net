@@ -1,0 +1,33 @@
+# Current client release
+
+version = "0.1.0"
+date = 2026-10-05
+
+# Set once the release is published; until then the download buttons are disabled
+available = false
+
+base_url = "https://github.com/netcurse/moonlapse.net/releases/download/{version}/{file}"
+notes_url = "https://github.com/netcurse/moonlapse.net/releases/tag/{version}"
+host = "play.moonlapse.net"
+
+# Archives are named moonlapse-{version}-{id}.{ext}
+[[platforms]]
+id = "windows-x64"
+name = "Windows"
+arch = "x64"
+ext = "zip"
+requires = "Windows 10 or 11, 64-bit"
+
+[[platforms]]
+id = "macos-arm64"
+name = "macOS"
+arch = "Apple Silicon"
+ext = "tar.gz"
+requires = "macOS 14 Sonoma or later, on an M-series Mac"
+
+[[platforms]]
+id = "linux-x64"
+name = "Linux"
+arch = "x64"
+ext = "tar.gz"
+requires = "x64, a recent glibc, and ncurses"

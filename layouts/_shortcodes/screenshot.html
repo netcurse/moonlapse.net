@@ -1,0 +1,5 @@
+{{- /* {{< screenshot n="2" alt="..." caption="..." >}} */ -}}
+<figure class="figure-shot">
+  {{- partial "screenshot.html" (dict "n" (.Get "n") "alt" (.Get "alt" | default (.Get "caption")) "width" 1400) }}
+  {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

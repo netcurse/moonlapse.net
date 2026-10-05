@@ -1,0 +1,8 @@
+{{- /* A platform from data/release.toml → its archive's name and URL (empty until available). */ -}}
+{{- $r := hugo.Data.release -}}
+{{- $file := printf "moonlapse-%s-%s.%s" $r.version .id .ext -}}
+{{- $url := "" -}}
+{{- if and $r.available $r.base_url -}}
+  {{- $url = replace (replace $r.base_url "{version}" $r.version) "{file}" $file -}}
+{{- end -}}
+{{- return (dict "file" $file "url" $url "platform" .) -}}

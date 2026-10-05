@@ -1,0 +1,30 @@
+{{- /* Main download button. Defaults to Windows; the script picks the visitor's platform. */ -}}
+{{- $r := hugo.Data.release -}}
+{{- $files := slice -}}
+{{- range $r.platforms }}{{ $files = $files | append (partial "release_file.html" .) }}{{ end -}}
+{{- $first := index $files 0 -}}
+<div class="download-cta">
+  <a id="dl-main" class="btn btn-primary" href="{{ $first.url | default "/download/" }}">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+    <span id="dl-main-label">{{ if $first.url }}Download for {{ $first.platform.name }}{{ else }}Get the client{{ end }}</span>
+  </a>
+  <a class="btn btn-ghost" href="/guide/">How to play</a>
+</div>
+<p class="download-meta">
+  v{{ $r.version }} · Windows, macOS &amp; Linux · free ·
+  <a href="/download/">all downloads</a>
+</p>
+{{- if $r.available }}
+<script>
+  (function () {
+    var files = {{ $files }};
+    var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+    var id = /mac/i.test(ua) ? "macos-arm64" : (/linux/i.test(ua) && !/android/i.test(navigator.userAgent)) ? "linux-x64" : "windows-x64";
+    var f = files.find(function (f) { return f.platform.id === id; });
+    if (!f) return;
+    document.getElementById("dl-main").href = f.url;
+    document.getElementById("dl-main-label").textContent = "Download for " + f.platform.name;
+  })();
+</script>
+{{- end }}

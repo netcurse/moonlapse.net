@@ -1,0 +1,93 @@
+#
+# moonlapse.net — Hugo Configuration
+#
+baseURL = "https://moonlapse.net/"
+title = "MoonlapseMUD"
+copyright = "© MoonlapseMUD"
+theme = ["github.com/adityatelange/hugo-PaperMod"]
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+enableEmoji = true
+pygmentsUseClasses = true
+
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[minify]
+disableXML = true
+
+[outputs]
+home = ["HTML"]
+page = ["HTML"]
+section = ["HTML"]
+
+# ── Menu / Navigation ──────────────────────────────────────────────
+[[menu.main]]
+identifier = "home"
+name = "home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "download"
+name = "download"
+url = "/download/"
+weight = 2
+
+[[menu.main]]
+identifier = "guide"
+name = "how to play"
+url = "/guide/"
+weight = 3
+
+[[menu.main]]
+identifier = "about"
+name = "about"
+url = "/about/"
+weight = 4
+
+# ── Params ──────────────────────────────────────────────────────────
+[params]
+# Palette in data/themes/. Dark only.
+theme = "moonlapse"
+env = "production"
+description = "MoonlapseMUD: an open-world multiplayer dungeon you play in your terminal. Explore, gather, craft, fight and quest with other players."
+author = "MoonlapseMUD"
+hideAuthor = true
+defaultTheme = "dark"
+disableThemeToggle = true
+disableScrollToTop = false
+ShowShareButtons = false
+ShowReadingTime = false
+ShowWordCount = false
+ShowPostNavLinks = false
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = true
+ShowToc = false
+images = ["og.png"]
+
+[params.cover]
+hidden = true
+hiddenInList = true
+hiddenInSingle = true
+
+# ── Assets ──────────────────────────────────────────────────────────
+[params.assets]
+disableHLJS = true
+favicon = "/favicon.ico"
+favicon16x16 = "/favicon-16x16.png"
+favicon32x32 = "/favicon-32x32.png"
+apple_touch_icon = "/apple-touch-icon.png"
+theme_color = "#15191e"
+
+# ── Markdown ────────────────────────────────────────────────────────
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = false
+codeFences = true
+lineNos = false
+guessSyntax = false

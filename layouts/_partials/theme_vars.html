@@ -1,0 +1,32 @@
+{{- /* CSS variables from data/themes/<site.Params.theme>.toml */ -}}
+{{- $name := site.Params.theme | default "moonlapse" -}}
+{{- $t := index hugo.Data.themes $name -}}
+{{- if not $t }}{{ errorf "theme_vars: no data/themes/%s.toml" $name }}{{ end -}}
+{{- $c := $t.colors -}}
+{{- $u := $t.ui | default dict -}}
+{{- $vars := dict
+  "bg-color" $c.primary.background
+  "fg-color" $c.primary.foreground
+  "theme" $c.primary.background
+  "primary" $c.bright.white
+  "content" $c.primary.foreground
+  "selection-bg" $c.selection.background
+  "selection-fg" $c.selection.text
+  "link-color" $c.normal.magenta
+  "link-hover" ($u.link_hover | default $c.bright.magenta)
+  "entry" ($u.entry | default $c.normal.black)
+  "code-bg" ($u.code_bg | default $c.primary.background)
+  "code-block-bg" ($u.code_bg | default $c.primary.background)
+  "border" ($u.border | default $c.normal.black)
+  "tertiary" ($u.border | default $c.normal.black)
+  "secondary" ($u.tertiary_text | default $c.normal.white)
+  "button-bg" ($u.border | default $c.normal.black)
+  "button-hover-bg" ($u.button_hover_bg | default $c.bright.black)
+-}}
+{{- range $k, $v := $c.normal }}{{ $vars = merge $vars (dict (printf "ansi-%s" $k) $v) }}{{ end -}}
+{{- range $k, $v := $c.bright }}{{ $vars = merge $vars (dict (printf "ansi-bright-%s" $k) $v) }}{{ end -}}
+{{- $css := "" -}}
+{{- range $k, $v := $vars }}{{ $css = printf "%s--%s:%s;" $css $k $v }}{{ end -}}
+<style id="theme-vars">
+:root, :root[data-theme="dark"] { {{ $css | safeCSS }} color-scheme: dark; }
+</style>

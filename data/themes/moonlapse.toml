@@ -1,0 +1,38 @@
+# Colours sampled from the game client
+
+[colors.primary]
+background = "#15191e"
+foreground = "#c7c7c7"
+
+[colors.selection]
+background = "#a864cd"
+text = "#15191e"
+
+[colors.normal]
+black = "#2a2f37"
+red = "#d0583e"
+green = "#56bd38"
+yellow = "#d9c13a"
+blue = "#6f8de0"
+magenta = "#a864cd"
+cyan = "#4fb8c4"
+white = "#a2a2a3"
+
+[colors.bright]
+black = "#656669"
+red = "#e8735a"
+green = "#7ad65c"
+yellow = "#ecd75e"
+blue = "#93aaf0"
+magenta = "#c48ae3"
+cyan = "#74d0da"
+white = "#e6e6e6"
+
+# Site UI
+[ui]
+entry = "rgba(21, 25, 30, 0.86)"
+code_bg = "#0f1216"
+border = "#2f3540"
+tertiary_text = "#8b8e94"
+link_hover = "#c48ae3"
+button_hover_bg = "#3a3f4a"
