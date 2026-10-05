@@ -39,7 +39,7 @@ cd moonlapse-*-linux-x64
 ./moonlapse
 ```
 
-The client needs ncurses, which almost every distribution has already (on Debian or Ubuntu it's `libncurses6`). If it complains about `GLIBC`, your distribution is older than the one it was built on: the release notes say which glibc it needs.
+The client needs ncurses, which almost every distribution has already (on Debian or Ubuntu it's `libncursesw6`). If it complains about `GLIBC`, your distribution is older than the one it was built on: the release notes say which glibc it needs.
 
 ## Updating
 
