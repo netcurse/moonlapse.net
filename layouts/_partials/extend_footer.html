@@ -116,10 +116,15 @@
       clearInterval(tickTimer);
     }
 
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) stop(); else start();
-    });
-    if (!document.hidden) start();
+    // wait for the page to finish loading first: the status matters less than the page
+    function begin() {
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stop(); else start();
+      });
+      if (!document.hidden) start();
+    }
+    if (document.readyState === "complete") begin();
+    else window.addEventListener("load", begin);
   })();
 </script>
 {{- end }}

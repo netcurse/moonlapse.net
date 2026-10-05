@@ -2,6 +2,10 @@
 {{- partial "theme_vars.html" . -}}
 
 <meta name="color-scheme" content="dark" />
+{{- with site.Params.statusURL }}{{ with urls.Parse . }}
+<!-- The server status fetch is anonymous CORS, so the preconnect must be too -->
+<link rel="preconnect" href="{{ .Scheme }}://{{ .Host }}" crossorigin />
+{{- end }}{{ end }}
 <link rel="manifest" href="/site.webmanifest" />
 
 <!-- Starfield size: 1:1 with screen pixels, or a whole multiple on 2x+ screens (see custom.css) -->

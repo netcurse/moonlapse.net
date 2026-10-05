@@ -485,7 +485,7 @@ kbd {
 /* Room kept for the status, so nothing moves when it arrives or wraps */
 .hero-status {
   margin-top: 1.1rem;
-  min-height: 2.5rem;
+  height: 2.6rem;
 }
 
 /* A dark pill, so it reads over the stars */
@@ -1007,7 +1007,7 @@ kbd {
 
   /* the clock on its own line inside the pill, with room kept for both lines */
   .hero-status {
-    min-height: 3.9rem;
+    height: 4.4rem;
   }
 
   .server-status {

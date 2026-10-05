@@ -23,7 +23,7 @@
       <span></span><span></span><span></span>
       <code>moonlapse</code>
     </div>
-    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "sizes" "(max-width: 1128px) calc(100vw - 32px), 1080px" "eager" true) }}
+    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "sizes" (partial "hero_shot_sizes.html") "eager" true) }}
   </div>
 </section>
 
