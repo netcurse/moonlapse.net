@@ -432,7 +432,8 @@ kbd {
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0 -10%;
+  /* past the hero's sides, but never the screen's (a sideways scroll on phones) */
+  inset: 0 max(-10%, calc(50% - 50vw));
   z-index: -1;
   background: radial-gradient(ellipse 50% 55% at 50% 55%, rgba(0, 0, 0, 0.85), transparent 75%);
   pointer-events: none;
