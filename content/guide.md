@@ -6,10 +6,11 @@ description: "Getting started in Midland, and every key worth knowing."
 ## Your first few minutes
 
 1. **[Download the client](/download/)**, unpack it and run it.
-2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. Sign in, or make an account with an email, Google or Discord, then come back and choose a name for your character. Tick **Stay signed in** first and next time you can go straight in with **Continue**.
-3. You start in front of the **Morningside Inn**. You're the `@`. Walk with the <kbd>arrow keys</kbd>.
-4. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
-5. Press <kbd>?</kbd> at any time for the in-game help: every key below, sorted by topic.
+2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. Sign in, or make an account with an email, Google or Discord, then come back to the game. Tick **Stay signed in** first and next time you can go straight in with **Continue as** your email address.
+3. Next is the **character screen**, with your characters, the one you played last at the top. Press <kbd>N</kbd> to make one and give it a name, then <kbd>Enter</kbd> to play it. <kbd>D</kbd> deletes a character, and <kbd>Esc</kbd> goes back to the title screen. More on [your characters](#your-characters) below.
+4. You start in front of the **Morningside Inn**. You're the `@`. Walk with the <kbd>arrow keys</kbd>.
+5. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
+6. Press <kbd>?</kbd> at any time for the in-game help: every key below, sorted by topic.
 
 {{< screenshot n="8" caption="Talking to Brother Anselm. Pick an answer with the number keys, or with the arrow keys and <kbd>Enter</kbd>." >}}
 
@@ -127,6 +128,14 @@ Look at another player (<kbd>k</kbd>) to invite them to your party, or type `/in
 | `/kick <player>` | remove a member (if you lead) |
 
 To trade, target a player and press <kbd>T</kbd>. Both of you see the offer and both have to accept it.
+
+## Your characters
+
+An account can have up to 10 characters. Only one of them can be in the game at a time. They share nothing, not even a bank: to move items from one to another, mail them.
+
+A name is letters, digits and underscores, and it's yours alone whatever its capitals: if there's a `Bob`, there can't be a `bob`. A name can never be changed.
+
+To delete a character, select it on the character screen, press <kbd>D</kbd> and type its name. It stays on the list, greyed out, with the days it has left: for 30 days you can select it and press <kbd>Enter</kbd> to **Restore** it. A deleted character doesn't count towards the 10, but restoring one needs a free slot, and its name stays taken until it's gone, even for you. After 30 days, or straight away if you choose **Delete now**, it's deleted for good, with its items, bank, quests and mail, and the letters it sent.
 
 ## Tips
 
