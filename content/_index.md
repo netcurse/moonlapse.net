@@ -24,7 +24,7 @@ features:
   - glyph: "?"
     colour: yellow
     title: "Quests and characters"
-    text: "Talk to the people of Midland, take on their quests and follow them in your journal."
+    text: "Talk to the people of Midland, take on their quests and follow them in your journal. Up to 10 characters on one account."
   - glyph: "@"
     colour: magenta
     title: "Play together"

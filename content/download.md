@@ -45,7 +45,7 @@ The client needs ncurses, which almost every distribution has already (on Debian
 
 ## Updating
 
-When a new version comes out, the title screen says *update available* beside the version number. If the server has moved on too far for your client, it'll tell you when you try to connect. Either way, download the new archive and replace the old folder with it: your account and character live on the server, so there's nothing to carry over.
+When a new version comes out, the title screen says *update available* beside the version number. If the server has moved on too far for your client, it'll tell you when you try to connect. Either way, download the new archive and replace the old folder with it: your account and characters live on the server, so there's nothing to carry over.
 
 ## Good to know
 

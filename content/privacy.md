@@ -3,7 +3,7 @@ title: "Privacy policy"
 description: "What Moonlapse keeps about you, why, who else sees it, and how to have it deleted."
 ---
 
-*Last updated 5 October 2026.*
+*Last updated 7 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
@@ -15,7 +15,7 @@ It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net)
 - We use your information to sign you in, keep your account safe, and run the game. Nothing else.
 - We **never sell** it, never use it for advertising, never use it to train AI models, and never share it except with the services listed below that we need to run the game.
 - No analytics, no trackers, no ads, on the website or in the game.
-- You can delete your account yourself at any time, and your character goes with it.
+- You can delete your account yourself at any time, and your characters go with it.
 
 ## What we keep
 
@@ -50,9 +50,11 @@ You can stop Moonlapse receiving anything further from Google at any time from y
 
 If you choose **Sign in with Discord**, Discord tells us, with your permission, your Discord username and user ID, your avatar, and your email address (the `identify` and `email` scopes). We use and keep it exactly as we do Google's, above, and you can remove our access from Discord's settings under *Authorized Apps*.
 
-### Your character
+### Your characters
 
-The game keeps what it needs to remember where you left off: your character's name, where it is, its skills, inventory, bank, equipment, quests, and the in-game mail it has sent and received, along with when you last played. Other players can see your character's name and what it does in the game, as in any multiplayer game.
+An account can have several characters. For each one, the game keeps what it needs to remember where you left off: its name, where it is, its skills, inventory, bank, equipment, quests, and the in-game mail it has sent and received, along with when you last played it. Other players can see your characters' names and what they do in the game, as in any multiplayer game.
+
+If you delete a character by itself, the game keeps it for 30 days so you can restore it. Then it's deleted for good, with its items, bank, quests and mail, and the letters it sent that other players still have, with anything attached to them. You can also choose to delete it for good straight away.
 
 We don't keep a record of chat.
 
@@ -89,14 +91,14 @@ We'd only ever give your information to anyone else if the law required us to.
 
 ## How long we keep it
 
-- **Your account and character**: until you delete them, or until Moonlapse shuts down.
+- **Your account and characters**: until you delete them, or until Moonlapse shuts down. A character you delete by itself is kept for 30 days so you can restore it, then deleted for good.
 - **Sign-in records and security events**: no longer than they're useful for keeping accounts safe, and never longer than your account.
 - **Web server logs**: about two weeks.
 - **Backups** of the database: kept for 14 days, then deleted. Something you delete can stay in a backup until it ages out, and backups are only ever used to restore the game after a failure.
 
 ## Deleting your account
 
-Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes your character with it: its items, bank, quests and mail. Mail you sent to other players is deleted with it.
+Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them.
 
 If you can't sign in any more, email <privacy@moonlapse.net> from the address on the account and we'll do it for you.
 
