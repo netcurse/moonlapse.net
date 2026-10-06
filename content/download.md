@@ -51,4 +51,4 @@ When a new version comes out, the title screen says *update available* beside th
 
 - **The terminal matters.** Any modern terminal works. The bigger the window, the more of the world you see. A font with good box-drawing characters looks best.
 - **Playing somewhere else.** `config.toml` holds the server's address. You can also point the client somewhere else for one run with `--host` and `--port`. `moonlapse --help` lists the options and `moonlapse --version` prints the version.
-- **Stay signed in.** If you tick *Stay signed in* on the title screen, the client keeps your sign-in in `session.toml`, next to itself, so you don't have to sign in every time. Choosing *Sign out* deletes it.
+- **Stay signed in.** If you tick *Stay signed in* on the title screen, the client keeps your sign-in in `session.toml`, next to itself, so you don't have to sign in every time: the title screen offers *Continue as* your email address instead. Choosing *Sign out* deletes it.

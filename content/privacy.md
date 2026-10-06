@@ -62,13 +62,13 @@ We don't keep a record of chat.
 
 Your computer's **IP address** is seen by every server you connect to, ours included:
 
-- **The game server** needs it to talk to your client while you play. It doesn't write it down.
+- **The game server** needs it to talk to your client while you play. It doesn't write it down. When you join, the client also sends the game server your sign-in token, which includes your email address: the game server checks the token, but doesn't keep or log the address.
 - **The sign-in service and the status feed** sit behind a web server that keeps ordinary access logs (IP address, time, the page asked for, browser details) for about two weeks, for troubleshooting and to deal with abuse.
 - **This website** is hosted by GitHub Pages, and the game's downloads by GitHub. GitHub sees your IP address when you visit or download, and handles it under the [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). We don't receive it.
 
 ### What the client keeps on your computer
 
-If you tick *Stay signed in*, the game client saves a sign-in token in a file next to it, so you don't have to sign in every time. It's on your computer, not ours: signing out deletes it.
+If you tick *Stay signed in*, the game client saves a sign-in token in a file next to it, so you don't have to sign in every time. The token includes your email address, and the title screen shows it (*Continue as* your address), so anyone who uses that computer and that copy of the client can see it. It's on your computer, not ours: choosing *Sign out* deletes it.
 
 ## Cookies
 
