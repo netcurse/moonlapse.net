@@ -45,7 +45,7 @@ hugo --minify          # into public/ (ignored)
 | `assets/css/extended/custom.css` | **All** the CSS. PaperMod loads it after its own |
 | `assets/images/logo.png` | The logo (trimmed, transparent). The header and footer crop its left 405×405 for the moon emblem |
 | `assets/images/logo-hero.png` | The same logo flattened onto black, for the homepage: drawn with `mix-blend-mode: screen`, so it needs no alpha and is a third of the size. Regenerate it from `logo.png` with `magick logo.png -background black -flatten -colorspace gray -strip logo-hero.png` |
-| `assets/images/screenshots/<name>.svg` | Game screenshots from boron.sh, kebab-case names saying what they show (`fishing-at-morningside`). Each brings its own window frame and shadow (`sync-from-game`) |
+| `assets/images/screenshots/<name>.svg` | Game screenshots: a 123×38 terminal exported from boron.sh with fixed settings (`sync-from-game` has them), kebab-case names saying what they show (`fishing-at-morningside`). Each brings its own window frame and shadow (`sync-from-game`) |
 | `assets/images/raster/<name>.png` | PNG copies of a few screenshots, for structured data (search engines don't take SVG). Every file here goes in the homepage's schema |
 | `assets/casts/gameplay-trimmed.cast` | The homepage's gameplay recording (asciicast v2, 110×38). Only the trimmed one is committed: the full recording shows a dev-only sign-in |
 | `assets/vendor/asciinema-player/` | asciinema-player 3.17.0 (`dist/bundle/` from the npm package, and its licence), for the recording |

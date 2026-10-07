@@ -32,10 +32,12 @@ The `features` front matter. Check each claim against the game: skills (`Skill` 
 
 SVGs exported from [boron.sh](https://boron.sh/), so every batch matches:
 
-1. Set the terminal to exactly **123×38** (columns × rows), and play the client in it. Check with `tput cols; tput lines`: a terminal a row short gives a shorter image (1215×1000 instead of 1215×1023), and a row of shots with different heights.
+1. Set the terminal window to exactly **123×38** (columns × rows; picked as a golden-ratio-ish shape, and every screenshot so far is this size), and play the client in it. Check with `tput cols; tput lines`: a terminal a row short gives a shorter image (1215×1000 instead of 1215×1023), and a row of shots with different heights.
 2. Copy the screen into boron.sh with exactly these settings: **Theme** Boron · **Syntax** Custom (ANSI) · **Backdrop** Transparent · **Width** 123 cols · **Corner radius** 10px · **Padding** 30px · **Shadow** 100%.
 3. Export SVG and save it as `assets/images/screenshots/<name>.svg`, with a kebab-case name for what it shows: `fishing-at-morningside`, `talking-to-perth`.
 4. Check its size: `grep -o 'viewBox="[^"]*"' <file>` should say `0 0 1215 1023`.
+
+The Boron theme has its own colours (window `#0f1117`, green `#4ade80`…), close to but not the client's palette in `data/themes/moonlapse.toml`; the gameplay recording uses the client's. Keep the theme on Boron so batches match each other.
 
 The images bring their own macOS-style window (title bar, rounded corners, shadow) on a transparent backdrop, so the site adds no frame. They embed their font, so they're 70–320 KB each, gzipped to about a third.
 
