@@ -1,6 +1,6 @@
 ---
 title: "MoonlapseMUD"
-description: "An open-world multiplayer dungeon you play in your terminal."
+description: "An open-world multiplayer dungeon you play in your terminal. Explore, gather, craft, fight and quest with other players in real time."
 aliases: ["/blog/"]
 tagline: "An open-world multiplayer dungeon, played in your terminal."
 

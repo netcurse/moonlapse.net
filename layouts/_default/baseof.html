@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+    <title>{{ block "title" . }}{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="list" id="top">
+    {{ partial "header.html" . }}
+    <main class="main">
+        {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+</body>
+
+</html>
