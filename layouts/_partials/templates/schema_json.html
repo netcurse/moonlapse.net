@@ -4,10 +4,9 @@
 {{- $site := dict "@type" "WebSite" "@id" (printf "%s#website" site.Home.Permalink) "name" site.Title "url" site.Home.Permalink -}}
 {{- if .IsHome }}
 {{- $platforms := slice }}{{ range $r.platforms }}{{ $platforms = $platforms | append .name }}{{ end -}}
+{{- /* search engines don't take SVG: PNG copies of a few screenshots, in assets/images/raster/ */ -}}
 {{- $shots := slice -}}
-{{- range .Params.gallery }}
-  {{- with resources.Get (printf "images/screenshots/%v.png" .n) }}{{ $shots = $shots | append (.Resize "1400x webp q82").Permalink }}{{ end }}
-{{- end -}}
+{{- range resources.Match "images/raster/*.png" }}{{ $shots = $shots | append (.Process "webp q82").Permalink }}{{ end -}}
 {{- $game := dict
   "@type" "VideoGame"
   "name" site.Title

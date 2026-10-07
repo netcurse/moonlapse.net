@@ -30,20 +30,22 @@ The `features` front matter. Check each claim against the game: skills (`Skill` 
 
 ## Screenshots → `assets/images/screenshots/`
 
-The game's `res/<n>.png` are 2020×1726 macOS window captures. The site uses them cropped to the terminal inside the window, with the transparent shadow flattened onto the terminal's background:
+SVGs exported from [boron.sh](https://boron.sh/), so every batch matches:
 
-```sh
-magick ../moonlapse/res/<n>.png -strip -background '#15191e' -flatten -crop 1792x1434+114+142 +repage assets/images/screenshots/<n>.png
-```
+1. Set the terminal to exactly **123×38** (columns × rows), and play the client in it. Check with `tput cols; tput lines`: a terminal a row short gives a shorter image (1215×1000 instead of 1215×1023), and a row of shots with different heights.
+2. Copy the screen into boron.sh with exactly these settings: **Theme** Boron · **Syntax** Custom (ANSI) · **Backdrop** Transparent · **Width** 123 cols · **Corner radius** 10px · **Padding** 30px · **Shadow** 100%.
+3. Export SVG and save it as `assets/images/screenshots/<name>.svg`, with a kebab-case name for what it shows: `fishing-at-morningside`, `talking-to-perth`.
+4. Check its size: `grep -o 'viewBox="[^"]*"' <file>` should say `0 0 1215 1023`.
 
-That crop assumes the same window size and position. For a new capture, check its edges first (the terminal's background is `#15191e`; the window border is `#2c3035`):
+The images bring their own macOS-style window (title bar, rounded corners, shadow) on a transparent backdrop, so the site adds no frame. They embed their font, so they're 70–320 KB each, gzipped to about a third.
 
-```sh
-magick <file> -crop 40x1+1880+300 +repage txt:- | awk 'NR>1{print $1,$3}'    # right edge
-magick <file> -crop 1x40+1000+1550 +repage txt:- | awk 'NR>1{print $1,$3}'   # bottom edge
-```
+Then use them by name: `hero_shot` or `gallery` (`name`, `caption`, `alt`) in `content/_index.md`, or `{{</* screenshot name="<name>" caption="…" */>}}` in a page. Captions describe what's happening, not the UI; alt text describes what's on screen. Search engines need a PNG, so for the few in structured data, render the SVG in a browser and save it as `assets/images/raster/<name>.png` (headless Edge or Chrome: `--window-size=1215,1023 --default-background-color=00000000 --screenshot=…`).
 
-Then reference it by number: the homepage's `hero_shot` and `gallery` front matter, or `{{</* screenshot n="<n>" caption="…" */>}}` in a page. Captions describe what's happening, not the UI.
+Check what a screenshot shows before it goes up: the site is public, so nothing dev-only (admin commands, dev sign-in) and no version that isn't released yet.
+
+## The gameplay recording → `assets/casts/`
+
+An asciinema recording (asciicast v2) at **110×38**, trimmed to gameplay: nothing before signing in or after quitting, so no sign-in screen, address or version. Only the trimmed file is committed. If the size changes, change `cols`/`rows` in `_partials/gameplay_cast.html` and the `min-height` on `.cast` in `custom.css`.
 
 ## Then
 

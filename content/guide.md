@@ -12,7 +12,7 @@ description: "Getting started in Midland, and every key worth knowing."
 5. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
 6. Press <kbd>?</kbd> at any time for the in-game help: every key below, sorted by topic.
 
-{{< screenshot n="8" caption="Talking to Brother Anselm. Pick an answer with the number keys, or with the arrow keys and <kbd>Enter</kbd>." >}}
+{{< screenshot name="brother-anselm" caption="Talking to Brother Anselm. Pick an answer with the number keys, or with the arrow keys and <kbd>Enter</kbd>." >}}
 
 ## Reading the screen
 

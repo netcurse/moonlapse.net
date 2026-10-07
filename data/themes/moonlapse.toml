@@ -36,3 +36,12 @@ border = "#2f3540"
 tertiary_text = "#8b8e94"
 link_hover = "#c48ae3"
 button_hover_bg = "#3a3f4a"
+
+# The window frame the screenshots come in (boron.sh), copied for the gameplay recording's frame
+[window]
+background = "#0f1117"
+title = "#6b717c"
+divider = "rgba(255, 255, 255, 0.07)"
+close = "#ff5f57"
+minimise = "#febc2e"
+zoom = "#28c840"

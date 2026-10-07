@@ -4,9 +4,10 @@ description: "An open-world multiplayer dungeon you play in your terminal. Explo
 aliases: ["/blog/"]
 tagline: "An open-world multiplayer dungeon, played in your terminal."
 
+# Screenshots are assets/images/screenshots/<name>.svg
 hero_shot:
-  n: 2
-  alt: "Standing outside the Morningside Inn, with other players and the town guard nearby"
+  name: hero
+  alt: "The town of Morningside on the map, with the town guard targeted and other players chatting in the log"
 
 features:
   - glyph: "~"
@@ -35,18 +36,42 @@ features:
     text: "Buy and sell in town, keep your things in the bank, and send letters (with something enclosed) to friends, online or not."
 
 gallery:
-  - n: 6
-    caption: "Shooting a pygmy goblin in the Southern Fields"
-  - n: 3
-    caption: "Fletching a fishing rod"
-  - n: 4
+  - name: fishing-at-morningside
     caption: "Fishing on the lake by Morningside"
-  - n: 8
-    caption: "Brother Anselm, in Morningside Graves"
-  - n: 5
+    alt: "Fishing at the edge of the lake outside Morningside in light rain, with a catfish in the log"
+  - name: mining-copper
+    caption: "Mining copper in the Southern Fields"
+    alt: "Mining in the Southern Fields, with copper ore arriving in the log"
+  - name: fletching-fishing-rod
+    caption: "Fletching a fishing rod at Hilda's Smithy"
+    alt: "The fletching menu at Hilda's Smithy, making a balsa fishing rod from balsa logs"
+  - name: talk-to-marta
+    caption: "Marta, at the Morningside Inn"
+    alt: "Talking to Marta at the Morningside Inn, with a list of answers to choose from"
+  - name: shopping
+    caption: "Buying and selling at the inn"
+    alt: "The inn's shop: food for sale on one side, your inventory and what it's worth on the other"
+  - name: drinking-socially
+    caption: "A beer at the inn"
+    alt: "Drinking a beer in Morningside while other players chat in the log"
+  - name: talking-to-perth
+    caption: "Ser Perth, in Morningside Castle's Great Hall"
+    alt: "Talking to Ser Perth in the castle's Great Hall, with his warning about the goblins in the log"
+  - name: mail-from-ric
     caption: "A letter, with dinner enclosed"
-  - n: 7
+    alt: "A letter from Ric with two cooked catfish and 50 gold coins enclosed"
+  - name: skills
     caption: "Your skills"
+    alt: "The skills window: ten skills, each with its level, experience and a bar to the next level"
+  - name: morningside-map
+    caption: "The map of Midland"
+    alt: "The world map, showing Morningside, its castle, the Southern Fields and the roads between"
+  - name: character-selection
+    caption: "Choosing a character"
+    alt: "The character screen, with one character of a possible ten and the option to make another"
+  - name: fighting-rats
+    caption: "Fighting rats in the inn's cellar"
+    alt: "Punching a rat in the Morningside Inn's cellar, with the fight in the log"
 
 steps:
   - title: "Download"

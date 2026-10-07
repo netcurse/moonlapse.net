@@ -14,4 +14,4 @@ Moonlapse started in 2019 as a small Python game: a handful of players walking a
 
 This is its successor, rebuilt from scratch. The idea is the same, but there's a lot more of it: a bigger world, quests and the people who give them, ten skills, combat worth thinking about, parties, trading, mail, and characters that persist between visits.
 
-{{< screenshot n="1" caption="The title screen" >}}
+{{< screenshot name="welcome-screen" caption="The title screen, signed in" >}}

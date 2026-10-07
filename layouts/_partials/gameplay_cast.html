@@ -1,0 +1,141 @@
+{{- /* The gameplay recording, in asciinema-player (vendored in assets/vendor/asciinema-player/).
+       Published as .json, not .cast: GitHub Pages only gzips types it knows (3.6 MB → 90 KB) */ -}}
+{{- $cast := resources.Get "casts/gameplay-trimmed.cast" | resources.Copy "casts/gameplay.json" | fingerprint -}}
+{{- $js := resources.Get "vendor/asciinema-player/asciinema-player.min.js" | fingerprint -}}
+{{- $css := resources.Get "vendor/asciinema-player/asciinema-player.css" | minify | fingerprint -}}
+<section class="cast-section">
+  <h2>See it in motion</h2>
+  <div class="cast-frame">
+    <div class="window">
+      <div class="window-bar" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <code>MoonlapseMUD</code>
+      </div>
+      <div class="cast" data-cast="{{ $cast.RelPermalink }}" role="region" aria-label="A recording of the game being played"></div>
+    </div>
+  </div>
+  <noscript><style>.cast-section { display: none; }</style></noscript>
+</section>
+<script>
+  (function () {
+    var box = document.querySelector("[data-cast]");
+    if (!box || !window.fetch || !window.IntersectionObserver) return;
+
+    var JS = {{ $js.RelPermalink }};
+    var CSS = {{ $css.RelPermalink }};
+    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function load(tag, attrs) {
+      return new Promise(function (resolve, reject) {
+        var el = document.createElement(tag);
+        for (var k in attrs) el[k] = attrs[k];
+        el.onload = resolve;
+        el.onerror = reject;
+        document.head.appendChild(el);
+      });
+    }
+
+    // The game sets some palette colours itself (OSC 4: grey, tan, white). The player ignores
+    // OSC 4, so write those colours into the recording as RGB
+    function applyPalette(cast) {
+      var pal = {};
+      var OSC4 = /\x1b\]4;(\d+);rgb:([0-9a-f]{2})[0-9a-f]*\/([0-9a-f]{2})[0-9a-f]*\/([0-9a-f]{2})[0-9a-f]*(?:\x07|\x1b\\)/gi;
+      function rgb(fg, n) {
+        var c = pal[n];
+        return c ? [fg ? 38 : 48, 2].concat(c) : null;
+      }
+      function sgr(params) {
+        var p = params.split(";"), out = [];
+        for (var i = 0; i < p.length; i++) {
+          var n = +p[i], c = null;
+          if ((n === 38 || n === 48) && p[i + 1] === "5") {
+            c = rgb(n === 38, +p[i + 2]);
+            if (!c) { out.push(p[i], p[i + 1], p[i + 2]); i += 2; continue; }
+            i += 2;
+          } else if ((n === 38 || n === 48) && p[i + 1] === "2") {
+            out.push.apply(out, p.slice(i, i + 5)); i += 4; continue;
+          } else if (n >= 30 && n <= 37) c = rgb(true, n - 30);
+          else if (n >= 90 && n <= 97) c = rgb(true, n - 82);
+          else if (n >= 40 && n <= 47) c = rgb(false, n - 40);
+          else if (n >= 100 && n <= 107) c = rgb(false, n - 92);
+          out.push.apply(out, c || [p[i]]);
+        }
+        return out.join(";");
+      }
+      return cast.split("\n").map(function (line, i) {
+        if (!i || !line) return line;
+        var ev = JSON.parse(line);
+        if (ev[1] !== "o") return line;
+        ev[2] = ev[2]
+          .replace(OSC4, function (_, n, r, g, b) {
+            pal[n] = [parseInt(r, 16), parseInt(g, 16), parseInt(b, 16)];
+            return "";
+          })
+          .replace(/\x1b\[([0-9;]*)m/g, function (_, params) { return "\x1b[" + sgr(params) + "m"; });
+        return JSON.stringify(ev);
+      }).join("\n");
+    }
+
+    var player = null;
+    var visible = false;
+    var playing = false;
+    var started = false;
+    var paused = false;   // paused by scrolling away, to resume on the way back
+
+    function follow() {
+      if (!player || still) return;
+      if (visible && (!started || paused)) {
+        started = true;
+        paused = false;
+        player.play();
+      } else if (!visible && playing) {
+        paused = true;
+        player.pause();
+      }
+    }
+
+    function create() {
+      var mono = getComputedStyle(document.documentElement).getPropertyValue("--font-mono").trim();
+      Promise.all([
+        fetch(box.dataset.cast).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }),
+        load("script", { src: JS }),
+        load("link", { rel: "stylesheet", href: CSS }),
+        // the player measures the font once, so it has to be here first
+        document.fonts ? document.fonts.load('16px "Cascadia Code"') : null
+      ]).then(function (r) {
+        player = AsciinemaPlayer.create({ data: applyPalette(r[0]) }, box, {
+          cols: 110,
+          rows: 38,
+          loop: true,
+          idleTimeLimit: 2,
+          fit: "width",
+          poster: "npt:0:03",
+          controls: true,
+          theme: "moonlapse",
+          terminalFontFamily: mono,
+          terminalLineHeight: 1.5
+        });
+        player.addEventListener("playing", function () { playing = true; });
+        player.addEventListener("pause", function () { playing = false; });
+        player.addEventListener("ended", function () { playing = false; });
+        follow();
+      }).catch(function () {});
+    }
+
+    // after the page has loaded, and only once it's within a screen of being seen
+    function begin() {
+      var near = new IntersectionObserver(function (e) {
+        if (!e[0].isIntersecting) return;
+        near.disconnect();
+        create();
+      }, { rootMargin: "100% 0px" });
+      near.observe(box);
+      new IntersectionObserver(function (e) {
+        visible = e[0].isIntersecting;
+        follow();
+      }, { threshold: 0.5 }).observe(box);
+    }
+    if (document.readyState === "complete") begin();
+    else window.addEventListener("load", begin);
+  })();
+</script>

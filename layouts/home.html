@@ -18,13 +18,7 @@
 </section>
 
 <section class="showcase">
-  <div class="terminal">
-    <div class="terminal-bar" aria-hidden="true">
-      <span></span><span></span><span></span>
-      <code>moonlapse</code>
-    </div>
-    {{ partial "screenshot.html" (dict "n" $p.hero_shot.n "alt" $p.hero_shot.alt "sizes" (partial "hero_shot_sizes.html") "eager" true) }}
-  </div>
+  {{ partial "screenshot.html" (dict "name" $p.hero_shot.name "alt" $p.hero_shot.alt "eager" true) }}
 </section>
 
 {{- with .Content }}
@@ -43,12 +37,14 @@
   {{- end }}
 </section>
 
+{{ partial "gameplay_cast.html" . }}
+
 <section class="gallery-section">
   <h2>Screenshots</h2>
   <div class="gallery">
     {{- range $p.gallery }}
     <figure>
-      {{ partial "screenshot.html" (dict "n" .n "alt" .caption "sizes" "(max-width: 700px) calc(100vw - 32px), (max-width: 1000px) calc(50vw - 40px), 350px") }}
+      {{ partial "screenshot.html" (dict "name" .name "alt" (.alt | default .caption)) }}
       <figcaption>{{ .caption }}</figcaption>
     </figure>
     {{- end }}

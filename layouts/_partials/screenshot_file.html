@@ -1,0 +1,8 @@
+{{- /* A screenshot by name → dict res, width, height. Hugo can't read an SVG's size, so it
+       comes from the viewBox */ -}}
+{{- $img := resources.Get (printf "images/screenshots/%s.svg" .) -}}
+{{- if not $img }}{{ errorf "screenshot: no assets/images/screenshots/%s.svg" . }}{{ end -}}
+{{- $box := findRESubmatch `viewBox="0 0 ([\d.]+) ([\d.]+)"` $img.Content 1 -}}
+{{- if not $box }}{{ errorf "screenshot: %s.svg has no viewBox" . }}{{ end -}}
+{{- $box = index $box 0 -}}
+{{- return dict "res" $img "width" (index $box 1) "height" (index $box 2) -}}

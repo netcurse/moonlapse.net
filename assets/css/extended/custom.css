@@ -562,50 +562,33 @@ kbd {
   font-size: 0.85rem;
 }
 
-/* ── Home: the big screenshot, in a terminal window ────────────── */
+/* ── Screenshots ───────────────────────────────────────────────── */
+
+/* The SVGs bring their own window, rounded corners and shadow, with 30px of transparent padding
+   around a 1155px-wide window. Pull the image out by that padding, so it's the window that lines
+   up with the column (% margins are of the width, top and bottom too) */
+.shot {
+  display: block;
+  cursor: zoom-in;
+}
+
+.shot img,
+.post-content .shot img {
+  display: block;
+  width: calc(100% * 1215 / 1155);
+  max-width: none;
+  height: auto;
+  margin: calc(-100% * 30 / 1155);
+  border-radius: 0;
+}
+
+/* ── Home: the big screenshot ──────────────────────────────────── */
 
 .showcase {
   margin: 1.5rem calc(50% - min(50vw, var(--wide-width) / 2)) 3.5rem;
   padding: 0 var(--gap);
-}
-
-.terminal {
-  max-width: var(--wide-width);
-  margin: 0 auto;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #2a2f37;
-  background: var(--bg-color);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03);
-}
-
-.terminal-bar {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 10px 14px;
-  background: #1d2127;
-  border-bottom: 1px solid #2a2f37;
-}
-
-.terminal-bar span {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #3a3f48;
-}
-
-.terminal-bar code {
-  margin-left: 0.6rem;
-  font-size: 0.75rem;
-  color: var(--secondary);
-  background: none;
-  padding: 0;
-}
-
-.terminal .shot img {
-  width: 100%;
-  height: auto;
+  /* the image's shadow can reach past the screen's edge */
+  overflow-x: clip;
 }
 
 /* ── Home: intro, features ─────────────────────────────────────── */
@@ -670,12 +653,19 @@ kbd {
 /* ── Home: gallery ─────────────────────────────────────────────── */
 
 .gallery-section,
+.cast-section,
 .steps-section {
   margin: 0 calc(50% - min(50vw, var(--wide-width) / 2)) 4rem;
   padding: 0 var(--gap);
 }
 
+.gallery-section,
+.cast-section {
+  overflow-x: clip;
+}
+
 .gallery-section h2,
+.cast-section h2,
 .steps-section h2 {
   text-align: center;
   font-size: 1.6rem;
@@ -692,31 +682,12 @@ kbd {
   margin: 0;
 }
 
-.shot {
-  display: block;
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: zoom-in;
-}
-
-.gallery .shot {
-  border: 1px solid var(--border);
-  background: var(--bg-color);
-  transition: border-color 0.2s ease;
-}
-
-.gallery .shot:hover {
-  border-color: var(--ansi-magenta);
-}
-
 .gallery .shot img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 
 .gallery .shot:hover img {
-  transform: scale(1.03);
+  transform: translateY(-3px);
 }
 
 .gallery figcaption,
@@ -731,10 +702,93 @@ kbd {
   margin: 1.75rem 0;
 }
 
-.figure-shot .shot img {
-  width: 100%;
-  height: auto;
-  margin: 0;
+/* ── Home: the gameplay recording ──────────────────────────────── */
+
+/* A CSS copy of the screenshots' window (data/themes/, [window]), scaled the same way: --u is
+   one pixel of their 1155px-wide window */
+.cast-frame {
+  container-type: inline-size;
+}
+
+.window {
+  --u: calc(100cqw / 1155);
+  border-radius: calc(10 * var(--u));
+  background: var(--window-background);
+  box-shadow: 0 calc(18 * var(--u)) calc(40 * var(--u)) rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.window-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(8.4 * var(--u));
+  height: calc(40 * var(--u));
+  padding: 0 calc(24 * var(--u));
+  border-bottom: 1px solid var(--window-divider);
+}
+
+.window-bar span {
+  width: calc(12 * var(--u));
+  height: calc(12 * var(--u));
+  border-radius: 50%;
+  background: var(--window-close);
+}
+
+.window-bar span:nth-child(2) {
+  background: var(--window-minimise);
+}
+
+.window-bar span:nth-child(3) {
+  background: var(--window-zoom);
+}
+
+.window-bar code {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  font-size: calc(12.75 * var(--u));
+  color: var(--window-title);
+  background: none;
+}
+
+/* The player adds 0.75em of its own border inside this. Room kept for it before it loads: a
+   110×38 terminal in Cascadia Code at line height 1.5 is 0.887 as high as it's wide, plus the
+   control bar (32px) */
+.cast {
+  --pad: calc(11 * var(--u));
+  padding: var(--pad);
+  min-height: calc((100cqw - 2 * var(--pad)) * 0.887 + 32px + 2 * var(--pad));
+}
+
+.cast .ap-wrapper div.ap-player {
+  border-radius: 0;
+}
+
+/* The player's theme: the client's palette, on the window's background. The game paints black
+   (40) as its background, so black is the background too. Under .cast to beat the player's
+   .ap-player defaults, whose stylesheet loads later */
+.cast .asciinema-player-theme-moonlapse {
+  --term-color-foreground: var(--fg-color);
+  --term-color-background: var(--window-background);
+  --term-color-0: var(--window-background);
+  --term-color-1: var(--ansi-red);
+  --term-color-2: var(--ansi-green);
+  --term-color-3: var(--ansi-yellow);
+  --term-color-4: var(--ansi-blue);
+  --term-color-5: var(--ansi-magenta);
+  --term-color-6: var(--ansi-cyan);
+  --term-color-7: var(--ansi-white);
+  --term-color-8: var(--ansi-bright-black);
+  --term-color-9: var(--ansi-bright-red);
+  --term-color-10: var(--ansi-bright-green);
+  --term-color-11: var(--ansi-bright-yellow);
+  --term-color-12: var(--ansi-bright-blue);
+  --term-color-13: var(--ansi-bright-magenta);
+  --term-color-14: var(--ansi-bright-cyan);
+  --term-color-15: var(--ansi-bright-white);
 }
 
 /* ── Home: steps ───────────────────────────────────────────────── */
@@ -930,7 +984,6 @@ kbd {
   max-height: 90vh;
   width: auto;
   height: auto;
-  border-radius: var(--radius);
   cursor: zoom-out;
 }
 
