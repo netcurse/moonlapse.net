@@ -77,3 +77,13 @@
   src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('LiberationMono');
   size-adjust: 97.63%;
 }
+/* Cascadia Mono's box-drawing glyphs, stretched to fill a line of the gameplay recording (line
+   height 1.5) so its lines join. Only the recording uses it. From .agents/scripts/box-font.py */
+@font-face {
+  font-family: 'Cascadia Box';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url(/fonts/cascadia-box.woff2) format('woff2');
+  unicode-range: U+2500-2503, U+250C-254B, U+2550-2570, U+2574-257F;
+}

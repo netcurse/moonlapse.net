@@ -767,6 +767,11 @@ kbd {
   border-radius: 0;
 }
 
+/* Let Cascadia Box's lines overlap into the next row, or a seam shows between rows */
+.cast pre.ap-term-text .ap-line {
+  overflow: visible;
+}
+
 /* The player's theme: the client's palette, on the window's background. The game paints black
    (40) as its background, so black is the background too. Under .cast to beat the player's
    .ap-player defaults, whose stylesheet loads later */

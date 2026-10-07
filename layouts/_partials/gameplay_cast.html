@@ -101,7 +101,8 @@
         load("script", { src: JS }),
         load("link", { rel: "stylesheet", href: CSS }),
         // the player measures the font once, so it has to be here first
-        document.fonts ? document.fonts.load('16px "Cascadia Code"') : null
+        document.fonts ? document.fonts.load('16px "Cascadia Code"') : null,
+        document.fonts ? document.fonts.load('16px "Cascadia Box"', "│") : null
       ]).then(function (r) {
         player = AsciinemaPlayer.create({ data: applyPalette(r[0]) }, box, {
           cols: 110,
@@ -112,8 +113,9 @@
           poster: "npt:0:03",
           controls: true,
           theme: "moonlapse",
-          terminalFontFamily: mono,
-          terminalLineHeight: 1.5
+          // box drawing from Cascadia Box, whose lines fill the line height (fonts.css)
+          terminalFontFamily: '"Cascadia Box", ' + mono,
+          terminalLineHeight: 1.5 // Cascadia Box is made for this: change both together
         });
         player.addEventListener("playing", function () { playing = true; });
         player.addEventListener("pause", function () { playing = false; });
