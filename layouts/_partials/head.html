@@ -1,4 +1,4 @@
-{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon or tile colour; CSS inlined; lang attribute added */ -}}
+{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon or tile colour; CSS inlined */ -}}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -159,7 +159,7 @@
 </script>
 {{- end }}
 {{- /* theme-toggle is disabled and theme is auto */}}
-{{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}} 
+{{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
 <script>
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.querySelector("html").dataset.theme = 'dark';
