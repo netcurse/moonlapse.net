@@ -75,6 +75,8 @@ homeTitle = "MoonlapseMUD: a multiplayer dungeon in your terminal or browser"
 statusURL = "https://api.moonlapse.net/status"
 # The game in a browser (desktop, with a keyboard)
 playURL = "https://play.moonlapse.net"
+# The community Discord server (an invite that never expires)
+discordURL = "https://discord.gg/DxzgsJXUFW"
 description = "MoonlapseMUD: an open-world multiplayer dungeon you play in your terminal or your browser. Explore, gather, craft, fight and quest with other players."
 author = "MoonlapseMUD"
 hideAuthor = true

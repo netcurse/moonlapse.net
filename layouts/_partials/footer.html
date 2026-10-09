@@ -13,6 +13,10 @@
         <a href="/guide/">How to play</a>
         <span class="sep">·</span>
         <a href="/about/">About</a>
+        {{- with site.Params.discordURL }}
+        <span class="sep">·</span>
+        <a href="{{ . }}">Discord</a>
+        {{- end }}
     </nav>
     {{- /* Absolute, to match the privacy policy URL on Google's OAuth consent screen */}}
     <nav class="footer-links footer-legal" aria-label="Account and legal">

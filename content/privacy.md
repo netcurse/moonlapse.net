@@ -70,6 +70,10 @@ If you **report** a player (`/report`), the report keeps:
 
 Reports go to our **moderators**, the people who help us run the game, in a private channel on our Discord server. The player you report isn't told that you did.
 
+### Our Discord server
+
+Joining our [Discord server]({{< discord >}}) is up to you: you don't need it to play. It's run on Discord, so what you post there, and your Discord account, are handled by Discord under its own privacy policy. We, our moderators and the server's other members see what you post there, as on any Discord server, and we can remove posts that break the rules. It's separate from your Moonlapse account: joining doesn't tell the game anything about you.
+
 ### When you connect
 
 Your computer's **IP address** is seen by every server you connect to, ours included:
@@ -104,6 +108,7 @@ We run the game, the sign-in service and their database on a server of our own i
 | [Google](https://policies.google.com/privacy) | *Sign in with Google*, if you use it | That you're signing in to Moonlapse |
 | [Discord](https://discord.com/privacy) | *Sign in with Discord*, if you use it | That you're signing in to Moonlapse |
 | [Discord](https://discord.com/privacy) | Our moderators' private channel, where players' reports arrive | What's in a report (above) |
+| [Discord](https://discord.com/privacy) | Our Discord server, if you join it | What you post there, and your Discord account |
 | [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) | Hosting this website and the downloads | Your visit, as above |
 
 We'd only ever give your information to anyone else if the law required us to.
