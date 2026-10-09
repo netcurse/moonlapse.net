@@ -49,7 +49,7 @@ The client, its game data (`content/`) and a `config.toml` that points it at the
 {{< /details >}}
 
 {{< details summary="Your account" >}}
-You'll sign in through your browser the first time you play, with an email, Google or Discord: no separate sign-up. Your [account page](https://auth.moonlapse.net/auth/v1/account) is where you change your password, link Google or Discord, or delete your account.
+You'll sign in through your browser the first time you play, with an email, Google or Discord: no separate sign-up. Or choose *Play as guest* to play with no account at all, and register later to keep your character ([playing as a guest](/guide/#playing-as-a-guest)). Your [account page](https://auth.moonlapse.net/auth/v1/account) is where you change your password, link Google or Discord, or delete your account.
 {{< /details >}}
 
 {{< details summary="Staying signed in" >}}
@@ -57,7 +57,7 @@ Tick *Stay signed in* on the title screen and the client keeps your sign-in in `
 {{< /details >}}
 
 {{< details summary="Updating" >}}
-When a new version comes out, the title screen says *update available*. Download the new archive and replace the old folder: your characters live on the server, so there's nothing to carry over.
+When a new version comes out, the title screen says *update available*. Download the new archive and replace the old folder: your characters live on the server, so there's nothing to carry over. If you play as a guest, copy `guest.toml` across first: it's your only way back to your guest.
 {{< /details >}}
 
 {{< details summary="Which terminal" >}}

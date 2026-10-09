@@ -7,11 +7,12 @@ description: "What Moonlapse keeps about you, why, who else sees it, and how to 
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
-It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net), the server status feed (api.moonlapse.net) and the game server (play.moonlapse.net), which is also where the game can be played in a browser. Questions, or anything you'd like us to do with your information: <privacy@moonlapse.net>.
+It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net), api.moonlapse.net (the server status feed, and where the game client goes to join the game) and the game server (play.moonlapse.net), which is also where the game can be played in a browser. Questions, or anything you'd like us to do with your information: <privacy@moonlapse.net>.
 
 ## The short version
 
-- To play, you need an account. Its sign-in details are an **email address** and a password, or a Google or Discord account.
+- You can play straight away as a **guest**, without an account and without telling us anything about yourself. A guest nobody plays for **7 days** is deleted.
+- To keep a character, you make an account. Its sign-in details are an **email address** and a password, or a Google or Discord account.
 - We use your information to sign you in, keep your account safe, and run the game. Nothing else.
 - We **never sell** it, never use it for advertising, never use it to train AI models, and never share it except with the services listed below that we need to run the game.
 - No analytics, no trackers, no ads, on the website or in the game.
@@ -57,6 +58,22 @@ An account can have several characters. For each one, the game keeps what it nee
 
 If you delete a character by itself, the game keeps it for 30 days so you can restore it. Then it's deleted for good, with its items, bank, quests and mail, and the letters it sent that other players still have, with anything attached to them. You can also choose to delete it for good straight away.
 
+### Playing as a guest
+
+If you choose *Play as guest* on the title screen, you don't make an account, and you don't give us an email address or anything else about you. You choose a name for your character, and its name is `Guest_` and that name (`Guest_Bob`). A guest has one character.
+
+To know you when you come back, the game gives your copy of the client a random secret, which it keeps on your device (below). We keep:
+
+- a **one-way hash** of the secret, never the secret itself;
+- **when the guest was last played**;
+- its **character**, the same as anyone's (above): where it is, its skills, inventory, bank, equipment, quests and mail.
+
+A guest's chat and reports are recorded and handled the same as everyone's (below), and guests can be reported, muted and banned like any player.
+
+A guest nobody plays for **7 days** is deleted automatically, with its character and everything the game kept about it, and its name is free again. If you lose the secret (by deleting the file or clearing your browser's data), the guest is gone for good: we can't get it back for you.
+
+**Registering.** At any time, from its character screen, a guest can sign in or make an account and keep its character. The character moves to that account, under a new name without the `Guest_`, with everything it had, and from then on it's covered by the rest of this policy like any other character. Reports by and about the guest, and any mute, go with it. For 7 days the old name still leads to the character, so whispers and reports for `Guest_Bob` reach it; after that the game forgets the old name. The game server's log keeps one line recording the rename.
+
 ### Chat and reports
 
 Everything said in the game's chat is recorded: said aloud, emotes (`/me`), whispers and party chat, with who said it, who it was to, where they were, and when. It's kept for **14 days**, then deleted. We look at it only to deal with reports and abuse, and to make sure Moonlapse isn't used to plan or share anything illegal. It isn't used for anything else, and it isn't shared, except with our moderators in reports (below).
@@ -78,19 +95,22 @@ Joining our [Discord server]({{< discord >}}) is up to you: you don't need it to
 
 Your computer's **IP address** is seen by every server you connect to, ours included:
 
-- **The game server** needs it to talk to your client while you play. It doesn't write it down. When you join, the client also sends the game server your sign-in token, which includes your email address: the game server checks the token, but doesn't keep or log the address.
-- **The sign-in service, the status feed and the browser version of the game** (play.moonlapse.net) sit behind a web server that keeps ordinary access logs (IP address, time, what was asked for, browser details) for about two weeks, for troubleshooting and to deal with abuse. For the browser version, that includes its connection to the game. The game server itself still doesn't write your IP address down, and the sign-in token works just as it does for the client you download.
+- **The game server** needs it to talk to your client while you play. It doesn't write it down. When you join, the client also sends the game server your sign-in token, which includes your email address: the game server checks the token, but doesn't keep or log the address. A guest's client sends its secret instead, and the game server keeps only its hash (above).
+- **The sign-in service, api.moonlapse.net and the browser version of the game** (play.moonlapse.net) sit behind a web server that keeps ordinary access logs (IP address, time, what was asked for, browser details) for about two weeks, for troubleshooting and to deal with abuse. For the browser version, that includes its connection to the game. The game server itself still doesn't write your IP address down, and the sign-in token works just as it does for the client you download.
 - **This website** is hosted by GitHub Pages, and the game's downloads by GitHub. GitHub sees your IP address when you visit or download, and handles it under the [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). We don't receive it.
 
 ### What the client keeps on your computer
 
 If you tick *Stay signed in*, the game client saves a sign-in token in a file next to it, so you don't have to sign in every time. The token includes your email address, and the title screen shows it (*Continue as* your address), so anyone who uses that computer and that copy of the client can see it. It's on your computer, not ours: choosing *Sign out* deletes it.
 
+If you play as a **guest**, the client keeps the guest's secret in a file called `guest.toml` next to it, whether or not you tick *Stay signed in*. It's the only way back to your guest, so anyone with that file can play it, and if you delete it the guest is lost for good. When the guest registers, the client deletes the file.
+
 The browser version at play.moonlapse.net works the same way, but keeps things in your browser's storage for play.moonlapse.net instead of a file:
 
 - If you tick *Stay signed in*, it keeps your sign-in token there, including your email address, and the title screen shows it (*Continue as* your address) to anyone using that browser. Choosing *Sign out*, or clearing the site's data in your browser, deletes it.
 - If you don't, the token is kept only while the page is open.
 - While you're signing in, the tab keeps a one-time code for a moment, and discards it when you come back.
+- If you play as a guest, it keeps the guest's secret there, whether or not you tick *Stay signed in*. Clearing the site's data loses the guest for good. When the guest registers, it's removed.
 
 ## Cookies
 
@@ -116,6 +136,7 @@ We'd only ever give your information to anyone else if the law required us to.
 ## How long we keep it
 
 - **Your account and characters**: until you delete them, or until Moonlapse shuts down. A character you delete by itself is kept for 30 days so you can restore it, then deleted for good.
+- **Guests**: until 7 days after the guest was last played, then deleted automatically, unless it registers first. After a guest registers, its old name leads to the character for 7 days.
 - **Sign-in records and security events**: no longer than they're useful for keeping accounts safe, and never longer than your account.
 - **Chat**: 14 days.
 - **Web server logs**: about two weeks.
@@ -126,6 +147,8 @@ We'd only ever give your information to anyone else if the law required us to.
 Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept.
 
 If you can't sign in any more, email <privacy@moonlapse.net> from the address on the account and we'll do it for you.
+
+A guest has no account to delete. Its character can be deleted on its character screen like any other, and the guest itself is deleted 7 days after it was last played.
 
 ## Your choices
 
@@ -140,11 +163,11 @@ We'll reply within 30 days, and usually much sooner. If you're not happy with ou
 
 ## Security
 
-Every connection to the website, the sign-in service, the status feed and the browser version of the game, including the browser version's connection to the game, is encrypted (HTTPS). Passwords are hashed with Argon2, the database isn't reachable from the internet, and only the two of us can get to it. No system is perfectly secure, though: if something ever went wrong that affected your information, we'd tell you by email.
+Every connection to the website, the sign-in service, the status feed and the browser version of the game, including the browser version's connection to the game, is encrypted (HTTPS). Passwords are hashed with Argon2, guests' secrets are kept only as a hash, the database isn't reachable from the internet, and only the two of us can get to it. No system is perfectly secure, though: if something ever went wrong that affected your information, we'd tell you by email.
 
 ## Children
 
-You need to be at least 13 to make an account. If you're under 18, check with a parent or guardian first. If we learn that someone under 13 has made an account, we'll delete it. If you think that's happened, email <privacy@moonlapse.net>.
+You need to be at least 13 to play, as a guest or with an account. If you're under 18, check with a parent or guardian first. If we learn that someone under 13 has made an account or a guest, we'll delete it. If you think that's happened, email <privacy@moonlapse.net>.
 
 ## Changes
 

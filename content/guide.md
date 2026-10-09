@@ -6,7 +6,7 @@ description: "Getting started in Midland, and every key worth knowing."
 ## Your first few minutes
 
 1. **[Download the client](/download/)**, unpack it and run it. Or skip the download and [play in your browser](#playing-in-the-browser) at [play.moonlapse.net](https://play.moonlapse.net).
-2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. (In the browser version, you go straight to the sign-in page.) Sign in, or make an account with an email, Google or Discord, then come back to the game. Tick **Stay signed in** first and next time you can go straight in with **Continue as** your email address.
+2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. (In the browser version, you go straight to the sign-in page.) Sign in, or make an account with an email, Google or Discord, then come back to the game. Tick **Stay signed in** first and next time you can go straight in with **Continue as** your email address. Or choose **Play as guest** to start without an account: see [playing as a guest](#playing-as-a-guest).
 3. Next is the **character screen**, with your characters, the one you played last at the top. Press <kbd>N</kbd> to make one and give it a name, then <kbd>Enter</kbd> to play it. <kbd>D</kbd> deletes a character, and <kbd>Esc</kbd> goes back to the title screen. More on [your characters](#your-characters) below.
 4. You start in front of the **Morningside Inn**. You're the `@`. Walk with the <kbd>arrow keys</kbd>.
 5. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
@@ -143,6 +143,16 @@ An account can have up to 10 characters. Only one of them can be in the game at 
 A name is letters, digits and underscores, and it's yours alone whatever its capitals: if there's a `Bob`, there can't be a `bob`. A name can never be changed.
 
 To delete a character, select it on the character screen, press <kbd>D</kbd> and type its name. It stays on the list, greyed out, with the days it has left: for 30 days you can select it and press <kbd>Enter</kbd> to **Restore** it. A deleted character doesn't count towards the 10, but restoring one needs a free slot, and its name stays taken until it's gone, even for you. After 30 days, or straight away if you choose **Delete now**, it's deleted for good, with its items, bank, quests and mail, and the letters it sent.
+
+## Playing as a guest
+
+**Play as guest** on the title screen starts you straight away, with no account and no email address. A guest has one character, called `Guest_` and the name you choose: `Guest_Bob`. Next time, **Continue as** `Guest_Bob` brings you back to it.
+
+A guest can do almost everything, but it can't trade with other players, fight them, or send or receive items by mail (letters are fine). Its skills stop at level 10, and XP past that is lost, not saved for later. Its chat is limited a little more than everyone else's.
+
+To keep your guest, select it on the character screen and press <kbd>R</kbd> to register: sign in, or make an account, in your browser as usual. The character joins your account under a new name without the `Guest_`, keeps everything it had, and the limits are gone. Registering offers the name you first chose; if someone else has it by then, you'll be asked to pick another. For a week, whispers to the old name still reach it.
+
+A guest nobody plays for **7 days** is deleted, with everything it had. Your way back to it is kept on your computer, in `guest.toml` next to the client, or in your browser for the browser version: delete the file or clear the browser's data and the guest is lost for good.
 
 ## Tips
 
