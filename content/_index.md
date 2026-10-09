@@ -83,7 +83,7 @@ steps:
   - title: "Unpack and run"
     text: "Unpack it anywhere and run `moonlapse` from a terminal, or double-click it on Windows."
   - title: "Sign in and make a character"
-    text: "Sign in through your browser with an email, Google or Discord, then name your character and wake up in front of the Morningside Inn. Press `?` for help any time."
+    text: "Sign in through your browser with an email, Google or Discord, or *Play as guest* with no account and register later. Then name your character and wake up in front of the Morningside Inn. Press `?` for help any time."
 steps_alt: "Or skip the download: play in your browser at [play.moonlapse.net](https://play.moonlapse.net), on a computer with a keyboard."
 ---
 

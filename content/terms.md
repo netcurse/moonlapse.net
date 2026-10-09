@@ -5,7 +5,7 @@ description: "The rules for playing Moonlapse and using its website and accounts
 
 *Last updated 9 October 2026.*
 
-Moonlapse is a free game run as a hobby by two people in Australia ("we", "us"). These terms apply when you use the game, this website, or a Moonlapse account. By making an account or playing, you agree to them. If you don't, please don't use Moonlapse.
+Moonlapse is a free game run as a hobby by two people in Australia ("we", "us"). These terms apply when you use the game, this website, or a Moonlapse account, and when you play as a guest. By making an account or playing, you agree to them. If you don't, please don't use Moonlapse.
 
 How we handle your information is in the [privacy policy](/privacy/). Questions about either: <privacy@moonlapse.net>.
 
@@ -19,6 +19,22 @@ You need to be at least **13**. If you're under 18, check with a parent or guard
 - If you think someone else has got into it, change your password and sign out your other devices from your [account page](https://auth.moonlapse.net/auth/v1/account), and tell us.
 - If you sign in with Google or Discord, their own terms apply to your account with them.
 - You can delete your account at any time from your account page.
+
+## Playing as a guest
+
+You can play without an account, as a guest. A guest:
+
+- has one character, named `Guest_` and the name you choose;
+- can't trade with other players or fight them, and can't send items by mail or be sent them (letters are fine);
+- stops at level 10 in every skill, and XP earned past that is lost, not saved for later;
+- has stricter chat limits than registered players;
+- is deleted, with its character and everything it had, 7 days after it was last played.
+
+The only way back to a guest is a secret kept on your device: in `guest.toml` next to the client, or in your browser's storage for play.moonlapse.net. If it's lost, so is the guest, and we can't get it back.
+
+At any time, you can register from the guest's character screen. The character moves to your account under a new name without the `Guest_`, keeps everything it had, and the limits above no longer apply.
+
+Everything else in these terms applies to guests just as it does to accounts.
 
 ## How to behave
 
@@ -35,7 +51,7 @@ Character names have to follow these rules too. We may rename a character whose 
 
 Chat is recorded and kept for a while, and players can report each other to our moderators, who use the reports and the recorded chat to look into what happened ([privacy policy](/privacy/)).
 
-If you break these rules, we may warn you, mute you, rename or reset your character, or suspend or delete your account, depending on what happened. We'll usually tell you why. If you think we got it wrong, email us.
+If you break these rules, we may warn you, mute you, rename or reset your character, or suspend or delete your account or guest, depending on what happened. We'll usually tell you why. If you think we got it wrong, email us.
 
 ## The game itself
 
