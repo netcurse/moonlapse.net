@@ -1146,6 +1146,39 @@ kbd {
     grid-template-columns: 1fr;
   }
 
+  /* The gallery as a strip to swipe through, the next shot peeking in, rather than 12 screens of
+     scrolling. Edge to edge, with room above and below for the shots' shadows */
+  .gallery {
+    display: flex;
+    gap: 1rem;
+    margin: 0 calc(-1 * var(--gap));
+    padding: 0.75rem var(--gap) 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 var(--gap);
+    scrollbar-width: none;
+  }
+
+  .gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery figure {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  /* the step's number beside its title, not on a line of its own */
+  .steps li {
+    padding-left: 3.4rem;
+  }
+
+  .steps li::before {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.3rem;
+  }
+
   .header-mark span {
     display: none;
   }
