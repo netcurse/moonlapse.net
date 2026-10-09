@@ -33,6 +33,8 @@ Moonlapse is a shared world. While you're in it, don't:
 
 Character names have to follow these rules too. We may rename a character whose name doesn't.
 
+Chat is recorded and kept for a while, and players can report each other to our moderators, who use the reports and the recorded chat to look into what happened ([privacy policy](/privacy/)).
+
 If you break these rules, we may warn you, mute you, rename or reset your character, or suspend or delete your account, depending on what happened. We'll usually tell you why. If you think we got it wrong, email us.
 
 ## The game itself
