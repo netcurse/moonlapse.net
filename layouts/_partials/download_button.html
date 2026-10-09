@@ -9,12 +9,14 @@
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
     <span id="dl-main-label">{{ if $first.url }}Download for {{ $first.platform.name }}{{ else }}Get the client{{ end }}</span>
   </a>
+  {{ partial "play_button.html" (dict "class" "btn-ghost") }}
   <a class="btn btn-ghost" href="/guide/">How to play</a>
 </div>
 <p class="download-meta">
   v{{ $r.version }} · Windows, macOS &amp; Linux · free ·
   <a href="/download/">all downloads</a>
 </p>
+{{ partial "play_note.html" . }}
 {{- if $r.available }}
 <script>
   (function () {

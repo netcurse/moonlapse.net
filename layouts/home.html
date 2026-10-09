@@ -61,6 +61,9 @@
     </li>
     {{- end }}
   </ol>
+  {{- with $p.steps_alt }}
+  <p class="steps-alt">{{ . | markdownify }}</p>
+  {{- end }}
   <p class="steps-more"><a class="btn btn-ghost" href="/guide/">Read the guide →</a></p>
 </section>
 

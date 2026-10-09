@@ -1,0 +1,4 @@
+{{- /* In place of play_button.html on phones and tablets: the browser version needs a keyboard */ -}}
+{{- with urls.Parse site.Params.playURL }}
+<p class="play-note">Or play in your browser at <code>{{ .Host }}</code>, on a computer with a keyboard.</p>
+{{- end }}

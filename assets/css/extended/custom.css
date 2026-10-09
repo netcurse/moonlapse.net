@@ -481,6 +481,32 @@ kbd {
   color: var(--ansi-white);
 }
 
+/* The browser version needs a keyboard: on phones and tablets, a note instead of the button */
+.play-note {
+  display: none;
+  margin: 1rem auto 0;
+  max-width: 30rem;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  text-shadow: 0 0 4px #000, 0 0 8px #000;
+}
+
+.play-note code {
+  color: var(--ansi-cyan);
+  background: none;
+  padding: 0;
+}
+
+@media (max-width: 600px), (hover: none) and (pointer: coarse) {
+  .play-btn {
+    display: none !important;
+  }
+
+  .play-note {
+    display: block;
+  }
+}
+
 /* ── Server status (filled in by extend_footer.html) ─────────────── */
 
 /* Room kept for the status, so nothing moves when it arrives or wraps */
@@ -704,6 +730,24 @@ kbd {
 
 /* ── Home: the gameplay recording ──────────────────────────────── */
 
+.cast-lede {
+  text-shadow: 0 0 4px #000, 0 0 8px #000;
+  max-width: 40rem;
+  margin: -0.5rem auto 1.75rem;
+  text-align: center;
+  color: var(--secondary);
+}
+
+.cast-play {
+  margin-top: 1.75rem;
+  text-align: center;
+}
+
+.cast-play .btn {
+  font-size: 1.05rem;
+  padding: 0.95rem 1.7rem;
+}
+
 /* A CSS copy of the screenshots' window (data/themes/, [window]), scaled the same way: --u is
    one pixel of their 1155px-wide window */
 .cast-frame {
@@ -844,6 +888,13 @@ kbd {
 .steps code {
   color: var(--ansi-cyan);
   font-size: 0.85em;
+}
+
+.steps-alt {
+  text-shadow: 0 0 4px #000, 0 0 8px #000;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--secondary);
 }
 
 .steps-more {

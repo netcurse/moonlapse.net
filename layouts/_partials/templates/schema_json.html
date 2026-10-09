@@ -4,6 +4,9 @@
 {{- $site := dict "@type" "WebSite" "@id" (printf "%s#website" site.Home.Permalink) "name" site.Title "url" site.Home.Permalink -}}
 {{- if .IsHome }}
 {{- $platforms := slice }}{{ range $r.platforms }}{{ $platforms = $platforms | append .name }}{{ end -}}
+{{- $os := delimit $platforms ", " -}}
+{{- /* the browser version: a platform, but not a download, so not in release.toml */ -}}
+{{- with site.Params.playURL }}{{ $platforms = $platforms | append "Web browser" }}{{ end -}}
 {{- /* search engines don't take SVG: PNG copies of a few screenshots, in assets/images/raster/ */ -}}
 {{- $shots := slice -}}
 {{- range resources.Match "images/raster/*.png" }}{{ $shots = $shots | append (.Process "webp q82").Permalink }}{{ end -}}
@@ -18,13 +21,16 @@
   "genre" (slice "MUD" "MMORPG" "Role-playing")
   "playMode" "MultiPlayer"
   "gamePlatform" $platforms
-  "operatingSystem" (delimit $platforms ", ")
+  "operatingSystem" $os
   "applicationCategory" "GameApplication"
   "softwareVersion" $r.version
   "downloadUrl" ("download/" | absURL)
   "isAccessibleForFree" true
   "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD")
 -}}
+{{- with site.Params.playURL }}
+{{- $game = merge $game (dict "potentialAction" (dict "@type" "PlayAction" "target" .)) }}
+{{- end -}}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $site $game) | jsonify | safeJS }}</script>
 {{- else if .IsPage }}
 {{- $page := dict

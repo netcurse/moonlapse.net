@@ -3,7 +3,7 @@ title: "Terms of use"
 description: "The rules for playing Moonlapse and using its website and accounts."
 ---
 
-*Last updated 5 October 2026.*
+*Last updated 9 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia ("we", "us"). These terms apply when you use the game, this website, or a Moonlapse account. By making an account or playing, you agree to them. If you don't, please don't use Moonlapse.
 
@@ -40,7 +40,7 @@ If you break these rules, we may warn you, mute you, rename or reset your charac
 - **It's a work in progress.** Things will change, break, and be rebalanced. We may need to reset characters or the world, though we'll try hard not to.
 - **In-game items and gold have no real-world value.** They aren't yours to sell, and we don't owe you anything for them if they're lost, changed or removed.
 - **It may be down, sometimes without warning.** We run it in our spare time. If we ever shut Moonlapse down for good, we'll say so on this website first, as far ahead as we can.
-- The game, its world, art, text and software are ours. You're welcome to download the client and use it to play, and to share screenshots and videos of the game.
+- The game, its world, art, text and software are ours. You're welcome to download the client and use it to play, or play in your browser at play.moonlapse.net, and to share screenshots and videos of the game.
 
 ## No guarantees
 

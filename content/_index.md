@@ -1,8 +1,8 @@
 ---
 title: "MoonlapseMUD"
-description: "An open-world multiplayer dungeon you play in your terminal. Explore, gather, craft, fight and quest with other players in real time."
+description: "An open-world multiplayer dungeon you play in your terminal or your browser. Explore, gather, craft, fight and quest with other players in real time."
 aliases: ["/blog/"]
-tagline: "An open-world multiplayer dungeon, played in your terminal."
+tagline: "An open-world multiplayer dungeon, played in your terminal, or in your browser."
 
 # Screenshots are assets/images/screenshots/<name>.svg
 hero_shot:
@@ -73,6 +73,11 @@ gallery:
     caption: "Fighting rats in the inn's cellar"
     alt: "Punching a rat in the Morningside Inn's cellar, with the fight in the log"
 
+# The section round the gameplay recording
+play:
+  title: "Play in your browser"
+  text: "Nothing to download: the same client runs in your browser, in the same world, with the same account and characters, and it's always up to date. The terminal is still the snappiest way to play, but this is the quickest way in."
+
 steps:
   - title: "Download"
     text: "Get the client for [Windows, macOS or Linux](/download/). It's a small archive, no installer."
@@ -80,6 +85,7 @@ steps:
     text: "Unpack it anywhere and run `moonlapse` from a terminal, or double-click it on Windows."
   - title: "Sign in and make a character"
     text: "Sign in through your browser with an email, Google or Discord, then name your character and wake up in front of the Morningside Inn. Press `?` for help any time."
+steps_alt: "Or skip the download: play in your browser at [play.moonlapse.net](https://play.moonlapse.net), on a computer with a keyboard."
 ---
 
-Moonlapse is a multi-user dungeon: one shared world, drawn in text, that everyone plays together in real time. There's nothing to install but a small client, and it runs in any terminal.
+Moonlapse is a multi-user dungeon: one shared world, drawn in text, that everyone plays together in real time. There's nothing to install but a small client, and it runs in any terminal. Or skip even that and play in your browser.

@@ -3,11 +3,11 @@ title: "Privacy policy"
 description: "What Moonlapse keeps about you, why, who else sees it, and how to have it deleted."
 ---
 
-*Last updated 7 October 2026.*
+*Last updated 9 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
-It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net), the server status feed (api.moonlapse.net) and the game server (play.moonlapse.net). Questions, or anything you'd like us to do with your information: <privacy@moonlapse.net>.
+It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net), the server status feed (api.moonlapse.net) and the game server (play.moonlapse.net), which is also where the game can be played in a browser. Questions, or anything you'd like us to do with your information: <privacy@moonlapse.net>.
 
 ## The short version
 
@@ -63,16 +63,22 @@ We don't keep a record of chat.
 Your computer's **IP address** is seen by every server you connect to, ours included:
 
 - **The game server** needs it to talk to your client while you play. It doesn't write it down. When you join, the client also sends the game server your sign-in token, which includes your email address: the game server checks the token, but doesn't keep or log the address.
-- **The sign-in service and the status feed** sit behind a web server that keeps ordinary access logs (IP address, time, the page asked for, browser details) for about two weeks, for troubleshooting and to deal with abuse.
+- **The sign-in service, the status feed and the browser version of the game** (play.moonlapse.net) sit behind a web server that keeps ordinary access logs (IP address, time, what was asked for, browser details) for about two weeks, for troubleshooting and to deal with abuse. For the browser version, that includes its connection to the game. The game server itself still doesn't write your IP address down, and the sign-in token works just as it does for the client you download.
 - **This website** is hosted by GitHub Pages, and the game's downloads by GitHub. GitHub sees your IP address when you visit or download, and handles it under the [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). We don't receive it.
 
 ### What the client keeps on your computer
 
 If you tick *Stay signed in*, the game client saves a sign-in token in a file next to it, so you don't have to sign in every time. The token includes your email address, and the title screen shows it (*Continue as* your address), so anyone who uses that computer and that copy of the client can see it. It's on your computer, not ours: choosing *Sign out* deletes it.
 
+The browser version at play.moonlapse.net works the same way, but keeps things in your browser's storage for play.moonlapse.net instead of a file:
+
+- If you tick *Stay signed in*, it keeps your sign-in token there, including your email address, and the title screen shows it (*Continue as* your address) to anyone using that browser. Choosing *Sign out*, or clearing the site's data in your browser, deletes it.
+- If you don't, the token is kept only while the page is open.
+- While you're signing in, the tab keeps a one-time code for a moment, and discards it when you come back.
+
 ## Cookies
 
-The website uses **no cookies**. Its fonts and images come from moonlapse.net itself, not from other companies, and it asks api.moonlapse.net for the server's status (how many are playing, the in-game time), which sends nothing about you.
+The website uses **no cookies**, and neither does the browser version of the game: it uses only the browser storage described above. Its fonts and images come from moonlapse.net itself, not from other companies, and it asks api.moonlapse.net for the server's status (how many are playing, the in-game time), which sends nothing about you.
 
 The sign-in service uses a few cookies that it needs to work: to keep you signed in to your account page and to protect the sign-in forms from forgery. They aren't used for anything else, and nothing tracks you between sites.
 
@@ -115,7 +121,7 @@ We'll reply within 30 days, and usually much sooner. If you're not happy with ou
 
 ## Security
 
-Every connection to the website, the sign-in service and the status feed is encrypted (HTTPS). Passwords are hashed with Argon2, the database isn't reachable from the internet, and only the two of us can get to it. No system is perfectly secure, though: if something ever went wrong that affected your information, we'd tell you by email.
+Every connection to the website, the sign-in service, the status feed and the browser version of the game, including the browser version's connection to the game, is encrypted (HTTPS). Passwords are hashed with Argon2, the database isn't reachable from the internet, and only the two of us can get to it. No system is perfectly secure, though: if something ever went wrong that affected your information, we'd tell you by email.
 
 ## Children
 

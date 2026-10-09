@@ -5,14 +5,18 @@ description: "Getting started in Midland, and every key worth knowing."
 
 ## Your first few minutes
 
-1. **[Download the client](/download/)**, unpack it and run it.
-2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. Sign in, or make an account with an email, Google or Discord, then come back to the game. Tick **Stay signed in** first and next time you can go straight in with **Continue as** your email address.
+1. **[Download the client](/download/)**, unpack it and run it. Or skip the download and [play in your browser](#playing-in-the-browser) at [play.moonlapse.net](https://play.moonlapse.net).
+2. On the title screen, choose **Sign in**. Your browser opens at the sign-in page; if it doesn't, the screen shows the address to go to and a code to enter. (In the browser version, you go straight to the sign-in page.) Sign in, or make an account with an email, Google or Discord, then come back to the game. Tick **Stay signed in** first and next time you can go straight in with **Continue as** your email address.
 3. Next is the **character screen**, with your characters, the one you played last at the top. Press <kbd>N</kbd> to make one and give it a name, then <kbd>Enter</kbd> to play it. <kbd>D</kbd> deletes a character, and <kbd>Esc</kbd> goes back to the title screen. More on [your characters](#your-characters) below.
 4. You start in front of the **Morningside Inn**. You're the `@`. Walk with the <kbd>arrow keys</kbd>.
 5. Press <kbd>Enter</kbd> to do whatever's on offer where you're standing (talk, open, fish, pick up…). <kbd>k</kbd> looks around with a cursor, and <kbd>K</kbd> lists everything nearby.
 6. Press <kbd>?</kbd> at any time for the in-game help: every key below, sorted by topic.
 
 {{< screenshot name="brother-anselm" caption="Talking to Brother Anselm. Pick an answer with the number keys, or with the arrow keys and <kbd>Enter</kbd>." >}}
+
+## Playing in the browser
+
+At [play.moonlapse.net](https://play.moonlapse.net) it's the same game, with the same keys, on a desktop or laptop with a keyboard. The game uses no keys your browser keeps for itself. If keys stop reaching it, click on the game to give it focus.
 
 ## Reading the screen
 

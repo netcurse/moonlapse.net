@@ -1,6 +1,6 @@
 ---
 title: "Download"
-description: "The Moonlapse client for Windows, macOS and Linux."
+description: "The Moonlapse client for Windows, macOS and Linux, or play in your browser."
 ---
 
 {{< downloads >}}
@@ -8,6 +8,15 @@ description: "The Moonlapse client for Windows, macOS and Linux."
 Each archive holds the client, its game data (`content/`) and a `config.toml` that points it at the live server, {{< server >}}. There's no installer and nothing else to install: unpack the folder wherever you like, and keep everything in it together.
 
 You'll sign in through your browser the first time you play. Make an account with an email, Google or Discord there, no separate sign-up needed. Your [account page](https://auth.moonlapse.net/auth/v1/account) is where you change your password, link Google or Discord, or delete your account.
+
+## Or play in your browser
+
+You can also play at [play.moonlapse.net](https://play.moonlapse.net), with nothing to download. It's the same client, running in your browser: the same world, and the same account and characters. It's updated at the same moment as the server, so it's always up to date.
+
+- **It needs a desktop or laptop with a keyboard**, and a reasonably recent browser. It isn't for phones or tablets.
+- **Stay signed in** works as it does in the terminal: tick it and that browser remembers you, and *Sign out* forgets it.
+
+The terminal is still the best way to play: it draws faster and feels snappier, especially in a big window, and it's your own terminal, font and colours. The browser is the quickest way in.
 
 ## Windows
 
