@@ -54,7 +54,7 @@ hugo --minify          # into public/ (ignored)
 | `layouts/home.html` | The homepage |
 | `layouts/404.html` | The 404 page |
 | `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, WebPage + breadcrumbs elsewhere), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `play_button.html` and `play_note.html` (the browser version's button, and the note phones get instead), `screenshot.html`, `screenshot_file.html`, `gameplay_cast.html` (the recording and its loader) |
-| `layouts/_shortcodes/` | `platforms` and `platform id=` (the download page's tabs), `screenshot name= caption= alt=`, `server` |
+| `layouts/_shortcodes/` | `platforms` and `platform id=` (the download page's tabs), `screenshot name= caption= alt=`, `server`, `discord` (the invite, for a link: `[Discord]({{</* discord */>}})`) |
 | `static/` | `bg.png` (the starfield), favicons, `og.png`, `fonts/` (including `cascadia-box.woff2`, made by `.agents/scripts/box-font.py`), `CNAME` |
 | `.agents/scripts/box-font.py` | Makes `cascadia-box.woff2` for the recording: see Conventions, "The gameplay recording" |
 
@@ -70,6 +70,7 @@ hugo --minify          # into public/ (ignored)
 - **Keys** in page text are `<kbd>`, commands and glyphs are backticks. Tables of keys have an empty header row (`| Key | |`), which the CSS hides.
 - **Server status**: `_partials/server_status.html` (in the homepage hero, and compact in the footer) is filled in by a script in `extend_footer.html` from `params.statusURL` (`https://api.moonlapse.net/status`: `online`, `players`, `version`, `game_time`). It starts after the page's `load` event (so it never competes with the page itself), polls every 20s while the tab is visible, times out after 5s, and shows "Offline" on any failure, never a stale count. Between polls the clock advances one game minute per `real_seconds_per_minute` real seconds, but never past 23:59: days and months come from the next poll. Without the script it reads as the server's address. In the hero it sits in a fixed-height `.hero-status` slot (one line on desktop, two on phones), so filling it in never moves the page. The endpoint is cached for 5s and returns 429 above 2 requests a second per visitor, so don't poll faster.
 - **The browser version** is at `params.playURL` (play.moonlapse.net). It needs a keyboard, so on phones and tablets (`max-width: 600px`, or a coarse pointer without hover) `.play-btn` is hidden and `.play-note` says so instead, and the menu's `play` item is `narrow = false`. It's not a download: keep it out of `data/release.toml` (the schema adds "Web browser" to `gamePlatform` itself). No iframe of it: it needs response headers GitHub Pages can't send, and the sign-in page refuses to be framed.
+- **The Discord server**'s invite is `params.discordURL`, and only there: the footer, the homepage's structured data (`sameAs`) and `{{</* discord */>}}` in page text all read it. It has to be an invite that never expires.
 - **External links** get `target=_blank` and an icon from a script in `extend_head.html`; don't add them by hand.
 
 ## Gotchas

@@ -15,6 +15,7 @@ It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net)
 - We use your information to sign you in, keep your account safe, and run the game. Nothing else.
 - We **never sell** it, never use it for advertising, never use it to train AI models, and never share it except with the services listed below that we need to run the game.
 - No analytics, no trackers, no ads, on the website or in the game.
+- The game's **chat is recorded and kept for 14 days**, so we can deal with abuse. Players can report each other to our moderators.
 - You can delete your account yourself at any time, and your characters go with it.
 
 ## What we keep
@@ -56,7 +57,22 @@ An account can have several characters. For each one, the game keeps what it nee
 
 If you delete a character by itself, the game keeps it for 30 days so you can restore it. Then it's deleted for good, with its items, bank, quests and mail, and the letters it sent that other players still have, with anything attached to them. You can also choose to delete it for good straight away.
 
-We don't keep a record of chat.
+### Chat and reports
+
+Everything said in the game's chat is recorded: said aloud, emotes (`/me`), whispers and party chat, with who said it, who it was to, where they were, and when. It's kept for **14 days**, then deleted. We look at it only to deal with reports and abuse, and to make sure Moonlapse isn't used to plan or share anything illegal. It isn't used for anything else, and it isn't shared, except with our moderators in reports (below).
+
+If you **report** a player (`/report`), the report keeps:
+
+- your character's name and the reported character's, the names of the reported player's other characters, and an account number for each of you;
+- where you both were, and when;
+- the reason you gave;
+- what the reported player said in chat, in the five minutes before, that reached you.
+
+Reports go to our **moderators**, the people who help us run the game, in a private channel on our Discord server. The player you report isn't told that you did.
+
+### Our Discord server
+
+Joining our [Discord server]({{< discord >}}) is up to you: you don't need it to play. It's run on Discord, so what you post there, and your Discord account, are handled by Discord under its own privacy policy. We, our moderators and the server's other members see what you post there, as on any Discord server, and we can remove posts that break the rules. It's separate from your Moonlapse account: joining doesn't tell the game anything about you.
 
 ### When you connect
 
@@ -91,6 +107,8 @@ We run the game, the sign-in service and their database on a server of our own i
 | [Amazon Web Services](https://aws.amazon.com/privacy/) | Sending account emails (verification, password resets, new sign-in warnings), from Sydney | Your email address and the email's contents |
 | [Google](https://policies.google.com/privacy) | *Sign in with Google*, if you use it | That you're signing in to Moonlapse |
 | [Discord](https://discord.com/privacy) | *Sign in with Discord*, if you use it | That you're signing in to Moonlapse |
+| [Discord](https://discord.com/privacy) | Our moderators' private channel, where players' reports arrive | What's in a report (above) |
+| [Discord](https://discord.com/privacy) | Our Discord server, if you join it | What you post there, and your Discord account |
 | [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) | Hosting this website and the downloads | Your visit, as above |
 
 We'd only ever give your information to anyone else if the law required us to.
@@ -99,12 +117,13 @@ We'd only ever give your information to anyone else if the law required us to.
 
 - **Your account and characters**: until you delete them, or until Moonlapse shuts down. A character you delete by itself is kept for 30 days so you can restore it, then deleted for good.
 - **Sign-in records and security events**: no longer than they're useful for keeping accounts safe, and never longer than your account.
+- **Chat**: 14 days.
 - **Web server logs**: about two weeks.
-- **Backups** of the database: kept for 14 days, then deleted. Something you delete can stay in a backup until it ages out, and backups are only ever used to restore the game after a failure.
+- **Backups**: the database is backed up every night, and each backup is kept for 14 days. The whole server, chat records included, is also copied regularly, and those copies are kept for up to six months. Something you delete can stay in a backup until it ages out, and backups are only ever used to restore the game after a failure.
 
 ## Deleting your account
 
-Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them.
+Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept.
 
 If you can't sign in any more, email <privacy@moonlapse.net> from the address on the account and we'll do it for you.
 

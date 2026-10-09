@@ -8,6 +8,10 @@ aliases: ["/staff/"]
 
 It's made to be played in a terminal, the way MUDs always were, but with a map you can see instead of rooms you read about. You can also play it in your browser at [play.moonlapse.net](https://play.moonlapse.net): the same client, in the same world.
 
+## Community
+
+Come and say hello on our [Discord server]({{< discord >}}): ask questions, report bugs, suggest things, find people to play with, and hear about updates first. The [rules](/terms/#how-to-behave) are the same there as in the game.
+
 ## History
 
 Moonlapse started in 2019 as a small Python game: a handful of players walking around a map in their terminals, chatting and gathering. It ran for a while, then went quiet.

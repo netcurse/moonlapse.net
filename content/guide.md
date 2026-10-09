@@ -106,7 +106,10 @@ Attack spells go at your target. *Mend* heals a party member you've targeted, or
 | `/coords` | where you're standing |
 | `/bankbox` | look in your bank from anywhere |
 | `/mailbox` | read your letters from anywhere |
+| `/report <player> <reason>` | report a player to the moderators |
 | `/help` | every command |
+
+Someone spamming, harassing you or cheating? `/report` them. The moderators see your reason and what that player said to you or near you in the last five minutes, and they're never told who reported them. For anything else, find us on [Discord]({{< discord >}}).
 
 ### Windows and the log
 

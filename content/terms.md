@@ -31,7 +31,9 @@ Moonlapse is a shared world. While you're in it, don't:
 - try to get into accounts that aren't yours, or attack, overload, or interfere with the game, the website or the sign-in service;
 - sell or buy in-game items, gold or accounts for real money.
 
-Character names have to follow these rules too. We may rename a character whose name doesn't.
+Character names have to follow these rules too. We may rename a character whose name doesn't. The same rules apply on our [Discord server]({{< discord >}}), along with Discord's own terms.
+
+Chat is recorded and kept for a while, and players can report each other to our moderators, who use the reports and the recorded chat to look into what happened ([privacy policy](/privacy/)).
 
 If you break these rules, we may warn you, mute you, rename or reset your character, or suspend or delete your account, depending on what happened. We'll usually tell you why. If you think we got it wrong, email us.
 

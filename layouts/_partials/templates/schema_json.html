@@ -28,6 +28,7 @@
   "isAccessibleForFree" true
   "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD")
 -}}
+{{- with site.Params.discordURL }}{{ $game = merge $game (dict "sameAs" (slice .)) }}{{ end -}}
 {{- with site.Params.playURL }}
 {{- $game = merge $game (dict "potentialAction" (dict "@type" "PlayAction" "target" .)) }}
 {{- end -}}
