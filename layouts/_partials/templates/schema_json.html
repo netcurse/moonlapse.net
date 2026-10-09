@@ -33,7 +33,7 @@
 {{- $game = merge $game (dict "potentialAction" (dict "@type" "PlayAction" "target" .)) }}
 {{- end -}}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $site $game) | jsonify | safeJS }}</script>
-{{- else if .IsPage }}
+{{- else if or .IsPage .IsSection }}
 {{- $page := dict
   "@type" "WebPage"
   "name" .Title
@@ -41,11 +41,23 @@
   "url" .Permalink
   "isPartOf" (dict "@id" (printf "%s#website" site.Home.Permalink))
 -}}
-{{- $crumbs := dict
-  "@type" "BreadcrumbList"
-  "itemListElement" (slice
-    (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Home.Permalink)
-    (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink))
--}}
+{{- /* a blog post */ -}}
+{{- if and .IsPage (eq .Section "blog") }}
+{{- $page = merge $page (dict
+  "@type" "BlogPosting"
+  "headline" .Title
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "author" (dict "@type" "Organization" "name" site.Title "url" site.Home.Permalink)
+  "image" ("og.png" | absURL)) }}
+{{- else if .IsSection }}
+{{- $page = merge $page (dict "@type" "CollectionPage") }}
+{{- end }}
+{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Home.Permalink) -}}
+{{- with .Parent }}{{ if not .IsHome }}
+{{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) }}
+{{- end }}{{ end -}}
+{{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .Title "item" .Permalink) -}}
+{{- $crumbs := dict "@type" "BreadcrumbList" "itemListElement" $items -}}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $page $crumbs) | jsonify | safeJS }}</script>
 {{- end }}

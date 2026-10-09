@@ -7,7 +7,6 @@ date = 2026-10-09
 available = true
 
 base_url = "https://github.com/netcurse/moonlapse.net/releases/download/{version}/{file}"
-notes_url = "https://github.com/netcurse/moonlapse.net/releases/tag/{version}"
 host = "play.moonlapse.net"
 
 # Archives are named moonlapse-{version}-{id}.{ext}
@@ -30,4 +29,5 @@ id = "linux-x64"
 name = "Linux"
 arch = "x64"
 ext = "tar.gz"
-requires = "x64, a recent glibc, and ncurses"
+# glibc: the newest the build uses, from the GitHub release's notes
+requires = "x64, glibc 2.38 or later, and ncurses"

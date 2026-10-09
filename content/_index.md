@@ -1,7 +1,6 @@
 ---
 title: "MoonlapseMUD"
 description: "An open-world multiplayer dungeon you play in your terminal or your browser. Explore, gather, craft, fight and quest with other players in real time."
-aliases: ["/blog/"]
 tagline: "An open-world multiplayer dungeon, played in your terminal, or in your browser."
 
 # Screenshots are assets/images/screenshots/<name>.svg

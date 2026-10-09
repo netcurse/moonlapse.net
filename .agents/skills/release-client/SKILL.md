@@ -59,7 +59,9 @@ curl -s https://moonlapse.net/download/ | grep -o 'https://github.com/netcurse/m
   while read -r u; do printf '%s %s\n' "$(curl -sIL -o /dev/null -w '%{http_code}' "$u")" "$u"; done
 ```
 
-Every line should start with `200`, and the page should show the new version. Then look at the download page and homepage (`check-site`).
+Every line should start with `200`, and the page should show the new version. Its "release notes" link appears once `content/blog/<version>.md` is published.
+
+The GitHub release's notes say which glibc the Linux build needs (`gh release view <version> --json body -q .body | grep glibc`). If it's changed, update the Linux `requires` in `data/release.toml`. Then look at the download page and homepage (`check-site`).
 
 ## If the client changed what players do
 

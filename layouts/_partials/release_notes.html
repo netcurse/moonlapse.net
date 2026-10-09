@@ -1,0 +1,5 @@
+{{- /* The current release's notes: the blog post content/blog/<version>.md, or false if there
+       isn't one (or it's still a draft) */ -}}
+{{- $post := false -}}
+{{- with site.GetPage (printf "/blog/%s" hugo.Data.release.version) }}{{ $post = . }}{{ end -}}
+{{- return $post -}}

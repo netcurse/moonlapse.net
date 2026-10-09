@@ -1,0 +1,30 @@
+{{- /* The blog: its posts, newest first, in a panel like the other pages */ -}}
+{{- define "main" }}
+<article class="post-single blog-list">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <div class="post-description">{{ . }}</div>
+    {{- end }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a class="blog-feed" href="{{ .RelPermalink }}">rss feed</a>
+    {{- end }}
+  </header>
+  {{- $paginator := .Paginate .RegularPages }}
+  {{- range $paginator.Pages }}
+  <section class="blog-entry">
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+    <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ end }}</p>
+  </section>
+  {{- else }}
+  <p>Nothing here yet.</p>
+  {{- end }}
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="blog-pages">
+    {{- with $paginator.Prev }}<a href="{{ .URL }}">‹ newer</a>{{ end }}
+    {{- with $paginator.Next }}<a href="{{ .URL }}">older ›</a>{{ end }}
+  </nav>
+  {{- end }}
+</article>
+{{- end }}

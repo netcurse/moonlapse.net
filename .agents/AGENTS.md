@@ -1,6 +1,6 @@
 # moonlapse.net — Agent Instructions
 
-The website for MoonlapseMUD: home, download, how to play, about. Hugo + PaperMod, deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`. The client downloads are this repo's GitHub releases.
+The website for MoonlapseMUD: home, download, how to play, about, and a blog. Hugo + PaperMod, deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`. The client downloads are this repo's GitHub releases.
 
 This file lives at `.agents/AGENTS.md`, so **edit this one**: the root `AGENTS.md` is a symlink to it, and `CLAUDE.md` imports it (`@.agents/AGENTS.md`). Skills live in `.agents/skills/` (`.claude/skills` is a symlink to it). On Windows, git checks symlinks out as text files holding the path unless Developer Mode is on and `core.symlinks` is true.
 
@@ -39,8 +39,9 @@ hugo --minify          # into public/ (ignored)
 |---|---|
 | `content/_index.md` | The homepage's copy: tagline, features, gallery, steps (front matter), and the intro (body) |
 | `content/{download,guide,about}.md` | The other pages |
+| `content/blog/` | The blog: release notes and news, one file per post (`hugo new blog/<slug>.md`, from `archetypes/blog.md`). `_index.md` is the blog's own page |
 | `content/{privacy,terms}.md` | The privacy policy and terms of use, linked from the footer. Google's OAuth consent screen links the privacy policy, and Google requires it to stay accurate: when the game starts keeping, logging or sharing something new (or stops), update it and its date |
-| `data/release.toml` | The current client: `version`, `date`, `available`, URL templates, per-platform `id`/`ext`/`requires` |
+| `data/release.toml` | The current client: `version`, `date`, `available`, the download URL template, per-platform `id`/`ext`/`requires` |
 | `data/themes/moonlapse.toml` | The palette (kitty/alacritty format), sampled from the client, plus `[ui]` and `[window]` (the screenshots' window frame, for the recording's CSS copy of it) |
 | `assets/css/extended/custom.css` | **All** the CSS. PaperMod loads it after its own |
 | `assets/images/logo.png` | The logo (trimmed, transparent). The header and footer crop its left 405×405 for the moon emblem |
@@ -53,7 +54,8 @@ hugo --minify          # into public/ (ignored)
 | `.github/scripts/set-release.sh` | Edits `data/release.toml` for a release; `release.yml` runs it |
 | `layouts/home.html` | The homepage |
 | `layouts/404.html` | The 404 page |
-| `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, WebPage + breadcrumbs elsewhere), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `play_button.html` and `play_note.html` (the browser version's button, and the note phones get instead), `screenshot.html`, `screenshot_file.html`, `gameplay_cast.html` (the recording and its loader) |
+| `layouts/blog/list.html` | The blog's list of posts |
+| `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, a BlogPosting for a post, WebPage + breadcrumbs elsewhere), `breadcrumbs.html` (a post's link back to the blog), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `play_button.html` and `play_note.html` (the browser version's button, and the note phones get instead), `screenshot.html`, `screenshot_file.html`, `gameplay_cast.html` (the recording and its loader) |
 | `layouts/_shortcodes/` | `platforms` and `platform id=` (the download page's tabs), `screenshot name= caption= alt=`, `server`, `discord` (the invite, for a link: `[Discord]({{</* discord */>}})`) |
 | `static/` | `bg.png` (the starfield), favicons, `og.png`, `fonts/` (including `cascadia-box.woff2`, made by `.agents/scripts/box-font.py`), `CNAME` |
 | `.agents/scripts/box-font.py` | Makes `cascadia-box.woff2` for the recording: see Conventions, "The gameplay recording" |
@@ -71,6 +73,7 @@ hugo --minify          # into public/ (ignored)
 - **Server status**: `_partials/server_status.html` (in the homepage hero, and compact in the footer) is filled in by a script in `extend_footer.html` from `params.statusURL` (`https://api.moonlapse.net/status`: `online`, `players`, `version`, `game_time`). It starts after the page's `load` event (so it never competes with the page itself), polls every 20s while the tab is visible, times out after 5s, and shows "Offline" on any failure, never a stale count. Between polls the clock advances one game minute per `real_seconds_per_minute` real seconds, but never past 23:59: days and months come from the next poll. Without the script it reads as the server's address. In the hero it sits in a fixed-height `.hero-status` slot (one line on desktop, two on phones), so filling it in never moves the page. The endpoint is cached for 5s and returns 429 above 2 requests a second per visitor, so don't poll faster.
 - **The browser version** is at `params.playURL` (play.moonlapse.net). It needs a keyboard, so on phones and tablets (`max-width: 600px`, or a coarse pointer without hover) `.play-btn` is hidden and `.play-note` says so instead, and the menu's `play` item is `narrow = false`. It's not a download: keep it out of `data/release.toml` (the schema adds "Web browser" to `gamePlatform` itself). No iframe of it: it needs response headers GitHub Pages can't send, and the sign-in page refuses to be framed.
 - **The Discord server**'s invite is `params.discordURL`, and only there: the footer, the homepage's structured data (`sameAs`) and `{{</* discord */>}}` in page text all read it. It has to be an invite that never expires.
+- **The blog** (`/blog/`) is the only section, and the only thing with a feed (`/blog/index.xml`). A post's front matter is `title`, `date` and `description` (the list shows the description, so write one); `draft: true` keeps it off the site (`hugo server -D` shows it). A release's notes are `content/blog/<version>.md` (`0.5.0.md`), titled `Version X.Y.Z: …`: the download page's "release notes" link and the homepage's version link to the current version's post (`_partials/release_notes.html`), and show no link while there isn't one. The header's `blog` item is `narrow = false` (it doesn't fit on phones); the footer links it.
 - **External links** get `target=_blank` and an icon from a script in `extend_head.html`; don't add them by hand.
 
 ## Gotchas

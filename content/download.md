@@ -33,7 +33,7 @@ cd moonlapse-*-linux-x64
 ./moonlapse
 ```
 
-The client needs ncurses, which almost every distribution has already (on Debian or Ubuntu it's `libncursesw6`). If it complains about `GLIBC`, your distribution is older than the one it was built on: the release notes say which glibc it needs.
+The client needs ncurses, which almost every distribution has already (on Debian or Ubuntu it's `libncursesw6`). If it complains about `GLIBC`, your distribution's glibc is older than the one it needs (above).
 {{< /platform >}}
 {{< platform id="browser" name="Browser" >}}
 Nothing to download: it's the same client, running in your browser, in the same world, with the same account and characters. It's updated with the server, so it's always the latest version. Tick *Stay signed in* and that browser remembers you; *Sign out* forgets it.
