@@ -16,9 +16,29 @@
       var scale = Math.max(1, Math.floor(dpr));
       document.documentElement.style.setProperty("--bg-size", (1920 * scale / dpr) + "px");
     }
-    size();
-    window.addEventListener("resize", size);
+    // only when the display scale changes (zoom, another screen), not on every resize: phones
+    // resize whenever the address bar comes or goes, mid-scroll
+    (function watch() {
+      size();
+      if (window.matchMedia)
+        matchMedia("(resolution: " + (window.devicePixelRatio || 1) + "dppx)")
+          .addEventListener("change", watch, { once: true });
+    })();
   })();
+</script>
+
+<!-- The visitor's platform, as a platform id in data/release.toml: "" on phones and tablets (iPads
+     say they're Macs), which can't run the client -->
+<script>
+  window.moonlapsePlatform = function () {
+    var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+    var mobile = (navigator.userAgentData && navigator.userAgentData.mobile) ||
+      /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent) || (/mac/i.test(ua) && navigator.maxTouchPoints > 1);
+    if (mobile) return "";
+    if (/mac/i.test(ua)) return "macos-arm64";
+    if (/linux/i.test(ua)) return "linux-x64";
+    return "windows-x64";
+  };
 </script>
 
 <!-- External links open in a new tab -->

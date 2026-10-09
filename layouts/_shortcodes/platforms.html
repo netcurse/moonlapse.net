@@ -1,0 +1,67 @@
+{{- /* {{< platforms >}} {{< platform id="…" >}}…{{< /platform >}} … {{< /platforms >}}: the release,
+       then a tab per platform (WAI-ARIA tabs), opening on the visitor's own. Without JavaScript,
+       one section after another */ -}}
+{{- $inner := .Inner -}}
+{{- $r := hugo.Data.release -}}
+<div class="release-line">
+  <span class="release-version">v{{ $r.version }}</span>
+  <span class="sep">·</span>
+  <span>released {{ time.Format "2 January 2006" $r.date }}</span>
+  {{- if and $r.available $r.notes_url }}
+  <span class="sep">·</span>
+  <a href="{{ replace $r.notes_url "{version}" $r.version }}">release notes</a>
+  {{- end }}
+</div>
+<div class="platforms" data-platforms>
+  <div class="platform-tabs" role="tablist" aria-label="Platform" hidden>
+    {{- range .Store.Get "tabs" }}
+    <button type="button" role="tab" id="tab-{{ .id }}" aria-controls="{{ .id }}" aria-selected="false" tabindex="-1">{{ .name }}</button>
+    {{- end }}
+  </div>
+  {{ $inner }}
+</div>
+<script>
+  (function () {
+    var box = document.querySelector("[data-platforms]");
+    var list = box.querySelector("[role=tablist]");
+    var tabs = Array.prototype.slice.call(list.querySelectorAll("[role=tab]"));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute("aria-controls")); });
+
+    function select(i, focus) {
+      tabs.forEach(function (t, j) {
+        t.setAttribute("aria-selected", i === j ? "true" : "false");
+        t.tabIndex = i === j ? 0 : -1;
+        panels[j].hidden = i !== j;
+      });
+      if (focus) tabs[i].focus();
+    }
+
+    tabs.forEach(function (t, i) {
+      panels[i].setAttribute("role", "tabpanel");
+      panels[i].setAttribute("aria-labelledby", t.id);
+      t.addEventListener("click", function () {
+        select(i);
+        history.replaceState(null, "", "#" + panels[i].id);
+      });
+      // arrow keys move between tabs, Home and End to the first and last
+      t.addEventListener("keydown", function (e) {
+        var n = tabs.length;
+        var to = { ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
+        if (to === undefined) return;
+        e.preventDefault();
+        select(to, true);
+        history.replaceState(null, "", "#" + panels[to].id);
+      });
+    });
+
+    // the tab in the address, or else the visitor's platform, or else the first
+    function want() {
+      var id = location.hash.slice(1) || (window.moonlapsePlatform ? moonlapsePlatform() : "");
+      return Math.max(0, panels.findIndex(function (p) { return p.id === id; }));
+    }
+    window.addEventListener("hashchange", function () { select(want()); });
+    box.classList.add("is-tabbed");
+    list.hidden = false;
+    select(want());
+  })();
+</script>

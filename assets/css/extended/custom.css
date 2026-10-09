@@ -12,17 +12,8 @@
 
 /* ── Sky ───────────────────────────────────────────────────────── */
 
-/* The starfield is pixel art: anchored to the corner and sized (--bg-size, set in extend_head.html)
-   so its pixels land on whole screen pixels at any display scale */
 html {
-  background: #000 url("/bg.png") repeat 0 0;
-  background-attachment: fixed;
-  background-size: var(--bg-size, 1920px) auto;
-  image-rendering: pixelated;
-}
-
-body {
-  image-rendering: auto;
+  background: #000;
 }
 
 body,
@@ -36,13 +27,23 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glow at the top */
+/* The starfield, with a glow at the top, on a fixed layer of its own: the browser moves the page
+   over it without repainting it (a background-attachment: fixed background is repainted on every
+   frame of a scroll on phones). 100vh, not inset: 0, so it doesn't resize as a phone's address bar
+   comes and goes. The stars are pixel art: anchored to the corner and sized (--bg-size, set in
+   extend_head.html) so their pixels land on whole screen pixels at any display scale */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   pointer-events: none;
-  background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(168, 100, 205, 0.13), transparent 70%);
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(168, 100, 205, 0.13), transparent 70%),
+    url("/bg.png") repeat 0 0 / var(--bg-size, 1920px) auto;
+  image-rendering: pixelated;
   z-index: -1;
 }
 
@@ -562,9 +563,18 @@ kbd {
 }
 
 .server-status.is-online .status-dot {
+  position: relative;
   background: var(--ansi-green);
   opacity: 1;
-  box-shadow: 0 0 0 0 rgba(86, 189, 56, 0.6);
+}
+
+/* A ring that grows and fades: transform and opacity only, so it never repaints */
+.server-status.is-online .status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ansi-green);
   animation: status-pulse 2.4s ease-out infinite;
 }
 
@@ -583,9 +593,8 @@ kbd {
 }
 
 @keyframes status-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(86, 189, 56, 0.55); }
-  70% { box-shadow: 0 0 0 6px rgba(86, 189, 56, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(86, 189, 56, 0); }
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(2.5); opacity: 0; }
 }
 
 .footer .server-status {
@@ -713,12 +722,14 @@ kbd {
   margin: 0;
 }
 
-.gallery .shot img {
-  transition: transform 0.3s ease;
-}
+@media (hover: hover) {
+  .gallery .shot img {
+    transition: transform 0.3s ease;
+  }
 
-.gallery .shot:hover img {
-  transform: translateY(-3px);
+  .gallery .shot:hover img {
+    transform: translateY(-3px);
+  }
 }
 
 .gallery figcaption,
@@ -926,75 +937,112 @@ kbd {
   color: var(--border);
 }
 
-.downloads {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.9rem;
-  margin-bottom: 2rem;
-}
-
-.download-card {
+/* A tab per platform ({{< platforms >}}), in the menu's style: the selected one in brackets */
+.platform-tabs {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.2rem;
-  border-radius: var(--radius);
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  scroll-margin-top: 80px;
+  gap: 0.25rem;
+  margin: 1.25rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.download-card:target {
-  border-color: var(--ansi-magenta);
+.platform-tabs::-webkit-scrollbar {
+  display: none;
 }
 
-.download-os {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.download-os h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.post-content .download-os h2 {
-  font-family: var(--font-heading);
-  text-transform: none;
-  color: var(--primary);
-  letter-spacing: 0.04em;
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.post-content .download-os h2::before {
-  content: none;
-}
-
-.download-arch {
+.platform-tabs [role="tab"] {
+  --pad: 1rem;
+  position: relative;
+  flex-shrink: 0;
+  margin-bottom: -1px;
+  padding: 0.6rem var(--pad);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   color: var(--secondary);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-.download-req {
+/* the brackets sit in the padding, so selecting a tab doesn't move the others */
+.platform-tabs [role="tab"]::before,
+.platform-tabs [role="tab"]::after {
+  position: absolute;
+  visibility: hidden;
+  color: var(--ansi-magenta);
+}
+
+.platform-tabs [role="tab"]::before {
+  content: "[";
+  left: calc(var(--pad) - 1ch);
+}
+
+.platform-tabs [role="tab"]::after {
+  content: "]";
+  right: calc(var(--pad) - 1ch);
+}
+
+.platform-tabs [role="tab"]:hover {
+  color: var(--primary);
+}
+
+.platform-tabs [role="tab"][aria-selected="true"] {
+  color: var(--ansi-magenta);
+  border-bottom-color: var(--ansi-magenta);
+}
+
+.platform-tabs [role="tab"][aria-selected="true"]::before,
+.platform-tabs [role="tab"][aria-selected="true"]::after {
+  visibility: visible;
+}
+
+.platform-tabs [role="tab"]:focus-visible {
+  outline: 2px solid var(--ansi-magenta);
+  outline-offset: 2px;
+}
+
+/* opened from a link (/download/#linux): room above it for the header and the tabs */
+.platform {
+  scroll-margin-top: 9rem;
+}
+
+/* PaperMod sets display on sections, which beats the hidden attribute */
+.platform[hidden] {
+  display: none;
+}
+
+/* With the tabs, the tab is the platform's name */
+.is-tabbed .platform-name {
+  display: none;
+}
+
+.post-content .platform-name {
+  margin-top: 2rem;
+}
+
+.platform-get {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-content .platform-req {
   margin: 0;
   font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--secondary);
-  flex-grow: 1;
 }
 
-.download-card .btn {
-  width: 100%;
-}
-
-.post-content .download-card .download-file {
+.post-content .platform-req code {
   background: none;
   border: none;
   padding: 0;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--secondary);
   word-break: break-all;
 }
@@ -1111,6 +1159,51 @@ kbd {
   color: var(--secondary);
 }
 
+/* Hugo's {{< details >}}: a row each, a line between, a chevron that turns when open */
+.post-content details {
+  border-bottom: 1px solid var(--border);
+}
+
+.post-content details:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.post-content summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.post-content summary::-webkit-details-marker {
+  display: none;
+}
+
+.post-content summary::before {
+  content: "›";
+  flex-shrink: 0;
+  width: 1ch;
+  font-family: var(--font-mono);
+  color: var(--ansi-magenta);
+  transition: transform 0.15s ease;
+}
+
+.post-content details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.post-content summary:hover {
+  color: var(--ansi-magenta);
+}
+
+.post-content details > :not(summary) {
+  margin: 0 0 0.9rem calc(1ch + 0.6rem);
+}
+
 /* ── Small screens ─────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
@@ -1156,6 +1249,8 @@ kbd {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-padding: 0 var(--gap);
+    /* a swipe past either end stays in the strip, not the browser's back gesture */
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
   }
 
@@ -1192,6 +1287,11 @@ kbd {
     display: none;
   }
 
+  .platform-tabs [role="tab"] {
+    --pad: 0.7rem;
+    font-size: 0.875rem;
+  }
+
   /* Wrap whole links, without separators left dangling */
   .footer-links {
     display: flex;
@@ -1210,6 +1310,18 @@ kbd {
 
   .post-content table td:first-child {
     white-space: normal;
+  }
+}
+
+/* Touch screens: no blur behind the header and panels. It's redone for every panel on screen on
+   every frame of a scroll, which phones can't keep up with. The header gets darker instead */
+@media (hover: none) {
+  :root {
+    --panel-blur: none;
+  }
+
+  .header {
+    background: rgba(0, 0, 0, 0.88);
   }
 }
 

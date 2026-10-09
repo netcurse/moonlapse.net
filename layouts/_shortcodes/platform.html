@@ -1,0 +1,32 @@
+{{- /* {{< platform id="windows-x64" >}}…{{< /platform >}}, inside {{< platforms >}}: a platform from
+       data/release.toml, with its download and the Markdown inside. id="browser" is the browser
+       version (params.playURL) */ -}}
+{{- $id := .Get "id" -}}
+{{- $p := dict -}}
+{{- range hugo.Data.release.platforms }}{{ if eq .id $id }}{{ $p = . }}{{ end }}{{ end -}}
+{{- $name := .Get "name" | default $p.name -}}
+{{- .Parent.Store.Add "tabs" (slice (dict "id" $id "name" $name)) -}}
+<section class="platform" id="{{ $id }}">
+  <h2 class="platform-name">{{ $name }}</h2>
+  <div class="platform-get">
+    {{- if $p.id }}
+    {{- $f := partial "release_file.html" $p }}
+    {{- if $f.url }}
+    <a class="btn btn-primary" href="{{ $f.url }}" download>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      Download .{{ $p.ext }}
+    </a>
+    {{- else }}
+    <span class="btn btn-disabled" aria-disabled="true">Coming soon</span>
+    {{- end }}
+    <p class="platform-req">{{ $p.requires }}<br /><code>{{ $f.file }}</code></p>
+    {{- else if eq $id "browser" }}
+    {{ partial "play_button.html" (dict "class" "btn-primary") }}
+    {{- with urls.Parse site.Params.playURL }}
+    <p class="platform-req">At <code>{{ .Host }}</code>, on a desktop or laptop with a keyboard</p>
+    {{- end }}
+    {{- end }}
+  </div>
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</section>

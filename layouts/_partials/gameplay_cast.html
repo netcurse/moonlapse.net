@@ -29,7 +29,9 @@
 
     var JS = {{ $js.RelPermalink }};
     var CSS = {{ $css.RelPermalink }};
-    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // no autoplay with reduced motion, or on touch screens: redrawing the terminal every frame makes
+    // a phone's scrolling stutter. Both get its first frame and a play button
+    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
 
     function load(tag, attrs) {
       return new Promise(function (resolve, reject) {
