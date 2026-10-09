@@ -1,8 +1,17 @@
-{{- /* A screenshot by name → dict res, width, height. Hugo can't read an SVG's size, so it
-       comes from the viewBox */ -}}
-{{- $img := resources.Get (printf "images/screenshots/%s.svg" .) -}}
-{{- if not $img }}{{ errorf "screenshot: no assets/images/screenshots/%s.svg" . }}{{ end -}}
-{{- $box := findRESubmatch `viewBox="0 0 ([\d.]+) ([\d.]+)"` $img.Content 1 -}}
-{{- if not $box }}{{ errorf "screenshot: %s.svg has no viewBox" . }}{{ end -}}
-{{- $box = index $box 0 -}}
-{{- return dict "res" $img "width" (index $box 1) "height" (index $box 2) -}}
+{{- /* A screenshot by name → dict res, width, height, framed: <name>.svg (a terminal capture, with
+       its own window frame and padding), or else <name>.png (a browser's, say: no frame, and
+       served as WebP). Hugo can't read an SVG's size, so it comes from the viewBox */ -}}
+{{- $result := dict -}}
+{{- with resources.Get (printf "images/screenshots/%s.svg" .) -}}
+  {{- $box := findRESubmatch `viewBox="0 0 ([\d.]+) ([\d.]+)"` .Content 1 -}}
+  {{- if not $box }}{{ errorf "screenshot: %s has no viewBox" .Name }}{{ end -}}
+  {{- $box = index $box 0 -}}
+  {{- $result = dict "res" . "width" (index $box 1) "height" (index $box 2) "framed" true -}}
+{{- else -}}
+  {{- with resources.Get (printf "images/screenshots/%s.png" .) -}}
+    {{- $result = dict "res" (.Process "webp q85") "width" .Width "height" .Height "framed" false -}}
+  {{- else -}}
+    {{- errorf "screenshot: no assets/images/screenshots/%s.svg or .png" . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $result -}}

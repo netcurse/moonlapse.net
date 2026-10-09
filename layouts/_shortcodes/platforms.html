@@ -7,9 +7,9 @@
   <span class="release-version">v{{ $r.version }}</span>
   <span class="sep">·</span>
   <span>released {{ time.Format "2 January 2006" $r.date }}</span>
-  {{- if and $r.available $r.notes_url }}
+  {{- with partial "release_notes.html" . }}
   <span class="sep">·</span>
-  <a href="{{ replace $r.notes_url "{version}" $r.version }}">release notes</a>
+  <a href="{{ .RelPermalink }}">release notes</a>
   {{- end }}
 </div>
 <div class="platforms" data-platforms>

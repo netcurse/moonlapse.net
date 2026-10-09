@@ -1,7 +1,7 @@
 {{- /* (dict "name" "hero" "alt" "..." "eager" false). The SVG brings its own window frame and
        shadow, so nothing here adds one */ -}}
 {{- $s := partial "screenshot_file.html" .name -}}
-<a class="shot" href="{{ $s.res.RelPermalink }}" data-lightbox>
+<a class="shot{{ if not $s.framed }} shot-plain{{ end }}" href="{{ $s.res.RelPermalink }}" data-lightbox>
   <img src="{{ $s.res.RelPermalink }}" width="{{ $s.width }}" height="{{ $s.height }}" alt="{{ .alt }}"
     {{- if .eager }} fetchpriority="high" {{- else }} loading="lazy" {{- end }} decoding="async" />
 </a>

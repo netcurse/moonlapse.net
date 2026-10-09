@@ -622,6 +622,15 @@ kbd {
   border-radius: 0;
 }
 
+/* A screenshot without the SVGs' frame and padding (a PNG): as it is, with a border */
+.shot-plain img,
+.post-content .shot-plain img {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
 /* ── Home: the big screenshot ──────────────────────────────────── */
 
 .showcase {
@@ -1339,9 +1348,15 @@ kbd {
   text-decoration: none;
 }
 
+/* beats PaperMod's .md-content figure > figcaption (16px, bold, the heading colour) */
 .post-content figcaption,
-.figure-shot figcaption {
+.md-content .figure-shot > figcaption {
+  margin: 0.55rem 0 0;
+  font-size: 0.85rem;
   font-weight: 400;
+  line-height: 1.5;
+  color: var(--secondary);
+  text-align: center;
 }
 
 .post-content table thead {

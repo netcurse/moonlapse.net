@@ -12,7 +12,7 @@
   {{ partial "play_button.html" (dict "class" "btn-ghost") }}
 </div>
 <p class="download-meta">
-  <span>v{{ $r.version }} · Windows, macOS &amp; Linux · free</span> ·
+  <span>{{ with partial "release_notes.html" . }}<a href="{{ .RelPermalink }}">v{{ $r.version }}</a>{{ else }}v{{ $r.version }}{{ end }} · Windows, macOS &amp; Linux · free</span> ·
   <span><a href="/download/">all downloads</a></span>
 </p>
 {{- if $r.available }}
