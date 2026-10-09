@@ -481,6 +481,11 @@ kbd {
   color: var(--ansi-white);
 }
 
+/* wrap between the version and the link, not inside either */
+.download-meta span {
+  white-space: nowrap;
+}
+
 /* The browser version needs a keyboard: on phones and tablets, a note instead of the button */
 .play-note {
   display: none;

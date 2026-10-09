@@ -10,18 +10,24 @@
     <span id="dl-main-label">{{ if $first.url }}Download for {{ $first.platform.name }}{{ else }}Get the client{{ end }}</span>
   </a>
   {{ partial "play_button.html" (dict "class" "btn-ghost") }}
-  <a class="btn btn-ghost" href="/guide/">How to play</a>
 </div>
 <p class="download-meta">
-  v{{ $r.version }} · Windows, macOS &amp; Linux · free ·
-  <a href="/download/">all downloads</a>
+  <span>v{{ $r.version }} · Windows, macOS &amp; Linux · free</span> ·
+  <span><a href="/download/">all downloads</a></span>
 </p>
-{{ partial "play_note.html" . }}
 {{- if $r.available }}
 <script>
   (function () {
     var files = {{ $files }};
     var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+    // phones and tablets (iPads say they're Macs) can't run it: send them to the downloads page
+    var mobile = (navigator.userAgentData && navigator.userAgentData.mobile) ||
+      /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent) || (/mac/i.test(ua) && navigator.maxTouchPoints > 1);
+    if (mobile) {
+      document.getElementById("dl-main").href = "/download/";
+      document.getElementById("dl-main-label").textContent = "Get the client";
+      return;
+    }
     var id = /mac/i.test(ua) ? "macos-arm64" : (/linux/i.test(ua) && !/android/i.test(navigator.userAgent)) ? "linux-x64" : "windows-x64";
     var f = files.find(function (f) { return f.platform.id === id; });
     if (!f) return;

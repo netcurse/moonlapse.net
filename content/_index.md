@@ -76,7 +76,7 @@ gallery:
 # The section round the gameplay recording
 play:
   title: "Play in your browser"
-  text: "Nothing to download: the same client runs in your browser, in the same world, with the same account and characters, and it's always up to date. The terminal is still the snappiest way to play, but this is the quickest way in."
+  text: "The same client, the same world and the same characters, with nothing to download. The terminal is still the snappiest way to play; this is the quickest way in."
 
 steps:
   - title: "Download"
@@ -88,4 +88,4 @@ steps:
 steps_alt: "Or skip the download: play in your browser at [play.moonlapse.net](https://play.moonlapse.net), on a computer with a keyboard."
 ---
 
-Moonlapse is a multi-user dungeon: one shared world, drawn in text, that everyone plays together in real time. There's nothing to install but a small client, and it runs in any terminal. Or skip even that and play in your browser.
+Moonlapse is a multi-user dungeon: one shared world, drawn in text, that everyone plays together in real time. There's nothing to install but a small client, and it runs in any terminal.

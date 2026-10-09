@@ -65,7 +65,9 @@
         text.textContent = "Online · " + s.players + (s.players === 1 ? " player" : " players");
         if (when && time) {
           var moon = MOONS[time.moon_phase];
-          when.textContent = clockText() + " · " + (moon ? moon + " " : "") + time.moon_phase;
+          // on narrow screens, break after the "·", not inside the date or the moon phase
+          var keep = function (t) { return t.replace(/ /g, " "); };
+          when.textContent = keep(clockText()) + " · " + keep((moon ? moon + " " : "") + time.moon_phase);
         }
       });
     }
