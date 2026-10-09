@@ -14,7 +14,7 @@ buildExpired = false
 enableEmoji = true
 pygmentsUseClasses = true
 
-disableKinds = ["taxonomy", "term", "RSS"]
+disableKinds = ["taxonomy", "term"]
 
 [minify]
 disableXML = true
@@ -22,7 +22,8 @@ disableXML = true
 [outputs]
 home = ["HTML"]
 page = ["HTML"]
-section = ["HTML"]
+# The blog has a feed (/blog/index.xml)
+section = ["HTML", "RSS"]
 
 # ── Menu / Navigation ──────────────────────────────────────────────
 [[menu.main]]
@@ -50,10 +51,18 @@ url = "/about/"
 weight = 4
 
 [[menu.main]]
+identifier = "blog"
+name = "blog"
+url = "/blog/"
+weight = 5
+# Not on phones, where it won't fit; the footer has it too
+params = { narrow = false }
+
+[[menu.main]]
 identifier = "play"
 name = "play"
 url = "https://play.moonlapse.net"
-weight = 5
+weight = 6
 # The browser version needs a keyboard, so not on phones
 params = { narrow = false }
 
@@ -61,7 +70,7 @@ params = { narrow = false }
 identifier = "account"
 name = "account"
 url = "https://auth.moonlapse.net/auth/v1/account"
-weight = 6
+weight = 7
 # Hidden from the header on phones, where it won't fit; the footer has it too
 params = { narrow = false }
 
@@ -90,6 +99,7 @@ ShowPostNavLinks = false
 ShowBreadCrumbs = false
 ShowCodeCopyButtons = true
 ShowToc = false
+mainSections = ["blog"]
 images = ["og.png"]
 
 [params.cover]

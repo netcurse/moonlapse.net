@@ -1347,3 +1347,59 @@ kbd {
 .post-content table thead {
   display: none;
 }
+
+/* ── Blog ──────────────────────────────────────────────────────── */
+
+.blog-feed,
+.breadcrumbs a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.blog-feed {
+  display: inline-block;
+  margin-top: 0.75rem;
+}
+
+.breadcrumbs {
+  margin-bottom: 0.5rem;
+}
+
+.blog-entry + .blog-entry {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.blog-entry h2 {
+  font-size: 1.45rem;
+  margin: 0;
+}
+
+.blog-entry h2 a {
+  color: var(--primary);
+}
+
+.blog-entry h2 a:hover {
+  color: var(--link-color);
+}
+
+.blog-entry time {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+.blog-entry p {
+  margin: 0.6rem 0 0;
+  color: var(--content);
+  line-height: 1.7;
+}
+
+.blog-pages {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  font-family: var(--font-mono);
+}

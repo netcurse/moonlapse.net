@@ -1,0 +1,8 @@
+{{- /* Replaces PaperMod's: a post links back to its section, nothing else does */ -}}
+{{- if and .IsPage (.Param "ShowBreadCrumbs") }}
+{{- with .Parent }}{{ if not .IsHome }}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="{{ .RelPermalink }}"><span class="br">‹</span> {{ .Title | lower }}</a>
+</nav>
+{{- end }}{{ end }}
+{{- end }}
