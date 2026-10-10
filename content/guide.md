@@ -104,13 +104,15 @@ Attack spells go at your target. *Mend* heals a party member you've targeted, or
 | `/w <player> <message>` | whisper to someone, wherever they are |
 | `/r <message>` | reply to the last whisper |
 | `/who` | who's playing, and where |
+| `/friend <player>` | add someone to your friends list (`/unfriend` to take them off) |
+| `/ignore <player>` | stop seeing anything they say or send you (`/unignore` to undo) |
 | `/coords` | where you're standing |
 | `/bankbox` | look in your bank from anywhere |
 | `/mailbox` | read your letters from anywhere |
-| `/report <player> <reason>` | report a player to the moderators |
+| `/report [player]` | report a player to the moderators |
 | `/help` | every command |
 
-Someone spamming, harassing you or cheating? `/report` them. The moderators see your reason and what that player said to you or near you in the last five minutes, and they're never told who reported them. For anything else, find us on [Discord]({{< discord >}}).
+Someone spamming, harassing you or cheating? `/report` them, or choose *Report* from their menu. Pick what it's about and add a message if you like. The moderators see that and what that player said to you or near you in the last five minutes, and the player is never told who reported them. If the moderators act on your report, you'll get a thank-you in your notifications. For anything else, find us on [Discord]({{< discord >}}).
 
 ### Windows and the log
 
@@ -118,6 +120,7 @@ Someone spamming, harassing you or cheating? `/report` them. The moderators see 
 |---|---|
 | <kbd>j</kbd> | quest journal |
 | <kbd>N</kbd> | notifications |
+| <kbd>F</kbd> | friends, who's playing, who you've heard lately, and who you ignore |
 | <kbd>L</kbd> | which log channels to show |
 | <kbd>+</kbd> <kbd>-</kbd> | scroll the log (<kbd>PgUp</kbd> <kbd>PgDn</kbd> a page at a time, <kbd>End</kbd> back to the latest) |
 | <kbd>?</kbd> | help |
@@ -126,7 +129,7 @@ Someone spamming, harassing you or cheating? `/report` them. The moderators see 
 
 ## Playing together
 
-Look at another player (<kbd>k</kbd>) to invite them to your party, or type `/invite <player>`. Answer an invite from your notifications (<kbd>N</kbd>). A party is up to four players. Members near a kill share its XP, its loot and its quest credit, and you can see how everyone's doing wherever they are.
+Look at another player (<kbd>k</kbd>), or find them in the nearby list (<kbd>K</kbd>) or the friends window (<kbd>F</kbd>), for a menu of everything you can do with them: whisper, invite them to your party, add them as a friend, ignore or report them. Or type `/invite <player>`. Answer an invite from your notifications (<kbd>N</kbd>). A party is up to four players. Members near a kill share its XP, its loot and its quest credit, and you can see how everyone's doing wherever they are.
 
 | | |
 |---|---|

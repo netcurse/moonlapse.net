@@ -72,7 +72,7 @@ A guest's chat and reports are recorded and handled the same as everyone's (belo
 
 A guest nobody plays for **7 days** is deleted automatically, with its character and everything the game kept about it, and its name is free again. If you lose the secret (by deleting the file or clearing your browser's data), the guest is gone for good: we can't get it back for you.
 
-**Registering.** At any time, from its character screen, a guest can sign in or make an account and keep its character. The character moves to that account, under a new name without the `Guest_`, with everything it had, and from then on it's covered by the rest of this policy like any other character. Reports by and about the guest, any mute, and its ignore list go with it, and anyone ignoring the guest ignores the account instead. For 7 days the old name still leads to the character, so whispers and reports for `Guest_Bob` reach it; after that the game forgets the old name. The game server's log keeps one line recording the rename.
+**Registering.** At any time, from its character screen, a guest can sign in or make an account and keep its character. The character moves to that account, under a new name without the `Guest_`, with everything it had, and from then on it's covered by the rest of this policy like any other character. Reports by and about the guest, any mute, its ignore list and friends list, and any message waiting for it go with it, and anyone ignoring the guest ignores the account instead. For 7 days the old name still leads to the character, so whispers and reports for `Guest_Bob` reach it; after that the game forgets the old name. The game server's log keeps one line recording the rename.
 
 ### Chat, reports and moderation
 
@@ -82,16 +82,28 @@ If you **report** a player (`/report`), the report keeps:
 
 - your character's name and the reported character's, the names of the reported player's other characters, and an account number for each of you;
 - where you both were, and when;
-- the reason you gave;
+- what it's about, from a list (*Scamming*, *Seriously offensive language*, …), and anything you wrote with it;
 - what the reported player said in chat, in the five minutes before, that reached you.
 
 Reports go to our **moderators**, the people who help us run the game, in a private channel on our Discord server. The player you report isn't told that you did.
+
+When a moderator has dealt with a report, the game records **how it ended**: whether action was taken or the report was dismissed, which moderator decided, a note they can add, and when. That's posted in the same private channel. If action was taken, your account gets a thank-you (below), which doesn't say who the player was or what was done. The reported player isn't told about the report either way.
 
 If a moderator **mutes** or **bans** an account, the game keeps a record of it: who did it, the reason they gave, when it began and when it ends, and whether it was lifted early. Mutes and bans that have ended are kept too, so the moderators can see an account's history.
 
 ### Your ignore list
 
 If you **ignore** a player (`/ignore`), the game keeps, for your account, the name you ignored, the account behind it, and when. Ignoring a name ignores that account's other characters too, but your list shows only the names you added. The player you ignore isn't told, and nobody else can see your list.
+
+### Your friends list
+
+If you add a player to your **friends list** (`/friend`), the game keeps, for your account, the character you added and when. Unlike the ignore list, an entry is the character, not the account behind it, so your list never shows which characters belong to the same person. Nobody else can see your list, and the player you add isn't asked or told.
+
+Being on someone's friends list lets them see when that character logs in and out. That's no more than anyone can already see: `/who` shows everyone who's playing, and where.
+
+### Messages to your account
+
+Now and then the game leaves a message for your account rather than for one character, such as the thank-you for a report. Whichever of your characters plays next sees it. It's kept until you dismiss it, and then deleted.
 
 ### Our Discord server
 
@@ -148,12 +160,14 @@ We'd only ever give your information to anyone else if the law required us to.
 - **Reports**: with no time limit, even after the account of either player is deleted, since they're what shows that someone keeps doing it. When an account is deleted, its account number is removed from its reports, but the names, places, reason and chat in them stay.
 - **Mutes and bans**: until the account is deleted, including ones that have ended or been lifted.
 - **Ignore lists**: until you remove the name (`/unignore`), or either account is deleted.
+- **Friends lists**: until you remove the character (`/unfriend`), your account is deleted, or the character is deleted for good (30 days after it's deleted, or straight away if its player chooses).
+- **Messages to your account**: until you dismiss them.
 - **Web server logs**: about two weeks.
 - **Backups**: the database is backed up every night, and each backup is kept for 14 days. The whole server, chat records included, is also copied regularly, and those copies are kept for up to six months. Something you delete can stay in a backup until it ages out, and backups are only ever used to restore the game after a failure.
 
 ## Deleting your account
 
-Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your ignore list goes with it, and so do other players' entries for you, and your mute and ban history. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept (above).
+Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your ignore list and friends list go with it, and so do other players' entries for you on theirs, any messages waiting for you, and your mute and ban history. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept (above).
 
 If you can't sign in any more, email <privacy@moonlapse.net> from the address on the account and we'll do it for you.
 
