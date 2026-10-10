@@ -1,6 +1,9 @@
 ---
 title: "Terms of use"
 description: "The rules for playing Moonlapse and using its website and accounts."
+# Bump only when players must accept the terms again: the game asks everyone, in the game, when it
+# changes. A fix that doesn't change what the terms mean leaves it alone.
+version: "2026-10-09"
 ---
 
 *Last updated 9 October 2026.*

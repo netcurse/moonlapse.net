@@ -40,7 +40,7 @@ hugo --minify          # into public/ (ignored)
 | `content/_index.md` | The homepage's copy: tagline, features, gallery, steps (front matter), and the intro (body) |
 | `content/{download,guide,about}.md` | The other pages |
 | `content/blog/` | The blog: release notes and news, one file per post (`hugo new blog/<slug>.md`, from `archetypes/blog.md`). `_index.md` is the blog's own page |
-| `content/{privacy,terms}.md` | The privacy policy and terms of use, linked from the footer. Google's OAuth consent screen links the privacy policy, and Google requires it to stay accurate: when the game starts keeping, logging or sharing something new (or stops), update it and its date |
+| `content/{privacy,terms}.md` | The privacy policy and terms of use, linked from the footer. Google's OAuth consent screen links the privacy policy, and Google requires it to stay accurate: when the game starts keeping, logging or sharing something new (or stops), update it and its date. Bumping `version` in `terms.md`'s front matter makes every player accept the terms again (Conventions, "The terms in the game") |
 | `data/release.toml` | The current client: `version`, `date`, `available`, the download URL template, per-platform `id`/`ext`/`requires` |
 | `data/themes/moonlapse.toml` | The palette (kitty/alacritty format), sampled from the client, plus `[ui]` and `[window]` (the screenshots' window frame, for the recording's CSS copy of it) |
 | `assets/css/extended/custom.css` | **All** the CSS. PaperMod loads it after its own |
@@ -54,6 +54,7 @@ hugo --minify          # into public/ (ignored)
 | `.github/scripts/set-release.sh` | Edits `data/release.toml` for a release; `release.yml` runs it |
 | `layouts/home.html` | The homepage |
 | `layouts/404.html` | The 404 page |
+| `layouts/home.terms.json` | `/terms.json`, the terms for the game (the `terms` output format in `config.toml`) |
 | `layouts/blog/list.html` | The blog's list of posts |
 | `layouts/_partials/` | `head.html`, `header.html`, `footer.html` (overrides), `templates/schema_json.html` (structured data: a VideoGame on the homepage, a BlogPosting for a post, WebPage + breadcrumbs elsewhere), `breadcrumbs.html` (a post's link back to the blog), `extend_head.html`, `extend_footer.html` (lightbox), `theme_vars.html`, `release_file.html`, `download_button.html`, `play_button.html` and `play_note.html` (the browser version's button, and the note phones get instead), `screenshot.html`, `screenshot_file.html`, `gameplay_cast.html` (the recording and its loader) |
 | `layouts/_shortcodes/` | `platforms` and `platform id=` (the download page's tabs), `screenshot name= caption= alt=`, `server`, `discord` (the invite, for a link: `[Discord]({{</* discord */>}})`) |
@@ -74,6 +75,7 @@ hugo --minify          # into public/ (ignored)
 - **The browser version** is at `params.playURL` (play.moonlapse.net). It needs a keyboard, so on phones and tablets (`max-width: 600px`, or a coarse pointer without hover) `.play-btn` is hidden and `.play-note` says so instead, and the menu's `play` item is `narrow = false`. It's not a download: keep it out of `data/release.toml` (the schema adds "Web browser" to `gamePlatform` itself). No iframe of it: it needs response headers GitHub Pages can't send, and the sign-in page refuses to be framed.
 - **The Discord server**'s invite is `params.discordURL`, and only there: the footer, the homepage's structured data (`sameAs`) and `{{</* discord */>}}` in page text all read it. It has to be an invite that never expires.
 - **The blog** (`/blog/`) is the only section, and the only thing with a feed (`/blog/index.xml`). A post's front matter is `title`, `date` and `description` (the list shows the description, so write one); `draft: true` keeps it off the site (`hugo server -D` shows it). A release's notes are `content/blog/<version>.md` (`0.5.0.md`), titled `Version X.Y.Z: …`: the download page's "release notes" link and the homepage's version link to the current version's post (`_partials/release_notes.html`), and show no link while there isn't one. The header's `blog` item is `narrow = false` (it doesn't fit on phones); the footer links it.
+- **The terms in the game**: the game fetches `/terms.json` (`layouts/home.terms.json`: `version`, and `text`, `terms.md`'s Markdown with its shortcodes expanded and links to this site made absolute) and shows it to players, who must accept it to play. **When `version` in `terms.md`'s front matter changes, every player is asked again**, and everyone playing is disconnected after a warning. So bump it only when what the terms mean changes, not for a typo, and bump "Last updated" in the text either way. Keep `terms.md` plain Markdown: the game draws it in a terminal, so no raw HTML, and only shortcodes that print text (like `discord`).
 - **External links** get `target=_blank` and an icon from a script in `extend_head.html`; don't add them by hand.
 
 ## Gotchas
