@@ -52,6 +52,14 @@ The client, its game data (`content/`) and a `config.toml` that points it at the
 You'll sign in through your browser the first time you play, with an email, Google or Discord: no separate sign-up. Or choose *Play as guest* to play with no account at all, and register later to keep your character ([playing as a guest](/guide/#playing-as-a-guest)). Your [account page](https://auth.moonlapse.net/auth/v1/account) is where you change your password, link Google or Discord, or delete your account.
 {{< /details >}}
 
+{{< details summary="Passkeys" >}}
+You can add a passkey on your [account page](https://auth.moonlapse.net/auth/v1/account) and sign in with it instead of a password. When you add it, set *Passkey Type* to **Resident Key**: then the **Passkey** button on the sign-in page finds it, with nothing to type. A hardware key such as a YubiKey holds only a few of these, so if yours is nearly full, choose *Default*.
+
+A *Default* passkey works too, but the **Passkey** button can't find it: type your email address (and your password, if your account has one) and press **Sign in**, and you'll be asked for the passkey. The sign-in page remembers your email address after the first time.
+
+To change a passkey from *Default* to *Resident Key*, delete it on your account page, then add it again. Your password manager won't make a second passkey for the same account while the first is still there.
+{{< /details >}}
+
 {{< details summary="Staying signed in" >}}
 Tick *Stay signed in* on the title screen and the client keeps your sign-in in `session.toml`, next to itself, so next time you can *Continue as* your email address. *Sign out* deletes it.
 {{< /details >}}
