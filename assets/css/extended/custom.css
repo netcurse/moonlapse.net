@@ -1089,6 +1089,15 @@ kbd {
   background: transparent;
   max-width: 95vw;
   max-height: 95vh;
+  overflow: hidden;
+}
+
+/* A column the image shrinks in, so a long caption takes height from it rather than
+   overflowing */
+.lightbox[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lightbox::backdrop {
@@ -1098,14 +1107,21 @@ kbd {
 
 .lightbox img {
   display: block;
+  flex: 0 1 auto;
+  min-height: 0;
   max-width: 95vw;
   max-height: 90vh;
   width: auto;
   height: auto;
+  object-fit: contain;
   cursor: zoom-out;
 }
 
+/* As wide as the image, never wider: it wraps instead of widening the dialog */
 .lightbox p {
+  flex: none;
+  width: 0;
+  min-width: 100%;
   margin: 0.6rem 0 0;
   text-align: center;
   color: #ccc;
