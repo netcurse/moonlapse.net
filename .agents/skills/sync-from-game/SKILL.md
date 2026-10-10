@@ -30,20 +30,19 @@ The `features` front matter. Check each claim against the game: skills (`Skill` 
 
 ## Screenshots → `assets/images/screenshots/`
 
-SVGs exported from [boron.sh](https://boron.sh/), so every batch matches:
+Taken with **F12** in a terminal made for it: `.agents/scripts/screenshots/start.sh <the client's folder>` (its `README.md` has the whole of it). In short:
 
-1. Set the terminal window to exactly **123×38** (columns × rows; picked as a golden-ratio-ish shape, and every screenshot so far is this size), and play the client in it. Check with `tput cols; tput lines`: a terminal a row short gives a shorter image (1215×1000 instead of 1215×1023), and a row of shots with different heights.
-2. Copy the screen into boron.sh with exactly these settings: **Theme** Boron · **Syntax** Custom (ANSI) · **Backdrop** Transparent · **Width** 123 cols · **Corner radius** 10px · **Padding** 30px · **Shadow** 100%.
-3. Export SVG and save it as `assets/images/screenshots/<name>.svg`, with a kebab-case name for what it shows: `fishing-at-morningside`, `talking-to-perth`.
-4. Check its size: `grep -o 'viewBox="[^"]*"' <file>` should say `0 0 1215 1023`.
+1. Get the client players have (the latest release: `gh release download <version> --repo netcurse/moonlapse.net -p '*linux-x64*'`, unpacked), and open the terminal in its folder with `start.sh`. It's foot at exactly **123×38** (columns × rows; a golden-ratio-ish shape, and every screenshot is this size), in the game's colours, running a tmux of its own.
+2. Play (`./moonlapse`) until the screen shows what you want, press **F12**, and give it a kebab-case name for what it shows (`fishing-at-morningside`, `talking-to-perth`). It's saved as `assets/images/screenshots/<name>.svg`.
+3. Check its size: `grep -o 'viewBox="[^"]*"' <file>` should say `0 0 1215 1023`.
 
-The Boron theme has its own colours (window `#0f1117`, green `#4ade80`…), close to but not the client's palette in `data/themes/moonlapse.toml`; the gameplay recording uses the client's. Keep the theme on Boron so batches match each other.
+`ansi-svg.py` draws them: the window frame boron.sh gave the earlier ones (title bar, rounded corners, shadow, on a transparent backdrop, so the site adds no frame), with the game's own colours (`data/themes/moonlapse.toml`, the client's own for 8–17, and bold in the bright colour, which makes it the game's purple) and the site's Cascadia Code embedded. They're about 200 KB each, gzipped to about a third.
 
-The images bring their own macOS-style window (title bar, rounded corners, shadow) on a transparent backdrop, so the site adds no frame. They embed their font, so they're 70–320 KB each, gzipped to about a third.
+The screenshots taken before 0.7.0 came from boron.sh, in its Boron theme's colours (green `#4ade80` where the game's is `#56bd38`, bold as white rather than purple, grey-blue behind the text), so they don't quite match the new ones. Retake one in the new way whenever it's next out of date.
 
 Then use them by name: `hero_shot` or `gallery` (`name`, `caption`, `alt`) in `content/_index.md`, or `{{</* screenshot name="<name>" caption="…" */>}}` in a page. Captions describe what's happening, not the UI; alt text describes what's on screen. Search engines need a PNG, so for the few in structured data, render the SVG in a browser and save it as `assets/images/raster/<name>.png` (headless Edge or Chrome: `--window-size=1215,1023 --default-background-color=00000000 --screenshot=…`).
 
-Check what a screenshot shows before it goes up: the site is public, so nothing dev-only (admin commands, dev sign-in) and no version that isn't released yet.
+Check what a screenshot shows before it goes up: the site is public, so nothing dev-only (admin commands, dev sign-in), nothing personal (the title screen shows the email address you signed in with) and no version that isn't released yet. The game repo's README shows the same files (`res/screenshots/`): copy new or changed ones there too.
 
 ## The gameplay recording → `assets/casts/`
 

@@ -42,11 +42,11 @@ hugo --minify          # into public/ (ignored)
 | `content/blog/` | The blog: release notes and news, one file per post (`hugo new blog/<slug>.md`, from `archetypes/blog.md`). `_index.md` is the blog's own page |
 | `content/{privacy,terms}.md` | The privacy policy and terms of use, linked from the footer. Google's OAuth consent screen links the privacy policy, and Google requires it to stay accurate: when the game starts keeping, logging or sharing something new (or stops), update it and its date. Bumping `version` in `terms.md`'s front matter makes every player accept the terms again (Conventions, "The terms in the game") |
 | `data/release.toml` | The current client: `version`, `date`, `available`, the download URL template, per-platform `id`/`ext`/`requires` |
-| `data/themes/moonlapse.toml` | The palette (kitty/alacritty format), sampled from the client, plus `[ui]` and `[window]` (the screenshots' window frame, for the recording's CSS copy of it) |
+| `data/themes/moonlapse.toml` | The palette (kitty/alacritty format), sampled from the client, plus `[ui]` and `[window]` (the screenshots' window frame: `ansi-svg.py` draws it, and the recording has a CSS copy of it) |
 | `assets/css/extended/custom.css` | **All** the CSS. PaperMod loads it after its own |
 | `assets/images/logo.png` | The logo (trimmed, transparent). The header and footer crop its left 405×405 for the moon emblem |
 | `assets/images/logo-hero.png` | The same logo flattened onto black, for the homepage: drawn with `mix-blend-mode: screen`, so it needs no alpha and is a third of the size. Regenerate it from `logo.png` with `magick logo.png -background black -flatten -colorspace gray -strip logo-hero.png` |
-| `assets/images/screenshots/<name>.svg` | Game screenshots: a 123×38 terminal exported from boron.sh with fixed settings (`sync-from-game` has them), kebab-case names saying what they show (`fishing-at-morningside`). Each brings its own window frame and shadow (`sync-from-game`) |
+| `assets/images/screenshots/<name>.svg` | Game screenshots: the client in a 123×38 terminal, saved with F12 (`.agents/scripts/screenshots/`, `sync-from-game`), kebab-case names saying what they show (`fishing-at-morningside`). Each brings its own window frame and shadow. The ones from before 0.7.0 were exported from boron.sh, in its colours |
 | `assets/images/raster/<name>.png` | PNG copies of a few screenshots, for structured data (search engines don't take SVG). Every file here goes in the homepage's schema |
 | `assets/casts/gameplay-trimmed.cast` | The homepage's gameplay recording (asciicast v2, 110×38). Only the trimmed one is committed: the full recording shows a dev-only sign-in |
 | `assets/vendor/asciinema-player/` | asciinema-player 3.17.0 (`dist/bundle/` from the npm package, and its licence), for the recording |
@@ -60,6 +60,7 @@ hugo --minify          # into public/ (ignored)
 | `layouts/_shortcodes/` | `platforms` and `platform id=` (the download page's tabs), `screenshot name= caption= alt=`, `server`, `discord` (the invite, for a link: `[Discord]({{</* discord */>}})`) |
 | `static/` | `bg.png` (the starfield), favicons, `og.png`, `fonts/` (including `cascadia-box.woff2`, made by `.agents/scripts/box-font.py`), `CNAME` |
 | `.agents/scripts/box-font.py` | Makes `cascadia-box.woff2` for the recording: see Conventions, "The gameplay recording" |
+| `.agents/scripts/screenshots/` | Taking screenshots: `start.sh` (a 123×38 terminal in the game's colours, where F12 saves the screen) and `ansi-svg.py` (draws a captured screen as the SVG). Its `README.md` has the whole of it |
 
 ## Conventions
 
