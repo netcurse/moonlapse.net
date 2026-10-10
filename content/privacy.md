@@ -3,7 +3,7 @@ title: "Privacy policy"
 description: "What Moonlapse keeps about you, why, who else sees it, and how to have it deleted."
 ---
 
-*Last updated 9 October 2026.*
+*Last updated 10 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
@@ -16,7 +16,7 @@ It covers this website (moonlapse.net), the sign-in service (auth.moonlapse.net)
 - We use your information to sign you in, keep your account safe, and run the game. Nothing else.
 - We **never sell** it, never use it for advertising, never use it to train AI models, and never share it except with the services listed below that we need to run the game.
 - No analytics, no trackers, no ads, on the website or in the game.
-- The game's **chat is recorded and kept for 14 days**, so we can deal with abuse. Players can report each other to our moderators.
+- The game's **chat is recorded and kept for 14 days**, so we can deal with abuse. Players can report each other to our moderators, and reports are kept.
 - You can delete your account yourself at any time, and your characters go with it.
 
 ## What we keep
@@ -72,9 +72,9 @@ A guest's chat and reports are recorded and handled the same as everyone's (belo
 
 A guest nobody plays for **7 days** is deleted automatically, with its character and everything the game kept about it, and its name is free again. If you lose the secret (by deleting the file or clearing your browser's data), the guest is gone for good: we can't get it back for you.
 
-**Registering.** At any time, from its character screen, a guest can sign in or make an account and keep its character. The character moves to that account, under a new name without the `Guest_`, with everything it had, and from then on it's covered by the rest of this policy like any other character. Reports by and about the guest, and any mute, go with it. For 7 days the old name still leads to the character, so whispers and reports for `Guest_Bob` reach it; after that the game forgets the old name. The game server's log keeps one line recording the rename.
+**Registering.** At any time, from its character screen, a guest can sign in or make an account and keep its character. The character moves to that account, under a new name without the `Guest_`, with everything it had, and from then on it's covered by the rest of this policy like any other character. Reports by and about the guest, any mute, and its ignore list go with it, and anyone ignoring the guest ignores the account instead. For 7 days the old name still leads to the character, so whispers and reports for `Guest_Bob` reach it; after that the game forgets the old name. The game server's log keeps one line recording the rename.
 
-### Chat and reports
+### Chat, reports and moderation
 
 Everything said in the game's chat is recorded: said aloud, emotes (`/me`), whispers and party chat, with who said it, who it was to, where they were, and when. It's kept for **14 days**, then deleted. We look at it only to deal with reports and abuse, and to make sure Moonlapse isn't used to plan or share anything illegal. It isn't used for anything else, and it isn't shared, except with our moderators in reports (below).
 
@@ -86,6 +86,12 @@ If you **report** a player (`/report`), the report keeps:
 - what the reported player said in chat, in the five minutes before, that reached you.
 
 Reports go to our **moderators**, the people who help us run the game, in a private channel on our Discord server. The player you report isn't told that you did.
+
+If a moderator **mutes** or **bans** an account, the game keeps a record of it: who did it, the reason they gave, when it began and when it ends, and whether it was lifted early. Mutes and bans that have ended are kept too, so the moderators can see an account's history.
+
+### Your ignore list
+
+If you **ignore** a player (`/ignore`), the game keeps, for your account, the name you ignored, the account behind it, and when. Ignoring a name ignores that account's other characters too, but your list shows only the names you added. The player you ignore isn't told, and nobody else can see your list.
 
 ### Our Discord server
 
@@ -138,13 +144,16 @@ We'd only ever give your information to anyone else if the law required us to.
 - **Your account and characters**: until you delete them, or until Moonlapse shuts down. A character you delete by itself is kept for 30 days so you can restore it, then deleted for good.
 - **Guests**: until 7 days after the guest was last played, then deleted automatically, unless it registers first. After a guest registers, its old name leads to the character for 7 days.
 - **Sign-in records and security events**: no longer than they're useful for keeping accounts safe, and never longer than your account.
-- **Chat**: 14 days.
+- **Chat**: 14 days. What's in a report is kept with the report (below).
+- **Reports**: with no time limit, even after the account of either player is deleted, since they're what shows that someone keeps doing it. When an account is deleted, its account number is removed from its reports, but the names, places, reason and chat in them stay.
+- **Mutes and bans**: until the account is deleted, including ones that have ended or been lifted.
+- **Ignore lists**: until you remove the name (`/unignore`), or either account is deleted.
 - **Web server logs**: about two weeks.
 - **Backups**: the database is backed up every night, and each backup is kept for 14 days. The whole server, chat records included, is also copied regularly, and those copies are kept for up to six months. Something you delete can stay in a backup until it ages out, and backups are only ever used to restore the game after a failure.
 
 ## Deleting your account
 
-Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept.
+Sign in at [auth.moonlapse.net](https://auth.moonlapse.net/auth/v1/account) and delete your account from your account page. That deletes your sign-in details straight away, and the game deletes every one of your characters with it, including any you've deleted and could still restore: their items, bank, quests and mail. There are no 30 days to wait. Mail your characters sent to other players is deleted with them. Your ignore list goes with it, and so do other players' entries for you, and your mute and ban history. Your chat stays in the chat record until it's 14 days old, and reports made by you or about you are kept (above).
 
 If you can't sign in any more, email <privacy@moonlapse.net> from the address on the account and we'll do it for you.
 
