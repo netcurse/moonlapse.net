@@ -1,0 +1,8 @@
+{{- /* /terms.json: content/terms.md for the game, which shows it to players and asks them to
+accept it whenever `version` changes. `text` is the page's Markdown, made to stand alone: its
+shortcodes expanded, and links to this site made absolute. */ -}}
+{{- with site.GetPage "/terms" -}}
+  {{- $text := .RenderShortcodes | string -}}
+  {{- $text = replaceRE `\]\(/` (printf "](%s" site.BaseURL) $text -}}
+  {{- dict "version" (string .Params.version) "text" (trim $text "\n") | jsonify (dict "indent" "  ") -}}
+{{- end -}}

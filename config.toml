@@ -19,8 +19,15 @@ disableKinds = ["taxonomy", "term"]
 [minify]
 disableXML = true
 
+# The terms of use as JSON (/terms.json), which the game shows players to accept
+[outputFormats.terms]
+mediaType = "application/json"
+baseName = "terms"
+isPlainText = true
+notAlternative = true
+
 [outputs]
-home = ["HTML"]
+home = ["HTML", "terms"]
 page = ["HTML"]
 # The blog has a feed (/blog/index.xml)
 section = ["HTML", "RSS"]
