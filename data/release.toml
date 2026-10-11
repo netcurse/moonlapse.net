@@ -1,7 +1,7 @@
 # Current client release
 
-version = "0.7.0"
-date = 2026-10-10
+version = "0.8.0"
+date = 2026-10-11
 
 # Set once the release is published; until then the download buttons are disabled
 available = true
