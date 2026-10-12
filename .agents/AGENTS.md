@@ -21,6 +21,7 @@ Everything committed here (files, comments, commit messages) is public. The game
 | `release-client` | Check a release reached the site, or point the site at one by hand if the workflow didn't |
 | `check-site` | After any change you can see: build it and look at it, desktop and phone |
 | `sync-from-game` | The game changed: controls, commands, features, platforms, screenshots |
+| `release-notes` | A release's notes on the blog, with new screenshots (with the game repo's `release-screenshots`) |
 
 ## Build
 
