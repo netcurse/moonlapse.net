@@ -66,10 +66,18 @@ weight = 5
 params = { narrow = false }
 
 [[menu.main]]
+identifier = "hiscores"
+name = "hiscores"
+url = "/hiscores/"
+weight = 6
+# Not on phones, where it won't fit; the footer has it too
+params = { narrow = false }
+
+[[menu.main]]
 identifier = "play"
 name = "play"
 url = "https://play.moonlapse.net"
-weight = 6
+weight = 7
 # The browser version needs a keyboard, so not on phones
 params = { narrow = false }
 
@@ -77,7 +85,7 @@ params = { narrow = false }
 identifier = "account"
 name = "account"
 url = "https://auth.moonlapse.net/auth/v1/account"
-weight = 7
+weight = 8
 # Hidden from the header on phones, where it won't fit; the footer has it too
 params = { narrow = false }
 
@@ -89,6 +97,8 @@ env = "production"
 homeTitle = "MoonlapseMUD: a multiplayer dungeon in your terminal or browser"
 # Live server status (players, game time), polled by the homepage and footer
 statusURL = "https://api.moonlapse.net/status"
+# The hiscores, which /hiscores/ asks for from the browser
+hiscoresURL = "https://api.moonlapse.net/v1/hiscores"
 # The game in a browser (desktop, with a keyboard)
 playURL = "https://play.moonlapse.net"
 # The community Discord server (an invite that never expires)
