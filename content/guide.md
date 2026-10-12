@@ -146,6 +146,8 @@ An account can have up to 10 characters. Only one of them can be in the game at 
 
 A name is letters, digits and underscores, and it's yours alone whatever its capitals: if there's a `Bob`, there can't be a `bob`. A name can never be changed.
 
+Your characters are on the [hiscores](/hiscores/): their levels, XP and ranks, for anyone to see. Type `/hiscores off` to take the character you're playing off them, and `/hiscores on` to put it back.
+
 To delete a character, select it on the character screen, press <kbd>D</kbd> and type its name. It stays on the list, greyed out, with the days it has left: for 30 days you can select it and press <kbd>Enter</kbd> to **Restore** it. A deleted character doesn't count towards the 10, but restoring one needs a free slot, and its name stays taken until it's gone, even for you. After 30 days, or straight away if you choose **Delete now**, it's deleted for good, with its items, bank, quests and mail, and the letters it sent.
 
 ## Playing as a guest

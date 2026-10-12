@@ -1434,3 +1434,311 @@ kbd {
   margin-top: 2rem;
   font-family: var(--font-mono);
 }
+
+/* ── Hiscores ({{< hiscores >}}, filled in by assets/js/hiscores.js) ─ */
+
+.hs-search {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.hs-field label,
+.hs-jump label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+}
+
+.hs-field label span {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.hs input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: var(--primary);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.hs input:focus {
+  outline: none;
+  border-color: var(--ansi-magenta);
+}
+
+.hs .btn {
+  cursor: pointer;
+}
+
+/* The tables, in the menu's style: the current one in brackets */
+.hs-tables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.2rem;
+  margin: 1.5rem 0 0.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-content .hs-tables a {
+  position: relative;
+  padding: 0.2rem 1ch;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--secondary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hs-tables a::before,
+.hs-tables a::after {
+  position: absolute;
+  visibility: hidden;
+  color: var(--ansi-magenta);
+}
+
+.hs-tables a::before {
+  content: "[";
+  left: 0;
+}
+
+.hs-tables a::after {
+  content: "]";
+  right: 0;
+}
+
+.post-content .hs-tables a:hover {
+  color: var(--primary);
+}
+
+.post-content .hs-tables a[aria-current] {
+  color: var(--ansi-magenta);
+}
+
+.hs-tables a[aria-current]::before,
+.hs-tables a[aria-current]::after,
+.hs-tables a:hover::before,
+.hs-tables a:hover::after {
+  visibility: visible;
+}
+
+.post-content .hs-updated {
+  min-height: 1.5em;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--secondary);
+}
+
+.hs-view {
+  min-height: 10rem;
+}
+
+.post-content .hs-heading {
+  margin: 1.5rem 0 0;
+  outline: none;
+}
+
+.post-content .hs-sub,
+.post-content .hs-note {
+  margin: 0.25rem 0 0;
+  color: var(--secondary);
+}
+
+.post-content .hs-note {
+  margin: 1.5rem 0 0;
+}
+
+.post-content .hs-note strong {
+  color: var(--primary);
+}
+
+.hs-error .btn {
+  margin-top: 1rem;
+}
+
+.hs-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* the site's tables hide their header row: these need it */
+.post-content .hs-table thead {
+  display: table-header-group;
+}
+
+.post-content .hs-table {
+  margin: 1rem 0 0;
+}
+
+.post-content .hs-table th,
+.post-content .hs-table td {
+  padding: 0.45rem 0.75rem;
+  vertical-align: baseline;
+}
+
+.post-content .hs-table th:first-child,
+.post-content .hs-table td:first-child {
+  width: 1%;
+  padding-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.post-content .hs-table th:last-child,
+.post-content .hs-table td:last-child {
+  padding-right: 0.5rem;
+}
+
+.post-content .hs-table tbody th {
+  font-family: var(--font-body);
+  font-size: inherit;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--primary);
+}
+
+.post-content .hs-table .hs-num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-content .hs-table thead .hs-num {
+  font-size: 0.75rem;
+}
+
+.hs-name {
+  word-break: break-all;
+}
+
+.post-content .hs-table a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.post-content .hs-table a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.post-content .hs-table .hs-hit td,
+.post-content .hs-table .hs-hit th {
+  background: color-mix(in srgb, var(--ansi-magenta) 16%, transparent);
+}
+
+.post-content .hs-table .hs-hit a {
+  color: var(--ansi-bright-magenta);
+}
+
+.post-content .hs-table .hs-total th,
+.post-content .hs-table .hs-total td {
+  border-bottom-color: var(--secondary);
+}
+
+.post-content .hs-table .hs-none,
+.post-content .hs-table .hs-none th {
+  color: var(--secondary);
+}
+
+.hs-compare .hs-level,
+.hs-compare .hs-xp,
+.hs-compare .hs-rank {
+  display: block;
+}
+
+.hs-compare .hs-level {
+  font-size: 1.05rem;
+}
+
+.hs-compare .hs-xp,
+.hs-compare .hs-rank {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.post-content .hs-compare .hs-win .hs-level {
+  color: var(--ansi-green);
+  font-weight: 700;
+}
+
+.hs-pager {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.hs-pager > :last-child {
+  justify-self: end;
+}
+
+.hs-jump {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-content .hs-jump label {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.post-content .hs-jump input {
+  width: 6.5rem;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.875rem;
+  -moz-appearance: textfield;
+}
+
+.hs-jump .btn {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .hs-search {
+    grid-template-columns: 1fr;
+  }
+
+  .post-content .hs-table {
+    font-size: 0.85rem;
+  }
+
+  .post-content .hs-table th,
+  .post-content .hs-table td {
+    padding: 0.4rem 0.4rem;
+  }
+
+  /* the pages either side, the rank box below them */
+  .hs-pager {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hs-jump {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+  }
+}

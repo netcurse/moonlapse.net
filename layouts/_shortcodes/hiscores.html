@@ -1,0 +1,22 @@
+{{- /* {{< hiscores >}}: the hiscores, filled in from params.hiscoresURL by assets/js/hiscores.js. The view
+       is in the address (?table=mining&page=2, ?player=Bob, ?player=Bob&vs=Alice) */ -}}
+<div class="hs" data-hiscores data-api="{{ site.Params.hiscoresURL }}" hidden>
+  <form class="hs-search" role="search">
+    <div class="hs-field">
+      <label for="hs-player">Character</label>
+      <input id="hs-player" name="player" type="text" maxlength="32" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    </div>
+    <div class="hs-field">
+      <label for="hs-vs">Compare with <span>(optional)</span></label>
+      <input id="hs-vs" name="vs" type="text" maxlength="32" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    </div>
+    <button class="btn btn-primary" type="submit">Look up</button>
+  </form>
+  <nav class="hs-tables" aria-label="Tables" data-hs-tables></nav>
+  <p class="hs-updated" data-hs-updated></p>
+  <div class="hs-view" data-hs-view aria-live="polite"></div>
+</div>
+<noscript><p class="hs-note">The hiscores are filled in by JavaScript, which is off in this browser.</p></noscript>
+{{- with resources.Get "js/hiscores.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{- end }}
