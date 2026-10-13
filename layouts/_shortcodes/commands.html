@@ -1,0 +1,12 @@
+{{- /* {{< commands lang="sh" >}}…{{< /commands >}}, inside {{< platform >}}: a code block with
+       {url}, {file} and {dir} replaced by that platform's archive, its name, and the folder it unpacks to */ -}}
+{{- $id := .Parent.Get "id" -}}
+{{- $r := hugo.Data.release -}}
+{{- $code := trim .Inner "\n" -}}
+{{- range $r.platforms }}{{ if eq .id $id }}
+  {{- $dir := printf "moonlapse-%s-%s" $r.version .id -}}
+  {{- $file := printf "%s.%s" $dir .ext -}}
+  {{- $url := replace (replace $r.base_url "{version}" $r.version) "{file}" $file -}}
+  {{- $code = replace (replace (replace $code "{url}" $url) "{file}" $file) "{dir}" $dir -}}
+{{- end }}{{ end -}}
+{{ transform.Highlight $code (.Get "lang" | default "sh") }}

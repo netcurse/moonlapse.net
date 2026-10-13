@@ -22,9 +22,9 @@
     {{- end }}
     <p class="platform-req">{{ $p.requires }}<br /><code>{{ $f.file }}</code></p>
     {{- else if eq $id "browser" }}
-    {{ partial "play_button.html" (dict "class" "btn-primary") }}
+    {{ partial "play_button.html" (dict "class" "btn-primary" "size" 16) }}
     {{- with urls.Parse site.Params.playURL }}
-    <p class="platform-req">At <code>{{ .Host }}</code>, on a desktop or laptop with a keyboard</p>
+    <p class="platform-req">A desktop or laptop with a keyboard<br /><a href="{{ site.Params.playURL }}"><code>{{ .Host }}</code></a></p>
     {{- end }}
     {{- end }}
   </div>

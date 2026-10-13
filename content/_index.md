@@ -84,7 +84,7 @@ steps:
     text: "Unpack it anywhere and run `moonlapse` from a terminal, or double-click it on Windows."
   - title: "Sign in and make a character"
     text: "Sign in through your browser with an email, Google or Discord, or *Play as guest* with no account and register later. Then name your character and wake up in front of the Morningside Inn. Press `?` for help any time."
-steps_alt: "Or skip the download: play in your browser at [play.moonlapse.net](https://play.moonlapse.net), on a computer with a keyboard."
+steps_alt: "Or skip the download and play in your browser at [play.moonlapse.net](https://play.moonlapse.net), on a computer with a keyboard."
 ---
 
 Moonlapse is a multi-user dungeon: one shared world, drawn in text, that everyone plays together in real time. There's nothing to install but a small client, and it runs in any terminal.

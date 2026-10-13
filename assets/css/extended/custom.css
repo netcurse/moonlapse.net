@@ -474,6 +474,13 @@ kbd {
   padding: 0.95rem 1.5rem;
 }
 
+/* the browser version as a real second choice, not a faint one */
+.download-cta .play-btn,
+.steps-more .play-btn {
+  border-color: var(--ansi-magenta);
+  color: var(--ansi-bright-magenta) !important;
+}
+
 .download-meta {
   text-shadow: 0 0 4px #000, 0 0 8px #000, 0 0 16px #000;
   margin-top: 1rem;
@@ -503,7 +510,7 @@ kbd {
   padding: 0;
 }
 
-@media (max-width: 600px), (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .play-btn {
     display: none !important;
   }
@@ -923,7 +930,10 @@ kbd {
 }
 
 .steps-more {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
   margin-top: 1.75rem;
 }
 
@@ -1054,6 +1064,10 @@ kbd {
   font-size: 0.75rem;
   color: var(--secondary);
   word-break: break-all;
+}
+
+.post-content .platform-req a code {
+  color: var(--link-color);
 }
 
 /* ── 404 ───────────────────────────────────────────────────────── */

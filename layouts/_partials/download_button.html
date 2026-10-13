@@ -1,35 +1,33 @@
-{{- /* Main download button. Defaults to Windows; the script picks the visitor's platform. */ -}}
+{{- /* Main download button: to the download page, on the visitor's platform's tab (picked by the script) */ -}}
 {{- $r := hugo.Data.release -}}
-{{- $files := slice -}}
-{{- range $r.platforms }}{{ $files = $files | append (partial "release_file.html" .) }}{{ end -}}
-{{- $first := index $files 0 -}}
+{{- $first := index $r.platforms 0 -}}
 <div class="download-cta">
-  <a id="dl-main" class="btn btn-primary" href="{{ $first.url | default "/download/" }}">
+  <a id="dl-main" class="btn btn-primary" href="/download/">
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-    <span id="dl-main-label">{{ if $first.url }}Download for {{ $first.platform.name }}{{ else }}Get the client{{ end }}</span>
+    <span id="dl-main-label">{{ if $r.available }}Download for {{ $first.name }}{{ else }}Get the client{{ end }}</span>
   </a>
   {{ partial "play_button.html" (dict "class" "btn-ghost") }}
 </div>
 <p class="download-meta">
-  <span>{{ with partial "release_notes.html" . }}<a href="{{ .RelPermalink }}">v{{ $r.version }}</a>{{ else }}v{{ $r.version }}{{ end }} · Windows, macOS &amp; Linux · free</span> ·
+  <span>{{ with partial "release_notes.html" . }}<a href="{{ .RelPermalink }}">v{{ $r.version }}</a>{{ else }}v{{ $r.version }}{{ end }} · free</span> ·
+  <span>Windows, macOS, Linux &amp; browser</span> ·
   <span><a href="/download/">all downloads</a></span>
 </p>
 {{- if $r.available }}
 <script>
   (function () {
-    var files = {{ $files }};
+    var platforms = {{ $r.platforms }};
     var id = window.moonlapsePlatform && moonlapsePlatform();
-    // phones and tablets can't run it: send them to the downloads page
+    // phones and tablets can't run it
     if (id === "") {
-      document.getElementById("dl-main").href = "/download/";
       document.getElementById("dl-main-label").textContent = "Get the client";
       return;
     }
-    var f = files.find(function (f) { return f.platform.id === id; });
-    if (!f) return;
-    document.getElementById("dl-main").href = f.url;
-    document.getElementById("dl-main-label").textContent = "Download for " + f.platform.name;
+    var p = platforms.find(function (p) { return p.id === id; });
+    if (!p) return;
+    document.getElementById("dl-main").href = "/download/#" + p.id;
+    document.getElementById("dl-main-label").textContent = "Download for " + p.name;
   })();
 </script>
 {{- end }}

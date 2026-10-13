@@ -5,33 +5,48 @@ description: "The Moonlapse client for Windows, macOS and Linux, or play in your
 
 {{< platforms >}}
 {{< platform id="windows-x64" >}}
-1. Right-click the `.zip` and choose **Extract All…**
-2. Open the folder and double-click `moonlapse.exe`, or run it from [Windows Terminal](https://aka.ms/terminal), which draws it best:
+In PowerShell, or better, [Windows Terminal](https://aka.ms/terminal), which draws it best:
 
-   ```powershell
-   cd moonlapse-*-windows-x64
-   .\moonlapse.exe
-   ```
+{{< commands lang="powershell" >}}
+curl.exe -fLO {url}
+tar -xf {file}
+cd {dir}
+.\moonlapse.exe
+{{< /commands >}}
 
-The client isn't signed yet, so the first time, SmartScreen may say *Windows protected your PC*. Click **More info**, then **Run anyway**.
+Next time, just the last two lines. Or download it with the button, right-click the `.zip`, choose **Extract All…**, and double-click `moonlapse.exe` in the folder.
+
+The client isn't signed yet, so if you download it in your browser, SmartScreen may say *Windows protected your PC* the first time. Click **More info**, then **Run anyway**.
 {{< /platform >}}
 {{< platform id="macos-arm64" >}}
-Unpack the archive (double-click it in Finder), then in Terminal:
+In Terminal:
 
-```sh
-cd ~/Downloads/moonlapse-*-macos-arm64
+{{< commands >}}
+curl -fL {url} | tar -xzf -
+cd {dir}
+./moonlapse
+{{< /commands >}}
+
+Next time, just the last two lines.
+
+The client isn't signed yet. Downloaded with `curl` it runs as it is, but if you download it in your browser, macOS quarantines it, so unpack it in Finder and let it run:
+
+{{< commands >}}
+cd ~/Downloads/{dir}
 xattr -dr com.apple.quarantine .
 ./moonlapse
-```
-
-The client isn't signed yet, so macOS quarantines it when it's downloaded: the `xattr` line lets it run. You only need it once per download.
+{{< /commands >}}
 {{< /platform >}}
 {{< platform id="linux-x64" >}}
-```sh
-tar -xzf moonlapse-*-linux-x64.tar.gz
-cd moonlapse-*-linux-x64
+In a terminal:
+
+{{< commands >}}
+curl -fL {url} | tar -xzf -
+cd {dir}
 ./moonlapse
-```
+{{< /commands >}}
+
+Next time, just the last two lines.
 
 The client needs ncurses, which almost every distribution has already (on Debian or Ubuntu it's `libncursesw6`). If it complains about `GLIBC`, your distribution's glibc is older than the one it needs (above).
 {{< /platform >}}

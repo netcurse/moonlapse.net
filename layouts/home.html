@@ -64,7 +64,10 @@
   {{- with $p.steps_alt }}
   <p class="steps-alt">{{ . | markdownify }}</p>
   {{- end }}
-  <p class="steps-more"><a class="btn btn-ghost" href="/guide/">Read the guide →</a></p>
+  <p class="steps-more">
+    {{ partial "play_button.html" (dict "class" "btn-ghost") }}
+    <a class="btn btn-ghost" href="/guide/">Read the guide →</a>
+  </p>
 </section>
 
 {{- end }}
