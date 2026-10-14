@@ -46,36 +46,36 @@ url = "/download/"
 weight = 2
 
 [[menu.main]]
+identifier = "play"
+name = "play"
+url = "https://play.moonlapse.net"
+weight = 3
+# The browser version needs a keyboard, so not on phones and tablets
+params = { keyboard = true }
+
+[[menu.main]]
 identifier = "guide"
 name = "how to play"
 url = "/guide/"
-weight = 3
-
-[[menu.main]]
-identifier = "about"
-name = "about"
-url = "/about/"
 weight = 4
-
-[[menu.main]]
-identifier = "blog"
-name = "blog"
-url = "/blog/"
-weight = 5
 
 [[menu.main]]
 identifier = "hiscores"
 name = "hiscores"
 url = "/hiscores/"
+weight = 5
+
+[[menu.main]]
+identifier = "blog"
+name = "blog"
+url = "/blog/"
 weight = 6
 
 [[menu.main]]
-identifier = "play"
-name = "play"
-url = "https://play.moonlapse.net"
+identifier = "about"
+name = "about"
+url = "/about/"
 weight = 7
-# The browser version needs a keyboard, so not on phones and tablets
-params = { keyboard = true }
 
 [[menu.main]]
 identifier = "account"

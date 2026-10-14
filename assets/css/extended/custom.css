@@ -241,21 +241,28 @@ svg.ext {
     display: block;
   }
 
-  /* (the header is sticky, so the sheet hangs from it) */
+  /* a panel hanging from the button, as wide as its longest item */
+  .menu-folds .header-nav {
+    position: relative;
+  }
+
   .menu-folds .menu {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: calc(100% + 1px);
+    right: var(--gap);
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 0.25rem 0 0.75rem;
+    min-width: 13rem;
+    max-width: calc(100vw - 2 * var(--gap));
+    padding: 0.35rem 0;
     overflow: visible;
     /* solid: a blur inside the header's own blur doesn't apply, and phones have none */
     background: color-mix(in srgb, var(--code-bg) 55%, black);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    border-top: 0;
+    border-radius: 0 0 var(--radius) var(--radius);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
   }
 
@@ -263,15 +270,23 @@ svg.ext {
     display: flex;
   }
 
-  .menu-folds .menu li + li {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
   /* (PaperMod gives the header a 60px line height) */
   .menu-folds .menu a {
-    padding: 0.8rem var(--gap);
+    padding: 0.7rem 1.25rem;
     font-size: 1rem;
     line-height: 1.4;
+    border-left: 2px solid transparent;
+  }
+
+  /* no brackets in a column: the current page is marked at its edge */
+  .menu-folds .menu .br {
+    display: none;
+  }
+
+  .menu-folds .menu a.active {
+    text-decoration: none;
+    border-left-color: var(--ansi-magenta);
+    background: color-mix(in srgb, var(--ansi-magenta) 10%, transparent);
   }
 }
 
