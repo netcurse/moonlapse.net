@@ -7,11 +7,16 @@
             {{- end }}
             <span>Moonlapse</span>
         </a>
+        {{- /* Under 960px the menu folds behind this (the script below shows it). Without JavaScript the
+               menu stays a row, which scrolls sideways when it doesn't fit */}}
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" hidden>
+            <span class="br">[</span><span class="menu-toggle-label">menu</span><span class="br">]</span>
+        </button>
         <ul id="menu" class="menu">
             {{- $current := . }}
             {{- range site.Menus.main }}
             {{- $active := or ($current.IsMenuCurrent "main" .) (eq (.URL | absLangURL) ($current.Permalink | absLangURL)) (and (ne .URL "/") (strings.HasPrefix ($current.Permalink | absLangURL) (.URL | absLangURL))) }}
-            <li {{- if eq .Params.narrow false }} class="menu-wide"{{ end }}>
+            <li {{- if .Params.keyboard }} class="menu-keyboard"{{ end }}>
                 <a href="{{ .URL | absLangURL }}" {{- if $active }} class="active" aria-current="page" {{- end }}>
                     <span class="br">[</span>{{ .Name }}<span class="br">]</span>
                 </a>
@@ -19,4 +24,31 @@
             {{- end }}
         </ul>
     </nav>
+    <script>
+      // (here, not deferred: the header is folded before it's first drawn)
+      (function () {
+        var header = document.currentScript.parentNode;
+        var button = header.querySelector(".menu-toggle");
+        var label = button.querySelector(".menu-toggle-label");
+        header.classList.add("menu-folds");
+        button.hidden = false;
+        function open(yes) {
+          header.classList.toggle("menu-open", yes);
+          button.setAttribute("aria-expanded", yes ? "true" : "false");
+          label.textContent = yes ? "close" : "menu";
+        }
+        button.addEventListener("click", function () {
+          open(!header.classList.contains("menu-open"));
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && header.classList.contains("menu-open")) {
+            open(false);
+            button.focus();
+          }
+        });
+        document.addEventListener("click", function (e) {
+          if (!header.contains(e.target)) open(false);
+        });
+      })();
+    </script>
 </header>

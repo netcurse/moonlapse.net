@@ -187,6 +187,73 @@ svg.ext {
   visibility: visible;
 }
 
+/* Under 960px the menu folds behind [menu] (the script in header.html), and opens as a panel
+   below the header. Without the script it stays a row, scrolling sideways */
+.menu-toggle {
+  display: none;
+  padding: 0.35em 0.45em;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--primary);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.menu-toggle .br {
+  color: var(--ansi-magenta);
+}
+
+.menu-toggle:hover {
+  color: var(--ansi-bright-magenta);
+}
+
+@media (max-width: 960px) {
+  .menu-folds .header-nav {
+    position: relative;
+  }
+
+  .menu-folds .menu-toggle {
+    display: block;
+  }
+
+  .menu-folds .menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    right: var(--gap);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-width: 12rem;
+    padding: 0.4rem 0;
+    overflow: visible;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-top: 0;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
+
+  .menu-folds.menu-open .menu {
+    display: flex;
+  }
+
+  /* (PaperMod gives the header a 60px line height) */
+  .menu-folds .menu a {
+    padding: 0.6em 1.1em;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+/* the browser version needs a keyboard (as .play-btn) */
+@media (hover: none) and (pointer: coarse) {
+  .menu .menu-keyboard {
+    display: none;
+  }
+}
+
 /* ── Main column ───────────────────────────────────────────────── */
 
 /* Header, main and footer in a column, so the footer sits at the bottom of short pages */
@@ -1313,17 +1380,14 @@ kbd {
     top: 1.3rem;
   }
 
-  .header-mark span {
+  /* (only while the menu is a row: folded, there's room for the name) */
+  .header:not(.menu-folds) .header-mark span {
     display: none;
   }
 
-  .menu a {
+  .header:not(.menu-folds) .menu a {
     font-size: 0.8rem;
     padding: 0.35em 0.3em;
-  }
-
-  .menu .menu-wide {
-    display: none;
   }
 
   .platform-tabs [role="tab"] {
