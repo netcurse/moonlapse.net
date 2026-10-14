@@ -187,63 +187,97 @@ svg.ext {
   visibility: visible;
 }
 
-/* Under 960px the menu folds behind [menu] (the script in header.html), and opens as a panel
-   below the header. Without the script it stays a row, scrolling sideways */
+/* Under 960px the menu folds behind a button (the script in header.html), and opens as a sheet
+   across the page below the header. Without the script it stays a row, scrolling sideways */
 .menu-toggle {
   display: none;
-  padding: 0.35em 0.45em;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--primary);
+  padding: 10px 6px;
+  margin-right: -6px;
   background: none;
   border: 0;
   cursor: pointer;
 }
 
-.menu-toggle .br {
-  color: var(--ansi-magenta);
+/* three bars, which cross into an X when it's open */
+.menu-bars {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 14px;
 }
 
-.menu-toggle:hover {
-  color: var(--ansi-bright-magenta);
+.menu-bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--primary);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-bars span:nth-child(1) { top: 0; }
+.menu-bars span:nth-child(2) { top: 6px; }
+.menu-bars span:nth-child(3) { top: 12px; }
+
+.menu-toggle:hover .menu-bars span {
+  background: var(--ansi-bright-magenta);
+}
+
+.menu-open .menu-bars span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-open .menu-bars span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-open .menu-bars span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 @media (max-width: 960px) {
-  .menu-folds .header-nav {
-    position: relative;
-  }
-
   .menu-folds .menu-toggle {
     display: block;
   }
 
+  /* (the header is sticky, so the sheet hangs from it) */
   .menu-folds .menu {
     display: none;
     position: absolute;
-    top: calc(100% + 1px);
-    right: var(--gap);
+    top: 100%;
+    left: 0;
+    right: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    min-width: 12rem;
-    padding: 0.4rem 0;
+    padding: 0.25rem 0 0.75rem;
     overflow: visible;
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-top: 0;
-    border-radius: 0 0 var(--radius) var(--radius);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    /* solid: a blur inside the header's own blur doesn't apply, and phones have none */
+    background: color-mix(in srgb, var(--code-bg) 55%, black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
   }
 
   .menu-folds.menu-open .menu {
     display: flex;
   }
 
+  .menu-folds .menu li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
   /* (PaperMod gives the header a 60px line height) */
   .menu-folds .menu a {
-    padding: 0.6em 1.1em;
-    font-size: 0.95rem;
+    padding: 0.8rem var(--gap);
+    font-size: 1rem;
     line-height: 1.4;
+  }
+}
+
+@media (max-width: 960px) and (prefers-reduced-motion: reduce) {
+  .menu-bars span {
+    transition: none;
   }
 }
 

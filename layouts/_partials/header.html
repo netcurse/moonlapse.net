@@ -9,8 +9,8 @@
         </a>
         {{- /* Under 960px the menu folds behind this (the script below shows it). Without JavaScript the
                menu stays a row, which scrolls sideways when it doesn't fit */}}
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" hidden>
-            <span class="br">[</span><span class="menu-toggle-label">menu</span><span class="br">]</span>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" hidden>
+            <span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
         <ul id="menu" class="menu">
             {{- $current := . }}
@@ -29,13 +29,11 @@
       (function () {
         var header = document.currentScript.parentNode;
         var button = header.querySelector(".menu-toggle");
-        var label = button.querySelector(".menu-toggle-label");
         header.classList.add("menu-folds");
         button.hidden = false;
         function open(yes) {
           header.classList.toggle("menu-open", yes);
           button.setAttribute("aria-expanded", yes ? "true" : "false");
-          label.textContent = yes ? "close" : "menu";
         }
         button.addEventListener("click", function () {
           open(!header.classList.contains("menu-open"));
