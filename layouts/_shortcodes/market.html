@@ -1,0 +1,18 @@
+{{- /* {{< market >}}: the Marketplace's prices, filled in from params.marketURL by assets/js/market.js. The
+       view is in the address (?q=ore&kind=misc&sort=change, ?item=iron_ore&span=week) */ -}}
+<div class="hs mk" data-market data-api="{{ site.Params.marketURL }}" hidden>
+  <form class="mk-search" role="search">
+    <div class="hs-field">
+      <label for="mk-q">Item</label>
+      <input id="mk-q" name="q" type="search" maxlength="40" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    </div>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+  <nav class="hs-tables" aria-label="Kinds of item" data-mk-kinds></nav>
+  <p class="hs-updated" data-mk-updated></p>
+  <div class="hs-view" data-mk-view aria-live="polite"></div>
+</div>
+<noscript><p class="hs-note">The prices are filled in by JavaScript, which is off in this browser.</p></noscript>
+{{- with resources.Get "js/market.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{- end }}
