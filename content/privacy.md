@@ -3,7 +3,7 @@ title: "Privacy policy"
 description: "What Moonlapse keeps about you, why, who else sees it, and how to have it deleted."
 ---
 
-*Last updated 12 October 2026.*
+*Last updated 16 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
@@ -91,6 +91,12 @@ When a moderator has dealt with a report, the game records **how it ended**: whe
 
 If a moderator **mutes** or **bans** an account, the game keeps a record of it: who did it, the reason they gave, when it began and when it ends, and whether it was lifted early. Mutes and bans that have ended are kept too, so the moderators can see an account's history.
 
+### The Marketplace
+
+When you sell to another player at a Marketplace in the game, the game keeps a record of the sale: the item, how many, the price, the tax and any shipping, which Marketplace, when, and both characters and their accounts. It's kept so our moderators can look into cheating and gold trading, and so the game can work out what things usually sell for. Other players never see who bought or sold: a seller isn't told who bought, and buyers see only prices and amounts.
+
+While your sell orders are up, other players can see what's for sale, how many, the price and which Marketplace, but not whose they are.
+
 ### Your ignore list
 
 If you **ignore** a player (`/ignore`), the game keeps, for your account, the name you ignored, the account behind it, and when. Ignoring a name ignores that account's other characters too, but your list shows only the names you added. The player you ignore isn't told, and nobody else can see your list.
@@ -159,6 +165,7 @@ We'd only ever give your information to anyone else if the law required us to.
 - **Chat**: 14 days. What's in a report is kept with the report (below).
 - **Reports**: with no time limit, even after the account of either player is deleted, since they're what shows that someone keeps doing it. When an account is deleted, its account number is removed from its reports, but the names, places, reason and chat in them stay.
 - **Mutes and bans**: until the account is deleted, including ones that have ended or been lifted.
+- **Marketplace sales**: with no time limit, since they're what shows cheating and what prices are based on. When a character or account is deleted for good, it's removed from its sales, but the item, amount, price and when stay.
 - **Ignore lists**: until you remove the name (`/unignore`), or either account is deleted.
 - **Friends lists**: until you remove the character (`/unfriend`), your account is deleted, or the character is deleted for good (30 days after it's deleted, or straight away if its player chooses).
 - **Messages to your account**: until you dismiss them.
