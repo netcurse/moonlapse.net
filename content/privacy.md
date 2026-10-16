@@ -3,7 +3,7 @@ title: "Privacy policy"
 description: "What Moonlapse keeps about you, why, who else sees it, and how to have it deleted."
 ---
 
-*Last updated 15 October 2026.*
+*Last updated 16 October 2026.*
 
 Moonlapse is a free game run as a hobby by two people in Australia. We're not a company, we don't make money from it, and we have no interest in your data beyond what it takes to run the game. This page says exactly what that is.
 
