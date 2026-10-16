@@ -313,7 +313,8 @@
 
       var shops = [];
       if (d.shops.sell) shops.push(["Shops sell it for ", el("strong", null, gold(d.shops.sell.price)), " (" + d.shops.sell.shop + ")"]);
-      if (d.shops.buy) shops.push([(shops.length ? "and buy it for " : "Shops buy it for "), el("strong", null, gold(d.shops.buy.price)), " (" + d.shops.buy.shop + ")"]);
+      // (a shop pays less for each it has bought lately: this is the first's price)
+      if (d.shops.buy) shops.push([(shops.length ? "and buy the first for " : "Shops buy the first for "), el("strong", null, gold(d.shops.buy.price)), " (" + d.shops.buy.shop + "), less for each after it"]);
       if (shops.length) box.appendChild(el("p", { class: "mk-shops" }, [].concat.apply([], shops.map(function (p, i) {
         return i ? [", "].concat(p) : p;
       })).concat(["."])));
