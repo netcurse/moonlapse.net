@@ -66,22 +66,28 @@ url = "/hiscores/"
 weight = 5
 
 [[menu.main]]
+identifier = "market"
+name = "market"
+url = "/market/"
+weight = 6
+
+[[menu.main]]
 identifier = "blog"
 name = "blog"
 url = "/blog/"
-weight = 6
+weight = 7
 
 [[menu.main]]
 identifier = "about"
 name = "about"
 url = "/about/"
-weight = 7
+weight = 8
 
 [[menu.main]]
 identifier = "account"
 name = "account"
 url = "https://auth.moonlapse.net/auth/v1/account"
-weight = 8
+weight = 9
 
 # ── Params ──────────────────────────────────────────────────────────
 [params]
@@ -93,6 +99,8 @@ homeTitle = "MoonlapseMUD: a multiplayer dungeon in your terminal or browser"
 statusURL = "https://api.moonlapse.net/status"
 # The hiscores, which /hiscores/ asks for from the browser
 hiscoresURL = "https://api.moonlapse.net/v1/hiscores"
+# The Marketplace's prices, which /market/ asks for from the browser
+marketURL = "https://api.moonlapse.net/v1/market"
 # The game in a browser (desktop, with a keyboard)
 playURL = "https://play.moonlapse.net"
 # The community Discord server (an invite that never expires)
