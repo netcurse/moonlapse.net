@@ -68,11 +68,11 @@ You'll sign in through your browser the first time you play, with an email, Goog
 {{< /details >}}
 
 {{< details summary="Passkeys" >}}
-You can add a passkey on your [account page](https://auth.moonlapse.net/auth/v1/account) and sign in with it instead of a password. When you add it, set *Passkey Type* to **Resident Key**: then the **Passkey** button on the sign-in page finds it, with nothing to type. A hardware key such as a YubiKey holds only a few of these, so if yours is nearly full, choose *Default*.
+You can add a passkey on your [account page](https://auth.moonlapse.net/auth/v1/account) and sign in with it instead of a password. *Passkey Type* starts on **Resident Key**, which the **Passkey** button on the sign-in page finds, with nothing to type. The red caution under it is about hardware keys such as a YubiKey, which hold only a few of these: a passkey kept by your password manager, phone or computer can ignore it. If your hardware key is nearly full, choose *Default*.
 
 A *Default* passkey works too, but the **Passkey** button can't find it: type your email address (and your password, if your account has one) and press **Sign in**, and you'll be asked for the passkey. The sign-in page remembers your email address after the first time.
 
-To change a passkey from *Default* to *Resident Key*, delete it on your account page, then add it again. Your password manager won't make a second passkey for the same account while the first is still there.
+Passkeys added before 20 October 2026 started on *Default*. If the **Passkey** button can't find yours, delete it on your account page, then add it again.
 {{< /details >}}
 
 {{< details summary="Staying signed in" >}}
