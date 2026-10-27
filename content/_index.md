@@ -6,7 +6,7 @@ tagline: "An open-world multiplayer dungeon, played in your terminal, or in your
 # Screenshots are assets/images/screenshots/<name>.svg
 hero_shot:
   name: hero
-  alt: "The town of Morningside on the map, with the town guard targeted and other players chatting in the log"
+  alt: "Morningside Market on the map, with players around the market hall and the square, and their chat in the log"
 
 features:
   - glyph: "~"
@@ -36,41 +36,50 @@ features:
 
 gallery:
   - name: fishing-at-morningside
-    caption: "Fishing on the lake by Morningside"
-    alt: "Fishing at the edge of the lake outside Morningside in light rain, with a catfish in the log"
+    caption: "Fishing below the Morningside Inn"
+    alt: "Fishing from the lake shore below the Morningside Inn, with a raw bream arriving in the log"
   - name: mining-copper
-    caption: "Mining copper in the Southern Fields"
-    alt: "Mining in the Southern Fields, with copper ore arriving in the log"
-  - name: fletching-fishing-rod
-    caption: "Fletching a fishing rod at Hilda's Smithy"
-    alt: "The fletching menu at Hilda's Smithy, making a balsa fishing rod from balsa logs"
+    caption: "Mining copper at Redhill"
+    alt: "Mining in the pit of Redhill Mine, ringed by rocks and mountains, with copper ore arriving in the log"
+  - name: fighting-a-bear
+    caption: "Fighting a bear on the Far Bank"
+    alt: "Punching a bear between the mountains and the river, with its health in the target panel and the fight in the log"
   - name: talk-to-marta
     caption: "Marta, at the Morningside Inn"
-    alt: "Talking to Marta at the Morningside Inn, with a list of answers to choose from"
+    alt: "Marta asks what it'll be: hot food and cold beer. Five answers to choose from, the last of them Goodbye"
   - name: shopping
     caption: "Buying and selling at the inn"
-    alt: "The inn's shop: food for sale on one side, your inventory and what it's worth on the other"
+    alt: "The inn's shop: beer, cooked meat and stew for sale on one side, your inventory and what each thing fetches on the other"
   - name: drinking-socially
-    caption: "A beer at the inn"
-    alt: "Drinking a beer in Morningside while other players chat in the log"
+    caption: "A beer at the Duskway Inn, in Springport"
+    alt: "Drinking a beer among sailors and regulars at the Duskway Inn, while Fiorenzo the bard sings in the log"
   - name: talking-to-perth
     caption: "Ser Perth, in Morningside Castle's Great Hall"
-    alt: "Talking to Ser Perth in the castle's Great Hall, with his warning about the goblins in the log"
+    alt: "Ser Perth warns that the goblins across the river grow bold, and not to go over alone"
+  - name: alans-camp
+    caption: "Alan's camp, across the estuary"
+    alt: "Alan, at his fishing camp by the estuary, offers a cup of rum. Four answers to choose from"
+  - name: marketplace
+    caption: "The Marketplace at Morningside Market"
+    alt: "The Marketplace: what other players are selling, each with its cheapest price and where it's listed"
   - name: mail-from-ric
-    caption: "A letter, with dinner enclosed"
+    caption: "A letter, with supper enclosed"
     alt: "A letter from Ric with two cooked catfish and 50 gold coins enclosed"
   - name: skills
     caption: "Your skills"
-    alt: "The skills window: ten skills, each with its level, experience and a bar to the next level"
-  - name: morningside-map
+    alt: "The skills window: eleven skills, each with its level, experience and a bar to the next level, and the total and combat levels"
+  - name: midland-map
     caption: "The map of Midland"
-    alt: "The world map, showing Morningside, its castle, the Southern Fields and the roads between"
+    alt: "The world map, showing the Greenwood, the King's Road, Redhill Mine, the Goblin Woods and the roads between"
+  - name: ducal-throne
+    caption: "Trying the Duke's throne"
+    alt: "Sitting on the ducal throne in Morningside Castle's Great Hall"
   - name: character-selection
     caption: "Choosing a character"
-    alt: "The character screen, with one character of a possible ten and the option to make another"
-  - name: fighting-rats
-    caption: "Fighting rats in the inn's cellar"
-    alt: "Punching a rat in the Morningside Inn's cellar, with the fight in the log"
+    alt: "The character screen, with three characters of a possible ten and the option to make another"
+  - name: brother-anselm
+    caption: "Brother Anselm, at the chapel"
+    alt: "Brother Anselm asks what he can do. The first answer asks him to heal you"
 
 # The section round the gameplay recording
 play:
