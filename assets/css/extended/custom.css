@@ -2,7 +2,7 @@
 
 :root {
   --radius: 6px;
-  --main-width: 780px;
+  --main-width: 880px;
   --wide-width: 1080px;
   --font-heading: "Cinzel", Georgia, "Times New Roman", serif;
   --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -531,6 +531,63 @@ kbd {
   color: var(--secondary);
   border: 1px dashed var(--border);
   cursor: not-allowed;
+}
+
+/* ── Home: text straight on the stars ──────────────────────────── */
+
+/* A soft dark patch (blurred where the panels are) behind text that has no card under it */
+.hero-tagline,
+.download-meta,
+.intro,
+.cast-section h2,
+.cast-lede,
+.gallery-section h2,
+.steps-section h2,
+.steps-alt,
+.play-note {
+  position: relative;
+  isolation: isolate;
+}
+
+.download-meta,
+.cast-section h2,
+.gallery-section h2,
+.steps-section h2,
+.steps-alt {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-tagline::before,
+.download-meta::before,
+.intro::before,
+.cast-section h2::before,
+.cast-lede::before,
+.gallery-section h2::before,
+.steps-section h2::before,
+.steps-alt::before,
+.play-note::before {
+  /* no wider than the gutter, or phones scroll sideways */
+  --fade-x: min(2.5rem, var(--gap));
+  --fade-y: 1.25rem;
+  content: "";
+  position: absolute;
+  inset: calc(var(--fade-y) * -1) calc(var(--fade-x) * -1);
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  /* full strength over the text, fading out round it */
+  -webkit-mask:
+    linear-gradient(to right, transparent, #000 var(--fade-x), #000 calc(100% - var(--fade-x)), transparent),
+    linear-gradient(transparent, #000 var(--fade-y), #000 calc(100% - var(--fade-y)), transparent);
+  -webkit-mask-composite: source-in;
+  mask:
+    linear-gradient(to right, transparent, #000 var(--fade-x), #000 calc(100% - var(--fade-x)), transparent),
+    linear-gradient(transparent, #000 var(--fade-y), #000 calc(100% - var(--fade-y)), transparent);
+  mask-composite: intersect;
+  pointer-events: none;
 }
 
 /* ── Home: hero ────────────────────────────────────────────────── */
