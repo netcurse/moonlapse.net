@@ -293,6 +293,7 @@
       box.appendChild(el("p", { class: "mk-back" }, link({}, "← All items")));
       box.appendChild(heading(d.name));
       box.appendChild(el("p", { class: "hs-sub" }, kindName(idx, d.kind)));
+      if (d.description) box.appendChild(el("p", { class: "mk-description" }, d.description));
 
       var tiles = el("div", { class: "mk-tiles" });
       tiles.appendChild(d.guide == null
