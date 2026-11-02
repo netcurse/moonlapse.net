@@ -16,7 +16,7 @@ features:
   - glyph: "T"
     colour: green
     title: "Gather and make"
-    text: "Mine, chop, fish, then smith, fletch, cook and craft what you gathered. Ten skills to train, from melee to magic."
+    text: "Mine, chop, fish, then smith, fletch, cook and craft what you gathered. Eleven skills to train, from melee to magic."
   - glyph: "g"
     colour: red
     title: "Fight"
