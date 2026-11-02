@@ -1,12 +1,21 @@
 <!-- Theme CSS variables (from data/themes/) -->
 {{- partial "theme_vars.html" . -}}
 
+<!-- GitHub Pages serves http too unless "Enforce HTTPS" is on -->
+<script>if (location.protocol === "http:" && location.hostname === "moonlapse.net") location.protocol = "https:";</script>
 <meta name="color-scheme" content="dark" />
 {{- with site.Params.statusURL }}{{ with urls.Parse . }}
 <!-- The server status fetch is anonymous CORS, so the preconnect must be too -->
 <link rel="preconnect" href="{{ .Scheme }}://{{ .Host }}" crossorigin />
 {{- end }}{{ end }}
 <link rel="manifest" href="/site.webmanifest" />
+{{- if .IsHome }}{{ with partial "screenshot_file.html" .Params.hero_shot.name }}
+<!-- The largest thing on the homepage: ahead of the fonts and the logo -->
+<link rel="preload" as="image" href="{{ .res.RelPermalink }}" fetchpriority="high" />
+{{- end }}{{ else }}
+<!-- The body font, so long pages are less likely to re-wrap when it arrives. Not on the homepage, where it would hold up the big screenshot -->
+<link rel="preload" href="/fonts/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin />
+{{- end }}
 
 <!-- Starfield size: 1:1 with screen pixels, or a whole multiple on 2x+ screens (see custom.css) -->
 <script>
@@ -39,6 +48,13 @@
     if (/linux/i.test(ua)) return "linux-x64";
     return "windows-x64";
   };
+</script>
+
+<!-- The footer's script cancels the jump to a "#" link (to scroll smoothly), so the skip link moves focus itself -->
+<script>
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".skip-link")) document.getElementById("main").focus({ preventScroll: true });
+  });
 </script>
 
 <!-- External links open in a new tab -->

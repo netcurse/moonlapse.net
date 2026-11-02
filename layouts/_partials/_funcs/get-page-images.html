@@ -1,0 +1,11 @@
+{{- /* Replaces PaperMod's (for og:image and twitter:image): the homepage has og.png, every other page
+       its own card from og-card.html */ -}}
+{{- $imgs := slice -}}
+{{- if or .IsHome (eq .Kind "404") -}}
+  {{- $imgs = slice (dict "RelPermalink" (relURL "og.png") "Permalink" (absURL "og.png")) -}}
+{{- else -}}
+  {{- with partialCached "og-card.html" . .RelPermalink -}}
+    {{- $imgs = slice (dict "Image" . "RelPermalink" .RelPermalink "Permalink" .Permalink) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $imgs -}}

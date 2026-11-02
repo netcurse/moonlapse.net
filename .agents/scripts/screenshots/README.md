@@ -2,7 +2,7 @@
 
 How the game screenshots in `assets/images/screenshots/` are made: the client running in a terminal of exactly 123×38, and **F12** to save what's on screen as an SVG in the site's window frame, in the game's own colours. The game repo's README shows the same files (its `res/screenshots/`).
 
-Linux with Wayland, `foot`, `tmux` and Python 3.11 or later.
+Linux with Wayland, `foot`, `tmux`, Python 3.11 or later and fontTools (`pip install fonttools brotli`).
 
 ## Taking them
 
@@ -32,6 +32,6 @@ Look at a screenshot before it goes up. The site is public: nothing dev-only (ad
 - **The frame** is the one every screenshot has (they were exported from boron.sh until 0.7.0): a 1155×963 window with a title bar and its three dots, rounded corners and a shadow, on 30px of transparent padding: 1215×1023 in all. The cells are 9×23px, the font 15px.
 - **The colours** are the game's: `data/themes/moonlapse.toml`, with colour 0 as the window's background (the game paints its background with colour 0) and its `[window]` for the frame. Colours 8–17 are the client's own, which it sets itself (`init_color`): grey, charcoal, oak, six purples and a bright white. **Bold text in colours 0–7, or the default, is shown in the bright colour** (7 becomes 15), as terminals show it, and the client's bright colours are purples: so bold is the game's purple accent.
 - **Box-drawing lines** are drawn as lines, so they always join up. The terminal's line-drawing set (SO/SI, `ESC ( 0`) is read as box-drawing characters.
-- **The text** is Cascadia Code, the site's terminal font, embedded (the latin subset, a variable font, so bold is weight 600). Anything else (the moon phase's emoji) falls back to the viewer's fonts.
+- **The text** is Cascadia Code, the site's terminal font, embedded: just the glyphs that shot shows, by `subset_font.py`, which is about 7 KB against the whole font's 48 (a variable font, so bold is weight 600; no ligatures, since a terminal doesn't draw them). It needs `pip install fonttools brotli`. `subset-svg.py` does the same to existing shots. Anything else (the moon phase's emoji) falls back to the viewer's fonts.
 
 Why not boron.sh: a capture holds colour *numbers*, and boron.sh paints them with its own theme. The client's colours, which it redefines for itself, came out in the theme's, bold wasn't the purple the game shows, and the black the game paints behind every cell came out as grey-blue slabs.

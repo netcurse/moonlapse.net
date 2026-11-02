@@ -2,3 +2,4 @@ public/
 resources/
 _vendor/
 .hugo_build.lock
+__pycache__/

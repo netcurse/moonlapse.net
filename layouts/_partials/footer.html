@@ -4,7 +4,7 @@
     <div class="footer-mark">
         {{- with resources.Get "images/logo.png" }}
         {{- $mark := (.Crop "405x405 Left").Resize "96x webp" }}
-        <img src="{{ $mark.RelPermalink }}" width="48" height="48" alt="" />
+        <img src="{{ $mark.RelPermalink }}" width="48" height="48" alt="" loading="lazy" decoding="async" />
         {{- end }}
     </div>
     <nav class="footer-links" aria-label="Footer">

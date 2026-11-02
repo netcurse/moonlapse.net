@@ -13,12 +13,11 @@ and the client's own colours for 8-17, which it redefines for itself (init_color
 bright colours never show. Bold text in colours 0-7 (or the default, as 7) is shown in the bright
 colour, as terminals show it: so bold is the client's purple. The terminal's line-drawing set
 (SO/SI, ESC ( 0) is read as box-drawing characters. Box-drawing lines are drawn as lines, so they always join up. The text
-is Cascadia Code, the site's terminal font, embedded (the latin subset; anything else falls back
+is Cascadia Code, the site's terminal font, embedded (just the glyphs shown; anything else falls back
 to the viewer's monospace font).
 """
 
 import argparse
-import base64
 import html
 import re
 import sys
@@ -26,8 +25,9 @@ import tomllib
 import unicodedata
 from pathlib import Path
 
+from subset_font import subset_font
+
 SITE = Path(__file__).resolve().parents[3]
-FONT = SITE / "static/fonts/qWcsB6-zq5zxD57cT5s916v3aDvbtw.woff2"  # Cascadia Code, variable, latin
 
 COLS, ROWS = 123, 38
 CELL_W, CELL_H, FONT_SIZE = 9, 23, 15
@@ -179,6 +179,10 @@ BOX = {
 }
 
 
+def texts_of(texts):
+    return (t[t.index(">") + 1:t.rindex("<")] for t in texts)
+
+
 def render(rows, title):
     pal, default_fg, window = palette()
     win_bg = hexrgb(window["background"])
@@ -253,7 +257,7 @@ def render(rows, title):
         else:
             merged.append([c, r, span, fill])
 
-    font = base64.b64encode(FONT.read_bytes()).decode()
+    font = subset_font("".join(html.unescape(t) for t in texts_of(texts)) + title)
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIN_W + 2 * PAD}" height="{WIN_H + 2 * PAD}" '
         f'viewBox="0 0 {WIN_W + 2 * PAD} {WIN_H + 2 * PAD}">',

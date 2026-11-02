@@ -59,3 +59,13 @@ Then read the PNGs.
 - No horizontal scroll at phone width; the header stays on one row.
 - Download buttons: "Coming soon" while `available = false`, real links once true.
 - Lazy screenshots below the fold may be blank in a headless shot: that's expected, not a bug.
+
+## 5. Lighthouse
+
+After a change to templates, CSS, fonts or images. Lighthouse's phone numbers depend on the protocol, so test the live site, or a local copy over HTTP/2 with gzip, not `hugo server`:
+
+```sh
+npx lighthouse https://moonlapse.net/ --only-categories=performance,accessibility,best-practices,seo,agentic-browsing --chrome-flags="--headless=new"
+```
+
+Run it with `--preset=desktop` too, and on a post, `/hiscores/` and `/market/`. The targets are in `.agents/AGENTS.md`, "Lighthouse".

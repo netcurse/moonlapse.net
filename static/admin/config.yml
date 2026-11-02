@@ -1,0 +1,161 @@
+# The admin console at /admin/: Sveltia CMS. Saving commits straight to main, which publishes.
+# .agents/AGENTS.md, "The admin console", has how sign-in is set up.
+backend:
+  name: github
+  repo: netcurse/moonlapse.net
+  branch: main
+  # This repo is public: a token that can't reach anyone's private repos
+  auth_scope: public_repo
+  commit_messages:
+    create: "Add {{slug}} to {{collection}}"
+    update: "Update {{slug}} in {{collection}}"
+    delete: "Delete {{slug}} from {{collection}}"
+    uploadMedia: "Upload {{path}}"
+    deleteMedia: "Delete {{path}}"
+
+site_url: https://moonlapse.net
+display_url: https://moonlapse.net
+logo:
+  src: /apple-touch-icon.png
+
+# Uploads are screenshots: the {{< screenshot >}} shortcode only looks here, for .svg or .png
+media_folder: assets/images/screenshots
+public_folder: /images/screenshots
+
+# Front matter the way it's written by hand
+output:
+  omit_empty_optional_fields: true
+  yaml:
+    quote: double
+
+slug:
+  encoding: unicode
+  clean_accents: true
+
+collections:
+  - name: blog
+    label: Blog
+    label_singular: Post
+    icon: edit_note
+    folder: content/blog
+    create: true
+    slug:
+      editable: true
+    index_file:
+      label: The blog's own page
+      fields:
+        - { name: title, label: Title }
+        - { name: description, label: Description, widget: text }
+        - name: cascade
+          widget: object
+          label: Settings for every post
+          fields:
+            - { name: ShowBreadCrumbs, label: Show the link back to the blog, widget: boolean, default: true }
+        - { name: body, label: Body, widget: markdown, required: false }
+    summary: "{{title}} ({{date | date('YYYY-MM-DD')}}){{draft | ternary(' [draft]', '')}}"
+    sortable_fields:
+      fields: [date, title]
+      default: { field: date, direction: descending }
+    preview_path: "blog/{{slug}}/"
+    fields:
+      - { name: title, label: Title, hint: "Release notes: Version X.Y.Z: what's new" }
+      - { name: date, label: Date, widget: datetime, default: "{{now}}", format: "YYYY-MM-DDTHH:mm:ssZ", hint: "A date in the future stays off the site until a later build." }
+      - { name: description, label: Description, widget: text, hint: "The blog's list shows it, and so do link previews." }
+      - { name: draft, label: Draft (hidden from the site), widget: boolean, default: true, required: false }
+      - { name: body, label: Body, widget: markdown, modes: [raw, rich_text] }
+
+  - name: pages
+    label: Pages
+    icon: description
+    delete: false
+    files:
+      - name: home
+        label: Homepage
+        file: content/_index.md
+        fields:
+          - { name: title, label: Title }
+          - { name: description, label: Description, widget: text }
+          - { name: tagline, label: Tagline }
+          - name: hero_shot
+            label: Big screenshot
+            widget: object
+            fields:
+              - { name: name, label: Screenshot name, hint: "A file in assets/images/screenshots/, without .svg" }
+              - { name: alt, label: Alt text, widget: text }
+          - name: features
+            label: Features
+            label_singular: Feature
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: glyph, label: Glyph }
+              - { name: colour, label: Colour, widget: select, options: [red, green, yellow, blue, magenta, cyan, white] }
+              - { name: title, label: Title }
+              - { name: text, label: Text, widget: text }
+          - name: gallery
+            label: Screenshots
+            label_singular: Screenshot
+            widget: list
+            summary: "{{caption}}"
+            fields:
+              - { name: name, label: Screenshot name, hint: "A file in assets/images/screenshots/, without .svg" }
+              - { name: caption, label: Caption }
+              - { name: alt, label: Alt text, widget: text }
+          - name: play
+            label: Section round the recording
+            widget: object
+            fields:
+              - { name: title, label: Title }
+              - { name: text, label: Text, widget: text }
+          - name: steps
+            label: Steps
+            label_singular: Step
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Title }
+              - { name: text, label: Text, widget: text }
+          - { name: steps_alt, label: Under the steps, widget: text }
+          - { name: body, label: Intro, widget: markdown, modes: [raw, rich_text] }
+      - name: download
+        label: Download
+        file: content/download.md
+        fields: &page
+          - { name: title, label: Title }
+          - { name: description, label: Description, widget: text }
+          - { name: body, label: Body, widget: markdown, modes: [raw, rich_text] }
+      - name: guide
+        label: How to play
+        file: content/guide.md
+        fields: *page
+      - name: about
+        label: About
+        file: content/about.md
+        fields:
+          - { name: title, label: Title }
+          - { name: description, label: Description, widget: text }
+          - { name: aliases, label: Old addresses that redirect here, widget: list, required: false }
+          - { name: body, label: Body, widget: markdown, modes: [raw, rich_text] }
+      - name: hiscores
+        label: Hiscores
+        file: content/hiscores.md
+        fields: *page
+      - name: market
+        label: Marketplace
+        file: content/market.md
+        fields: *page
+      - name: privacy
+        label: Privacy policy
+        file: content/privacy.md
+        fields:
+          - { name: title, label: Title }
+          - { name: description, label: Description, widget: text }
+          - { name: body, label: Body, widget: markdown, modes: [raw, rich_text], hint: "Google's sign-in screen links this and requires it to stay accurate. Update its date when it changes." }
+      - name: terms
+        label: Terms of use
+        file: content/terms.md
+        fields:
+          - { name: title, label: Title }
+          - { name: description, label: Description, widget: text }
+          - { name: version, label: Version, hint: "CAREFUL: changing this makes every player accept the terms again, and disconnects everyone playing after a warning. Change it only when what the terms mean changes, not for a typo." }
+          - { name: body, label: Body, widget: markdown, modes: [raw, rich_text], hint: "Plain Markdown: the game draws this in a terminal. No raw HTML. Update 'Last updated' in the text whenever it changes." }

@@ -37,15 +37,6 @@
 /* latin */
 @font-face {
   font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9WXh0pg.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -76,6 +67,26 @@
   font-family: 'Cascadia Fallback';
   src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('LiberationMono');
   size-adjust: 97.63%;
+}
+/* Arial (or the nearest there is) and Times, scaled to the width and line height of Montserrat and
+   Cinzel, so nothing reflows when the real fonts arrive */
+@font-face {
+  font-family: 'Montserrat Fallback';
+  font-style: normal;
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans'), local('Helvetica'), local('Roboto');
+  size-adjust: 112.8%;
+  ascent-override: 85.81%;
+  descent-override: 22.25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Fallback';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT'), local('Liberation Serif Bold'), local('LiberationSerif-Bold'), local('Georgia Bold');
+  font-weight: 500 700;
+  size-adjust: 131.4%;
+  ascent-override: 74.28%;
+  descent-override: 28.31%;
+  line-gap-override: 0%;
 }
 /* Cascadia Mono's box-drawing glyphs, stretched to fill a line of the gameplay recording (line
    height 1.5) so its lines join. Only the recording uses it. From .agents/scripts/box-font.py */
