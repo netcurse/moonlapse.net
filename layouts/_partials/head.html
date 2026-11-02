@@ -1,6 +1,5 @@
-{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon or tile colour; CSS inlined */ -}}
+{{- /* PaperMod head.html: home title from params.homeTitle; no keywords, mask-icon, tile colour or X-UA-Compatible; CSS inlined, with the hiscores and Marketplace pages' only where they're used */ -}}
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
 <meta name="robots" content="index, follow">
@@ -56,7 +55,10 @@
 {{- /* Add extended css after theme style */ -}}
 {{- $fonts := resources.Get "css/fonts.css" | resources.Minify }}
 {{- $stylesheet := (slice $license_css $fonts $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
-<style>{{ $stylesheet.Content | safeCSS }}</style>
+<style id="site-css">{{ $stylesheet.Content | safeCSS }}</style>
+{{- if or (.HasShortcode "hiscores") (.HasShortcode "market") }}
+<style>{{ (resources.Get "css/data-pages.css" | resources.Minify).Content | safeCSS }}</style>
+{{- end }}
 
 {{- /* Search */}}
 {{- if (eq .Layout `search`) -}}

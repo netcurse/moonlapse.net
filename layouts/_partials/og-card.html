@@ -1,0 +1,24 @@
+{{- /* A page's 1200×630 link preview (og:image, twitter:image), made at build time: the moon, the
+       title and the description on the sky. A JPEG. */ -}}
+{{- $p := . -}}
+{{- $t := index hugo.Data.themes site.Params.theme -}}
+{{- $fg := $t.colors.bright.white -}}
+{{- $muted := $t.colors.primary.foreground -}}
+{{- $accent := $t.colors.normal.magenta -}}
+{{- $heading := resources.Get "og/cinzel-700.ttf" -}}
+{{- $body := resources.Get "og/montserrat-400.ttf" -}}
+{{- $px := resources.Get "og/pixel.png" -}}
+{{- /* sky.png: the top left of the starfield, dimmed, in full colour (the starfield has a palette, which dithers text). The bar: one pixel padded out */ -}}
+{{- $sky := resources.Get "og/sky.png" -}}
+{{- $bar := $px.Filter (images.Padding 0 1199 11 0 $accent) -}}
+{{- $mark := ((resources.Get "images/logo.png").Crop "405x405 Left").Resize "150x" -}}
+{{- $title := $p.Title | plainify -}}
+{{- $summary := $p.Description | default site.Params.description | plainify | htmlUnescape -}}
+{{- $card := $sky.Filter
+  (images.Overlay $mark 72 60)
+  (images.Overlay $bar 0 618)
+  (images.Text "moonlapse.net" (dict "font" $body "size" 30 "color" $muted "x" 244 "y" 118))
+  (images.Text ($title | truncate 64) (dict "font" $heading "size" 62 "color" $fg "x" 72 "y" 240 "linespacing" 14))
+  (images.Text ($summary | truncate 130) (dict "font" $body "size" 32 "color" $muted "x" 72 "y" 440 "linespacing" 12))
+-}}
+{{- return $card.Process "jpg q85" -}}
