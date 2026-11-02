@@ -79,7 +79,7 @@ Monsters go after whoever's the biggest threat to them. A defensive style, a shi
 | <kbd>p</kbd> | spellbook: cast a spell, or choose the one your staff or wand casts by itself |
 | <kbd>c</kbd> | autocast on/off |
 
-Attack spells go at your target. *Mend* heals a party member you've targeted, or else you. To use *Telegrab*, look at an item with <kbd>k</kbd>.
+Attack spells go at your target. *Mend other* heals a party member you've targeted, but not you. To use *Telegrab*, look at an item with <kbd>k</kbd>.
 
 ### Items and skills
 
@@ -96,6 +96,7 @@ Attack spells go at your target. *Mend* heals a party member you've targeted, or
 | Key | |
 |---|---|
 | <kbd>t</kbd> | chat |
+| <kbd>Tab</kbd> | on the chat line: choose who you talk to (everyone near, your party, or the last player you whispered with) |
 | <kbd>/</kbd> | type a command |
 | <kbd>↑</kbd> <kbd>↓</kbd> | your earlier messages |
 
