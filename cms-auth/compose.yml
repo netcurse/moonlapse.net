@@ -1,0 +1,19 @@
+services:
+  cms-auth:
+    image: node:22-alpine
+    restart: unless-stopped
+    command: node /app/server.mjs
+    env_file: .env
+    environment:
+      PUBLIC_ORIGIN: https://cms-auth.moonlapse.net
+      ALLOWED_DOMAINS: moonlapse.net
+    ports:
+      - "127.0.0.1:8647:8647"
+    volumes:
+      - ./server.mjs:/app/server.mjs:ro
+      - ./worker.mjs:/app/worker.mjs:ro
+    user: node
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true

@@ -6,6 +6,9 @@ backend:
   branch: main
   # This repo is public: a token that can't reach anyone's private repos
   auth_scope: public_repo
+  # What makes "Sign In with GitHub" work: cms-auth/
+  base_url: https://cms-auth.moonlapse.net
+  site_domain: moonlapse.net
   commit_messages:
     create: "Add {{slug}} to {{collection}}"
     update: "Update {{slug}} in {{collection}}"

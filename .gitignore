@@ -3,3 +3,6 @@ resources/
 _vendor/
 .hugo_build.lock
 __pycache__/
+
+# The admin console sign-in server's secrets
+cms-auth/.env
